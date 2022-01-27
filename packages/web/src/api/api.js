@@ -17,9 +17,18 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function saveUserData(headers) {
+    return request({
+      url: "/account",
+      requestMethod: "PUT",
+      headers: headers,
+    });
+  }
+
   return {
     signUp: signUp,
     signOut: signOut,
+    saveUserData: saveUserData,
   };
 }
 

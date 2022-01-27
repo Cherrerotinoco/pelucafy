@@ -15,7 +15,7 @@ async function signUp(req, res, next) {
 
     if (response.data) {
       return res.status(200).send({
-        email: response.data.email,
+        data: response.data,
         error: null,
       });
     }
@@ -25,9 +25,8 @@ async function signUp(req, res, next) {
       email: email,
     });
 
-
     res.status(201).send({
-      email: newUser.data.email,
+      data: newUser.data,
       error: null,
     });
   } catch (error) {

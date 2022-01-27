@@ -19,7 +19,7 @@ function Profile() {
     isDataPending: false,
     isDataSuccess: false,
     isDataError: false,
-    errorMsg: null
+    errorMsg: ''
   })
  
   function handleSubmit(event) {
@@ -43,13 +43,13 @@ function Profile() {
     setRequest({...request, isDataPending: true})
     
     try {  
-      const response = await api.saveUserData({
-        Authorization: `Bearer ${token}`,
-      })
+      const response = await api.saveUserData({ 
+        Authorization: `Bearer ${token}`
+      }, userData)
       
-      if (!response.isSuccessful) throw Error(response.errorMessage)
+      if (!response.data.error) throw Error(response.errorMessage)
 
-      setRequest({...request, isDataPending: false, isDataSuccess: true})
+      setRequest({...request, isDataPending: false, isDataSuccess: true, isDataError: false})
 
     } catch (error) {
       setRequest({...request, isDataError: true, errorMsg: error.message})
@@ -117,8 +117,14 @@ function Profile() {
       </form>
 
       <div className="">
-        {request.errorMsg && (
+        {request.isDataError && (
           request.errorMsg
+        )}
+        {request.isDataPending && (
+          'Guardando datos'
+        )}
+        {request.isDataSuccess && (
+          'Usuario guardado!'
         )}
       </div>
 

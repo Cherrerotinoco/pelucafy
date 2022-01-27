@@ -17,11 +17,12 @@ function makeApi(request = makeRequest()) {
     });
   }
 
-  function saveUserData(headers) {
+  function saveUserData(headers, body) {
     return request({
       url: "/account",
       requestMethod: "PUT",
       headers: headers,
+      body: body
     });
   }
 

@@ -23,6 +23,11 @@ function verifyIdToken(token) {
   return auth.verifyIdToken(token);
 }
 
+function updateUser(uid, props) {
+  return auth.updateUser(uid, props)
+}
+
 module.exports = {
   verifyIdToken: verifyIdToken,
+  updateUser: updateUser
 };

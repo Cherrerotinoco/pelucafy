@@ -21,11 +21,6 @@ app.use(
 
 app.use(userRouter);
 
-app.get("/", (req, res) => {
-  res.status(200).send({
-    data: "hello-world",
-  });
-});
 
 app.use(errorMiddleware);
 

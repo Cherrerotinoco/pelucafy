@@ -123,6 +123,10 @@ export function sendPasswordResetEmail(email) {
   };
 }
 
+export const getUserProfileDataRequest = () => ({
+  type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
+});
+
 export const sendPasswordResetEmailRequest = () => ({
   type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
 });

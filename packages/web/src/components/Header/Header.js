@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as ROUTES from "../../routes";
@@ -12,6 +12,11 @@ function Header() {
 
   function handleSignOut() {
     dispatch(signOut());
+  }
+  const navigate = useHistory();
+
+  function handleViewProfile() {
+    navigate.push(ROUTES.PROFILE);
   }
 
   return (
@@ -37,13 +42,22 @@ function Header() {
         </ul>
 
         {isAuthenticated && (
-          <button
-            className="btn btn-primary m-0"
-            type="button"
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </button>
+          <>
+            <button
+              className="btn btn-primary m-0"
+              type="button"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+            <button
+              className="btn btn-primary m-0"
+              type="button"
+              onClick={handleViewProfile}
+            >
+              Icono
+            </button>
+          </>
         )}
       </nav>
     </header>

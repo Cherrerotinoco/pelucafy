@@ -17,10 +17,10 @@ function makeApi(request = makeRequest()) {
     });
   }
 
-  function getUserData(headers) {
+  function saveUserData(headers) {
     return request({
       url: "/account",
-      requestMethod: "GET",
+      requestMethod: "PUT",
       headers: headers,
     });
   }
@@ -28,7 +28,7 @@ function makeApi(request = makeRequest()) {
   return {
     signUp: signUp,
     signOut: signOut,
-    getUserData: getUserData,
+    saveUserData: saveUserData,
   };
 }
 

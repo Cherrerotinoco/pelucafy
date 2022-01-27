@@ -4,34 +4,60 @@ import { Redirect } from "react-router-dom";
 
 import "./Profile.scss";
 import Header from "../../components/Header";
-import { profileSelector } from "../../redux/profile/profile-selectors";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import {
-  updateUserProfile,
-  getUserProfileData,
-} from "../../redux/profile/profile-actions";
 
 import * as ROUTES from "../../routes";
+import api from "../../api";
+import * as auth from "../../services/auth";
 
 function Profile() {
-  const dispatch = useDispatch();
-  const { isSigningUp, isAuthenticated } = useSelector(authSelector);
-  const { firstName, lastName, email } = useSelector(profileSelector);
 
-  useEffect(() => {
-    dispatch(getUserProfileData());
-  }, [dispatch]);
+  const { isSigningUp, isAuthenticated, currentUser } = useSelector(authSelector);
+  const [data, setData] = useState(currentUser);
 
-  const [data, setData] = useState({});
-
+  const [ request, setRequest ] = useState({
+    isDataPending: false,
+    isDataSuccess: false,
+    isDataError: false,
+    errorMsg: null
+  })
+ 
   function handleSubmit(event) {
     event.preventDefault();
 
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
 
-    dispatch(updateUserProfile(formData));
+    updateUserData(formData)
   }
+
+  async function updateUserData(userData) {
+
+    // Get token
+    const token = await auth.getCurrentUserToken()
+    if (!token) {
+      return setRequest({...request, isDataError: true})
+    } 
+
+
+    setRequest({...request, isDataPending: true})
+    
+    try {  
+      const response = await api.saveUserData({
+        Authorization: `Bearer ${token}`,
+      })
+      
+      if (!response.isSuccessful) throw Error(response.errorMessage)
+
+      setRequest({...request, isDataPending: false, isDataSuccess: true})
+
+    } catch (error) {
+      setRequest({...request, isDataError: true, errorMsg: error.message})
+    }
+
+    return null
+  }
+
 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -53,7 +79,7 @@ function Profile() {
           id="firstName"
           name="firstName"
           className="form-input"
-          value={firstName}
+          value={data.firstName}
           onChange={handleChange}
         />
 
@@ -65,7 +91,7 @@ function Profile() {
           id="lastName"
           name="lastName"
           className="form-input"
-          value={lastName}
+          value={data.lastName}
           onChange={handleChange}
         />
 
@@ -76,7 +102,8 @@ function Profile() {
           type="text"
           id="email"
           className="form-input"
-          value={email}
+          name="email"
+          value={data.email}
           onChange={handleChange}
         />
 
@@ -88,6 +115,13 @@ function Profile() {
           Save
         </button>
       </form>
+
+      <div className="">
+        {request.errorMsg && (
+          request.errorMsg
+        )}
+      </div>
+
     </main>
   );
 }

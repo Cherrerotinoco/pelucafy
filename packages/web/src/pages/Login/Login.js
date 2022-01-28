@@ -55,8 +55,8 @@ function Login() {
 
   return (
     <>
+      <Header />
       <main className="Login">
-        <Header />
         <section className="Login__wrapper">
           <h1 className="text-2xl font-bold mb-6">Login</h1>
           <hr className="my-4" />
@@ -105,9 +105,15 @@ function Login() {
             <hr className="mt-1 mb-4" />
             <Link
               to={ROUTES.RESET_PASSWORD}
+              className="underline text-blue-gray-200 w-full text-center block mb-2"
+            >
+              Forgot Password?
+            </Link>
+            <Link
+              to={ROUTES.SIGN_UP}
               className="underline text-blue-gray-200 w-full text-center block"
             >
-              Reset password
+              Don&apos;t have an account? Sign in
             </Link>
           </section>
         </section>

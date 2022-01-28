@@ -55,8 +55,8 @@ function SignUp() {
 
   return (
     <>
+      <Header />
       <main className="SignUp">
-        <Header />
         <section className="Login__wrapper">
           <h1 className="text-2xl font-bold mb-6">SignUp</h1>
           <hr className="my-4" />
@@ -106,10 +106,10 @@ function SignUp() {
           <section className="mt-4">
             <hr className="mt-1 mb-4" />
             <Link
-              to={ROUTES.RESET_PASSWORD}
+              to={ROUTES.LOGIN}
               className="underline text-blue-gray-200 w-full text-center block"
             >
-              Reset password
+              Have an account? Log in
             </Link>
           </section>
         </section>

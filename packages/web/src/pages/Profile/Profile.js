@@ -72,60 +72,62 @@ function Profile() {
   }
 
   return (
-    <main className="p-4">
+    <>
       <Header />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName" className="form-label">
-          firstName
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          className="form-input"
-          value={data.firstName}
-          onChange={handleChange}
-        />
+      <main className="Profile p-4">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="firstName" className="form-label">
+            firstName
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            className="form-input"
+            value={data.firstName}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="lastName" className="form-label">
-          Name
-        </label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          className="form-input"
-          value={data.lastName}
-          onChange={handleChange}
-        />
+          <label htmlFor="lastName" className="form-label">
+            Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            className="form-input"
+            value={data.lastName}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="text"
-          id="email"
-          className="form-input"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            id="email"
+            className="form-input"
+            name="email"
+            value={data.email}
+            onChange={handleChange}
+          />
 
-        <button
-          className="btn btn-primary w-full"
-          type="submit"
-          disabled={isSigningUp}
-        >
-          Save
-        </button>
-      </form>
+          <button
+            className="btn btn-primary w-full"
+            type="submit"
+            disabled={isSigningUp}
+          >
+            Save
+          </button>
+        </form>
 
-      <div className="">
-        {request.isDataError && request.errorMsg}
-        {request.isDataPending && "Guardando datos"}
-        {request.isDataSuccess && "Usuario guardado!"}
-      </div>
-    </main>
+        <div className="">
+          {request.isDataError && request.errorMsg}
+          {request.isDataPending && "Guardando datos"}
+          {request.isDataSuccess && "Usuario guardado!"}
+        </div>
+      </main>
+    </>
   );
 }
 

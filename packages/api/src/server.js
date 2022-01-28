@@ -21,7 +21,6 @@ app.use(
 
 app.use(userRouter);
 
-
 app.use(errorMiddleware);
 
 module.exports = {

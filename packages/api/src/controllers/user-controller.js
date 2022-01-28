@@ -45,9 +45,9 @@ async function signOut(req, res) {
 
 async function update(req, res) {
   try {
-    await UserRepo.findAndUpdate({_id: req.user.uid}, req.body)  
+    await UserRepo.findAndUpdate({ _id: req.user.uid }, req.body);
     res.status(200).send({
-      data: 'OK',
+      data: "OK",
       error: null,
     });
   } catch (error) {
@@ -56,11 +56,10 @@ async function update(req, res) {
       error: error.message,
     });
   }
-
 }
 
 module.exports = {
   signUp: signUp,
   signOut: signOut,
-  update: update
+  update: update,
 };

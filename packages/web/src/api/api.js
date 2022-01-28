@@ -22,7 +22,7 @@ function makeApi(request = makeRequest()) {
       url: "/account",
       requestMethod: "PUT",
       headers: headers,
-      body: body
+      body: body,
     });
   }
 

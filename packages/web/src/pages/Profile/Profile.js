@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import "./Profile.scss";
@@ -11,53 +11,49 @@ import api from "../../api";
 import * as auth from "../../services/auth";
 
 function Profile() {
-
-  const { isSigningUp, isAuthenticated, currentUser } = useSelector(authSelector);
+  const { isSigningUp, isAuthenticated, currentUser } =
+    useSelector(authSelector);
   const [data, setData] = useState(currentUser);
 
-  const [ request, setRequest ] = useState({
+  const [request, setRequest] = useState({
     isDataPending: false,
     isDataSuccess: false,
     isDataError: false,
-    errorMsg: null
-  })
- 
+    errorMsg: null,
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
 
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
 
-    updateUserData(formData)
+    updateUserData(formData);
   }
 
   async function updateUserData(userData) {
-
     // Get token
-    const token = await auth.getCurrentUserToken()
+    const token = await auth.getCurrentUserToken();
     if (!token) {
-      return setRequest({...request, isDataError: true})
-    } 
-
-
-    setRequest({...request, isDataPending: true})
-    
-    try {  
-      const response = await api.saveUserData({
-        Authorization: `Bearer ${token}`,
-      })
-      
-      if (!response.isSuccessful) throw Error(response.errorMessage)
-
-      setRequest({...request, isDataPending: false, isDataSuccess: true})
-
-    } catch (error) {
-      setRequest({...request, isDataError: true, errorMsg: error.message})
+      return setRequest({ ...request, isDataError: true });
     }
 
-    return null
-  }
+    setRequest({ ...request, isDataPending: true });
 
+    try {
+      const response = await api.saveUserData({
+        Authorization: `Bearer ${token}`,
+      });
+
+      if (!response.isSuccessful) throw Error(response.errorMessage);
+
+      setRequest({ ...request, isDataPending: false, isDataSuccess: true });
+    } catch (error) {
+      setRequest({ ...request, isDataError: true, errorMsg: error.message });
+    }
+
+    return null;
+  }
 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -116,12 +112,7 @@ function Profile() {
         </button>
       </form>
 
-      <div className="">
-        {request.errorMsg && (
-          request.errorMsg
-        )}
-      </div>
-
+      <div className="">{request.errorMsg && request.errorMsg}</div>
     </main>
   );
 }

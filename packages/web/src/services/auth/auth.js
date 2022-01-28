@@ -42,6 +42,12 @@ export function sendPasswordResetEmail(email) {
   return auth.sendPasswordResetEmail(email);
 }
 
+export function sendPasswordResetPassword({ oldPassword, newPassword }) {
+  if (singInWithEmailAndPassword(getCurrentUserEmail(), oldPassword)) {
+    auth.currentUser.updatePassword(newPassword);
+  }
+}
+
 export function signOut() {
   return auth.signOut();
 }

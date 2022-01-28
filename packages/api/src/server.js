@@ -10,6 +10,7 @@ const { userRouter } = require("./routes");
 
 const app = express();
 
+app.use(express.static("resources"));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(json());
@@ -20,12 +21,6 @@ app.use(
 );
 
 app.use(userRouter);
-
-app.get("/", (req, res) => {
-  res.status(200).send({
-    data: "hello-world",
-  });
-});
 
 app.use(errorMiddleware);
 

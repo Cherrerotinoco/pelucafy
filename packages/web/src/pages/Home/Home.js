@@ -12,7 +12,7 @@ function Home() {
     <main className="p-4">
       <Header />
       <section className="p-4">
-        {isAuthenticated ? (
+        {isAuthenticated && currentUser ? (
           <h1 className="text-xl">Hello {currentUser.email}</h1>
         ) : (
           <h1 className="text-xl">Hello World</h1>

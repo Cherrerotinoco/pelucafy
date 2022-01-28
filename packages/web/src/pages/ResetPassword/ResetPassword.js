@@ -1,79 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./ResetPassword.scss";
 
 import Header from "../../components/Header";
+import FormPassword from "./FormPassword";
+import FormEmail from "./FormEmail";
 
 import {
   sendPasswordResetEmail,
   resetAuthState,
+  sendPasswordResetPassword,
 } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
-function buttonText(loading, sent) {
-  if (loading) {
-    return "Sending...";
-  }
-
-  if (sent) {
-    return "Email Sent!";
-  }
-
-  return "Send password reset email";
-}
-
 function ResetPassword() {
   const dispatch = useDispatch();
-  const { isSendingPasswordReset, passwordResetError, passwordResetSent } =
-    useSelector(authSelector);
-
-  const [email, setEmail] = useState("");
+  const { passwordResetError, isAuthenticated } = useSelector(authSelector);
 
   useEffect(() => {
     dispatch(resetAuthState());
   }, [dispatch]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(sendPasswordResetEmail(email));
-    setEmail("");
-  }
+  const handleDataSubmit = useCallback(
+    (formData) => {
+      isAuthenticated
+        ? dispatch(sendPasswordResetPassword(formData))
+        : dispatch(sendPasswordResetEmail(formData));
+    },
+    [dispatch, isAuthenticated],
+  );
+  const button = useCallback(
+    (loading, sent) => {
+      if (loading) {
+        return "Sending...";
+      }
 
-  function handleSetEmail(e) {
-    setEmail(e.target.value);
-  }
+      if (sent) {
+        return isAuthenticated ? "New password sent!" : "Email sent!";
+      }
+
+      return isAuthenticated
+        ? "Send new password"
+        : "Send password reset email";
+    },
+    [isAuthenticated],
+  );
 
   return (
     <>
       <main className="ResetPassword">
         <Header />
         <section className="Login__wrapper">
-          <h1 className="text-2xl font-bold mb-6">Password Reset</h1>
+          <h1 className="text-2xl font-bold mb-6">
+            {isAuthenticated ? "Password Reset" : "Forgot my password"}
+          </h1>
           <hr className="my-4" />
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              className="form-input"
-              value={email}
-              onChange={handleSetEmail}
+
+          {isAuthenticated ? (
+            <FormPassword
+              handleDataSubmit={handleDataSubmit}
+              buttonText={button}
             />
-            <button
-              type="submit"
-              className="btn btn-primary w-full"
-              disabled={isSendingPasswordReset || passwordResetSent}
-            >
-              {buttonText(isSendingPasswordReset, passwordResetSent)}
-            </button>
-          </form>
-          {passwordResetError && (
-            <section className="mt-4">{passwordResetError}</section>
+          ) : (
+            <FormEmail
+              handleDataSubmit={handleDataSubmit}
+              buttonText={button}
+            />
           )}
         </section>
+        {passwordResetError && (
+          <section className="mt-4">{passwordResetError}</section>
+        )}
       </main>
     </>
   );

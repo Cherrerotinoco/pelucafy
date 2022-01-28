@@ -46,7 +46,7 @@ function FormEmail({ handleDataSubmit, buttonText }) {
 }
 
 FormEmail.defaultProps = {
-  handleDataSubmit: {},
+  handleDataSubmit: "",
   buttonText: "Send",
 };
 FormEmail.propTypes = {

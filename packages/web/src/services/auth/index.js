@@ -4,6 +4,7 @@ export {
   singInWithEmailAndPassword,
   singUpWithEmailAndPassword,
   sendPasswordResetEmail,
+  sendPasswordResetPassword,
   signOut,
   getCurrentUserToken,
   getCurrentUserEmail,

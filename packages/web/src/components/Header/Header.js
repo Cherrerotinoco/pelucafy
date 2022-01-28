@@ -21,25 +21,31 @@ function Header() {
 
   return (
     <header className="p-4">
-      <nav className="flex align-items-middle">
-        <ul className="list-none flex">
-          <li className="mr-4 px-3 py-2 bg-gray-600">
-            <NavLink to={ROUTES.HOME}>Home</NavLink>
-          </li>
-          {!isAuthenticated && (
-            <>
-              <li className="mr-4 px-3 py-2 bg-gray-600">
+      <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
+        <div className="flex items-center flex-no-shrink text-white mr-6">
+          <NavLink to={ROUTES.HOME}>
+            <img src="/images/logo.png" width="100" />
+          </NavLink>
+        </div>
+
+        {!isAuthenticated && (
+          <>
+            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+              <button
+                type="button"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+              >
                 <NavLink to={ROUTES.LOGIN}>Login</NavLink>
-              </li>
-              <li className="mr-4 px-3 py-2 bg-gray-600">
+              </button>
+              <button
+                type="button"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+              >
                 <NavLink to={ROUTES.SIGN_UP}>Sign up</NavLink>
-              </li>
-            </>
-          )}
-          <li className="mr-4 px-3 py-2 bg-gray-600">
-            <NavLink to={ROUTES.RESET_PASSWORD}>Reset password</NavLink>
-          </li>
-        </ul>
+              </button>
+            </div>
+          </>
+        )}
 
         {isAuthenticated && (
           <>
@@ -50,12 +56,8 @@ function Header() {
             >
               Sign Out
             </button>
-            <button
-              className="btn btn-primary m-0"
-              type="button"
-              onClick={handleViewProfile}
-            >
-              Icono
+            <button className="btn btn-primary m-0" type="button">
+              <NavLink to={ROUTES.PROFILE}>Profile</NavLink>
             </button>
           </>
         )}

@@ -10,6 +10,7 @@ const { userRouter } = require("./routes");
 
 const app = express();
 
+app.use(express.static("resources"));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(json());

@@ -48,7 +48,7 @@ function Profile() {
         userData,
       );
 
-      if (!response.data.error) throw Error(response.errorMessage);
+      if (response.data.error) throw Error(response.errorMessage);
 
       setRequest({
         ...request,
@@ -56,11 +56,11 @@ function Profile() {
         isDataSuccess: true,
         isDataError: false,
       });
+      return null;
     } catch (error) {
       setRequest({ ...request, isDataError: true, errorMsg: error.message });
+      return null;
     }
-
-    return null;
   }
 
   function handleChange(e) {

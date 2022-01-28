@@ -98,7 +98,11 @@ function SignUp() {
               Sign Up
             </button>
           </form>
-          {signUpError && <section className="mt-4">{signUpError.payload}</section>}
+
+          {signUpError && (
+            <section className="mt-4">{signUpError.payload}</section>
+          )}
+
           <section className="mt-4">
             <hr className="mt-1 mb-4" />
             <Link

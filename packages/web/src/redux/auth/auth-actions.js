@@ -112,32 +112,45 @@ export const signOutSuccess = () => ({
 
 export function sendPasswordResetEmail(email) {
   return async function sendPasswordResetEmailRequestThunk(dispatch) {
-    dispatch(sendPasswordResetEmailRequest());
+    dispatch(sendPasswordResetRequest());
     try {
       await auth.sendPasswordResetEmail(email);
-      dispatch(sendPasswordResetEmailSuccess());
+      dispatch(sendPasswordResetSuccess());
     } catch (error) {
-      dispatch(sendPasswordResetEmailError(error.message));
+      dispatch(sendPasswordResetError(error.message));
     }
-    return dispatch(sendPasswordResetEmailSuccess());
+    return dispatch(sendPasswordResetSuccess());
+  };
+}
+
+export function sendPasswordResetPassword(password) {
+  return async function sendPasswordResetPasswordRequestThunk(dispatch) {
+    dispatch(sendPasswordResetRequest());
+    try {
+      await auth.sendPasswordResetPassword(password);
+      dispatch(sendPasswordResetSuccess());
+    } catch (error) {
+      dispatch(sendPasswordResetError(error.message));
+    }
+    return dispatch(sendPasswordResetSuccess());
   };
 }
 
 export const getUserProfileDataRequest = () => ({
-  type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
+  type: AuthTypes.SEND_PASSWORD_RESET_REQUEST,
 });
 
-export const sendPasswordResetEmailRequest = () => ({
-  type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
+export const sendPasswordResetRequest = () => ({
+  type: AuthTypes.SEND_PASSWORD_RESET_REQUEST,
 });
 
-export const sendPasswordResetEmailError = (message) => ({
-  type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_ERROR,
+export const sendPasswordResetError = (message) => ({
+  type: AuthTypes.SEND_PASSWORD_RESET_ERROR,
   payload: message,
 });
 
-export const sendPasswordResetEmailSuccess = () => ({
-  type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_SUCCESS,
+export const sendPasswordResetSuccess = () => ({
+  type: AuthTypes.SEND_PASSWORD_RESET_SUCCESS,
 });
 
 export const resetAuthState = () => ({

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import "./Profile.scss";
 import Header from "../../components/Header";
@@ -120,6 +120,13 @@ function Profile() {
             Save
           </button>
         </form>
+        <hr className="mt-1 mb-4" />
+        <Link
+          to={ROUTES.RESET_PASSWORD}
+          className="underline text-blue-gray-200 w-full text-center block mb-2"
+        >
+          Change Password
+        </Link>
 
         <div className="">
           {request.isDataError && request.errorMsg}

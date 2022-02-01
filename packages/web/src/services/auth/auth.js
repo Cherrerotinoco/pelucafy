@@ -67,3 +67,7 @@ export function getCurrentUserEmail() {
 
   return auth.currentUser.email;
 }
+
+export function getCurrentUserPhoto() {
+  return auth.currentUser?.photoURL;
+}

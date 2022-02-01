@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import "./Profile.scss";
 import Header from "../../components/Header";
@@ -12,6 +12,7 @@ import * as auth from "../../services/auth";
 
 import FormImage from "../../components/FormImage/FormImage";
 import { syncSignIn } from "../../redux/auth/auth-actions";
+import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -78,60 +79,70 @@ function Profile() {
   }
 
   return (
-    <main className="p-4">
+    <>
       <Header />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName" className="form-label">
-          firstName
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          className="form-input"
-          value={data.firstName}
-          onChange={handleChange}
-        />
+      <main className="Profile p-4">
+        <ProfileImage />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="firstName" className="form-label">
+            firstName
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            className="form-input"
+            value={data.firstName}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="lastName" className="form-label">
-          Name
-        </label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          className="form-input"
-          value={data.lastName}
-          onChange={handleChange}
-        />
+          <label htmlFor="lastName" className="form-label">
+            Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            className="form-input"
+            value={data.lastName}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="text"
-          id="email"
-          className="form-input"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            id="email"
+            className="form-input"
+            name="email"
+            value={data.email}
+            onChange={handleChange}
+          />
 
-        <button
-          className="btn btn-primary w-full"
-          type="submit"
-          disabled={isSigningUp}
+          <button
+            className="btn btn-primary w-full"
+            type="submit"
+            disabled={isSigningUp}
+          >
+            Save
+          </button>
+        </form>
+        <hr className="mt-1 mb-4" />
+        <Link
+          to={ROUTES.RESET_PASSWORD}
+          className="underline text-blue-gray-200 w-full text-center block mb-2"
         >
-          Save
-        </button>
-      </form>
-      <FormImage />
-      <div className="">
-        {request.isDataError && request.errorMsg}
-        {request.isDataPending && "Guardando datos"}
-        {request.isDataSuccess && "Usuario guardado!"}
-      </div>
-    </main>
+          Change Password
+        </Link>
+        <FormImage />
+        <div className="">
+          {request.isDataError && request.errorMsg}
+          {request.isDataPending && "Guardando datos"}
+          {request.isDataSuccess && "Usuario guardado!"}
+        </div>
+      </main>
+    </>
   );
 }
 

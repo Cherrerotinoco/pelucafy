@@ -9,16 +9,18 @@ function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
 
   return (
-    <main className="p-4">
+    <>
       <Header />
-      <section className="p-4">
-        {isAuthenticated && currentUser ? (
-          <h1 className="text-xl">Hello {currentUser.email}</h1>
-        ) : (
-          <h1 className="text-xl">Hello World</h1>
-        )}
-      </section>
-    </main>
+      <main className="p-4">
+        <section className="p-4">
+          {isAuthenticated && currentUser ? (
+            <h1 className="text-xl">Hello {currentUser.email}</h1>
+          ) : (
+            <h1 className="text-xl">Hello World</h1>
+          )}
+        </section>
+      </main>
+    </>
   );
 }
 

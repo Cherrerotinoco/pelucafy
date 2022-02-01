@@ -10,14 +10,19 @@ function FormPassword({ handleDataSubmit, buttonText }) {
   const [password, setPassword] = useState({
     oldPassword: "",
     newPassword: "",
+    newPassword2: "",
   });
 
   function handleSubmit(e) {
     e.preventDefault();
     handleDataSubmit(password);
+    if (password.newPassword !== password.newPassword2) {
+      return;
+    }
     setPassword({
       oldPassword: "",
       newPassword: "",
+      newPassword2: "",
     });
   }
 
@@ -28,29 +33,39 @@ function FormPassword({ handleDataSubmit, buttonText }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email" className="form-label">
+        <label htmlFor="oldPassword" className="form-label">
           Old Password
         </label>
         <input
-          type="text"
+          type="password"
           id="oldPassword"
           name="oldPassword"
           className="form-input"
           value={password.oldPassword}
           onChange={handleChange}
         />
-        <label htmlFor="email" className="form-label">
+        <label htmlFor="newPassword" className="form-label">
           New Password
         </label>
         <input
-          type="text"
+          type="password"
           id="newPassword"
           name="newPassword"
           className="form-input"
           value={password.newPassword}
           onChange={handleChange}
         />
-
+        <label htmlFor="newPassword2" className="form-label">
+          Repeat New Password
+        </label>
+        <input
+          type="password"
+          id="newPassword2"
+          name="newPassword2"
+          className="form-input"
+          value={password.newPassword2}
+          onChange={handleChange}
+        />
         <button
           type="submit"
           className="btn btn-primary w-full"

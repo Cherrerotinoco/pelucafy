@@ -6,7 +6,7 @@ import { getCurrentUserPhoto } from '../../services/auth';
 function ProfileImage() {
 
   const { currentUser } = useSelector(authSelector);
-  const { imageURl } = currentUser
+  const { imageUrl } = currentUser
   const url = imageURl || getCurrentUserPhoto() || getRandomePhoto()
 
   function getRandomePhoto() {

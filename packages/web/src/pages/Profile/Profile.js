@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import "./Profile.scss";
@@ -10,7 +10,12 @@ import * as ROUTES from "../../routes";
 import api from "../../api";
 import * as auth from "../../services/auth";
 
+import FormImage from "../../components/FormImage/FormImage";
+import { syncSignIn } from "../../redux/auth/auth-actions";
+
 function Profile() {
+  const dispatch = useDispatch();
+
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
   const [data, setData] = useState(currentUser);
@@ -49,13 +54,14 @@ function Profile() {
       );
 
       if (response.data.error) throw Error(response.errorMessage);
-
+      dispatch(syncSignIn());
       setRequest({
         ...request,
         isDataPending: false,
         isDataSuccess: true,
         isDataError: false,
       });
+
       return null;
     } catch (error) {
       setRequest({ ...request, isDataError: true, errorMsg: error.message });
@@ -119,7 +125,7 @@ function Profile() {
           Save
         </button>
       </form>
-
+      <FormImage />
       <div className="">
         {request.isDataError && request.errorMsg}
         {request.isDataPending && "Guardando datos"}

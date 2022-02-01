@@ -13,7 +13,7 @@ export const AuthInitialState = {
     email: null,
     firstName: null,
     lastName: null,
-    image: null,
+    imageUrl: null,
   },
 };
 
@@ -27,6 +27,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
         signUpError: null,
       };
     }
+
     case AuthTypes.SIGN_UP_ERROR: {
       return {
         ...state,

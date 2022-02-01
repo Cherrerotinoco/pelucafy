@@ -136,10 +136,6 @@ export function sendPasswordResetPassword(password) {
   };
 }
 
-export const getUserProfileDataRequest = () => ({
-  type: AuthTypes.SEND_PASSWORD_RESET_REQUEST,
-});
-
 export const sendPasswordResetRequest = () => ({
   type: AuthTypes.SEND_PASSWORD_RESET_REQUEST,
 });

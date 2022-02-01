@@ -26,10 +26,19 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function saveImage(body, url) {
+    return request({
+      url: url,
+      requestMethod: "POST",
+      body: body,
+    });
+  }
+
   return {
     signUp: signUp,
     signOut: signOut,
     saveUserData: saveUserData,
+    saveImage: saveImage,
   };
 }
 

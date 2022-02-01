@@ -69,5 +69,5 @@ export function getCurrentUserEmail() {
 }
 
 export function getCurrentUserPhoto() {
-  return auth.currentUser?.photoURL
+  return auth.currentUser?.photoURL;
 }

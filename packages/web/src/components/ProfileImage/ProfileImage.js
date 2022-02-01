@@ -1,21 +1,26 @@
-import React from 'react';
+import React from "react";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import { getCurrentUserPhoto } from '../../services/auth';
+import { getCurrentUserPhoto } from "../../services/auth";
 
 function ProfileImage() {
-
   const { currentUser } = useSelector(authSelector);
-  const { imageUrl } = currentUser
-  const url = imageUrl || getCurrentUserPhoto() || getRandomePhoto()
+  const { imageUrl } = currentUser;
+  const url = imageUrl || getCurrentUserPhoto() || getRandomePhoto();
 
   function getRandomePhoto() {
-    return 'https://picsum.photos/seed/picsum/50/50'
+    return "https://picsum.photos/seed/picsum/50/50";
   }
 
   return (
     <div>
-      <img className='mr-auto ml-auto' src={url} alt='test' width="auto" height="auto" />
+      <img
+        className="mr-auto ml-auto"
+        src={url}
+        alt="test"
+        width="auto"
+        height="auto"
+      />
     </div>
   );
 }

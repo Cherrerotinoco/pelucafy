@@ -12,6 +12,7 @@ import * as auth from "../../services/auth";
 
 import FormImage from "../../components/FormImage/FormImage";
 import { syncSignIn } from "../../redux/auth/auth-actions";
+
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
 import validateProfile from "./validateProfile";
@@ -158,7 +159,6 @@ function Profile() {
           Change Password
         </Link>
         <FormImage />
-
         <div className="">
           {isDataError && "Los datos insertados no son validos"}
           {isDataPending && "Guardando datos"}

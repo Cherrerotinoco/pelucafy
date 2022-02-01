@@ -12,6 +12,7 @@ import * as auth from "../../services/auth";
 
 import FormImage from "../../components/FormImage/FormImage";
 import { syncSignIn } from "../../redux/auth/auth-actions";
+import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ function Profile() {
     <>
       <Header />
       <main className="Profile p-4">
+        <ProfileImage />
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName" className="form-label">
             firstName

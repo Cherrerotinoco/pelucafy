@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 
 import { onAuthStateChanged } from "./services/auth";
 import { syncSignIn, signOut } from "./redux/auth/auth-actions";
+import AddSong from "./pages/AddSong";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         <Route path={ROUTES.LOGIN} component={Login} />
         <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
         <Route path={ROUTES.HOME} component={Home} exact />
+        <Route path={ROUTES.ADDSONG} component={AddSong} exact />
       </Switch>
     </div>
   );

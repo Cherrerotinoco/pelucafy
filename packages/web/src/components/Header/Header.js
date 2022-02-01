@@ -50,6 +50,18 @@ function Header() {
               >
                 <NavLink to={ROUTES.PROFILE}>Profile</NavLink>
               </button>
+              <button
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+                type="button"
+              >
+                <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
+              </button>
+              <button
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+                type="button"
+              >
+                <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>
+              </button>
             </div>
             <button
               className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"

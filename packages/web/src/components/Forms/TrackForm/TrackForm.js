@@ -47,7 +47,7 @@ const TrackForm = () => {
                 type="text"
                 id="title"
                 name="title"
-                placeholder="John Doe"
+                placeholder="Title"
               />
               <ErrorMessage
                 name="title"
@@ -63,34 +63,13 @@ const TrackForm = () => {
                 type="text"
                 id="genre"
                 name="genre"
-                placeholder="genre@genre.com"
+                placeholder="Genre"
               />
               <ErrorMessage
                 name="genre"
                 component={() => <div className="error">{errors.genre}</div>}
               />
             </div>
-
-            {/* <div>
-              <Field name="pais" as="select">
-                <option value="mexico">Mexico</option>
-                <option value="España">España</option>
-                <option value="Argentina">Argentina</option>
-              </Field>
-            </div>
-
-            <div>
-              <label htmlFor="sexo">
-                <Field type="radio" name="sexo" value="hombre" /> Hombre
-              </label>
-              <label htmlFor="sexo">
-                <Field type="radio" name="sexo" value="mujer" /> Mujer
-              </label>
-            </div> */}
-
-            {/* <div>
-              <Field name="mensaje" as="textarea" placeholder="Mensaje" />
-            </div> */}
 
             <button type="submit" className="btn btn-primary w-full">
               Submit

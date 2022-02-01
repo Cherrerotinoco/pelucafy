@@ -14,27 +14,45 @@ import FormImage from "../../components/FormImage/FormImage";
 import { syncSignIn } from "../../redux/auth/auth-actions";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
+import validateProfile from "./validateProfile";
+
 function Profile() {
   const dispatch = useDispatch();
 
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
   const [data, setData] = useState(currentUser);
+  const { firstName, lastName, email } = data;
 
   const [request, setRequest] = useState({
     isDataPending: false,
     isDataSuccess: false,
     isDataError: false,
-    errorMsg: "",
   });
+  const { isDataPending, isDataSuccess, isDataError } = request;
+
+  const [errorMessage, setErrorMesage] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
 
+    const errors = validateProfile(data);
+    setErrorMesage(errors);
+
+    if (Object.keys(errors).length > 0) {
+      setRequest({
+        ...request,
+        isDataError: true,
+      });
+      return;
+    }
+
+    console.log("Enviando formulario");
+
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
 
-    updateUserData(formData);
+    // updateUserData(formData);
   }
 
   async function updateUserData(userData) {
@@ -55,6 +73,7 @@ function Profile() {
       );
 
       if (response.data.error) throw Error(response.errorMessage);
+
       dispatch(syncSignIn());
       setRequest({
         ...request,
@@ -92,9 +111,10 @@ function Profile() {
             id="firstName"
             name="firstName"
             className="form-input"
-            value={data.firstName}
+            value={firstName}
             onChange={handleChange}
           />
+          {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
           <label htmlFor="lastName" className="form-label">
             Name
@@ -104,9 +124,10 @@ function Profile() {
             id="lastName"
             name="lastName"
             className="form-input"
-            value={data.lastName}
+            value={lastName}
             onChange={handleChange}
           />
+          {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
           <label htmlFor="email" className="form-label">
             Email
@@ -116,9 +137,10 @@ function Profile() {
             id="email"
             className="form-input"
             name="email"
-            value={data.email}
+            value={email}
             onChange={handleChange}
           />
+          {errorMessage.email && <div>{errorMessage.email}</div>}
 
           <button
             className="btn btn-primary w-full"
@@ -138,9 +160,9 @@ function Profile() {
         <FormImage />
 
         <div className="">
-          {request.isDataError && request.errorMsg}
-          {request.isDataPending && "Guardando datos"}
-          {request.isDataSuccess && "Usuario guardado!"}
+          {isDataError && "Los datos insertados no son validos"}
+          {isDataPending && "Guardando datos"}
+          {isDataSuccess && "Usuario guardado!"}
         </div>
       </main>
     </>

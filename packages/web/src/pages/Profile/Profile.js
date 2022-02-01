@@ -10,6 +10,8 @@ import * as ROUTES from "../../routes";
 import api from "../../api";
 import * as auth from "../../services/auth";
 
+import ProfileImage from "../../components/ProfileImage/ProfileImage";
+
 function Profile() {
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
@@ -75,6 +77,7 @@ function Profile() {
     <>
       <Header />
       <main className="Profile p-4">
+        <ProfileImage />
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName" className="form-label">
             firstName

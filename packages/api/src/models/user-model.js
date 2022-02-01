@@ -24,6 +24,9 @@ const UserSchema = Schema(
         message: (props) => `The email ${props.value} is not valid`,
       },
     },
+    imageUrl: {
+      type: String
+    }
   },
   {
     timestamps: true,

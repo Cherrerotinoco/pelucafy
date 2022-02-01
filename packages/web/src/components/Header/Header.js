@@ -10,10 +10,11 @@ function Header() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector(authSelector);
 
+  const navigate = useHistory();
+
   function handleSignOut() {
     dispatch(signOut());
   }
-  const navigate = useHistory();
 
   function handleViewProfile() {
     navigate.push(ROUTES.PROFILE);

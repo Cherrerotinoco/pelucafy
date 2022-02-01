@@ -5,8 +5,8 @@ import { getCurrentUserPhoto } from "../../services/auth";
 
 function ProfileImage() {
   const { currentUser } = useSelector(authSelector);
-  const { image } = currentUser;
-  const imageURl = image || getCurrentUserPhoto() || getRandomePhoto();
+  const { imageUrl } = currentUser;
+  const url = imageUrl || getCurrentUserPhoto() || getRandomePhoto();
 
   function getRandomePhoto() {
     return "https://picsum.photos/seed/picsum/50/50";
@@ -16,7 +16,7 @@ function ProfileImage() {
     <div>
       <img
         className="mr-auto ml-auto"
-        src={imageURl}
+        src={url}
         alt="test"
         width="auto"
         height="auto"

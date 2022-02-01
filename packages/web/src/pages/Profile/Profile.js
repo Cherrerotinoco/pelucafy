@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Profile.scss";
 import Header from "../../components/Header";
@@ -12,6 +12,7 @@ import * as auth from "../../services/auth";
 
 import FormImage from "../../components/FormImage/FormImage";
 import { syncSignIn } from "../../redux/auth/auth-actions";
+
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
 function Profile() {

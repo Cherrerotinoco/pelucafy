@@ -14,6 +14,7 @@ export const AuthInitialState = {
     firstName: null,
     lastName: null,
     imageUrl: null,
+    thumbnailUrl: null,
   },
 };
 

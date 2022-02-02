@@ -111,7 +111,6 @@ function Profile() {
 
   return (
     <>
-      <Header />
       <main className="Profile p-4">
         <ProfileImage />
         <form

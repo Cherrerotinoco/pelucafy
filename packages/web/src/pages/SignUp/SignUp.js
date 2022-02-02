@@ -56,12 +56,15 @@ function SignUp() {
 
   return (
     <>
-      <Header />
       <main className="SignUp">
         <section className="Login__wrapper">
-          <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+          <h2
+            className="my-4 text-3xl md:text-3xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
+          >
             SignUp
-          </h1>
+          </h2>
+
           <hr className="my-4" />
           <button
             className="btn btn-primary w-full"

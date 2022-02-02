@@ -10,20 +10,23 @@ function Home() {
 
   return (
     <>
-      <Header />
-      <main className="p-4">
-        <section className="p-4">
-          {isAuthenticated && currentUser ? (
-            <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-              Hello {currentUser.email}
-            </h1>
-          ) : (
-            <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
-              Hello World
-            </h1>
-          )}
-        </section>
-      </main>
+      <section className="p-4">
+        {isAuthenticated && currentUser ? (
+          <h2
+            className="my-4 text-2xl md:text-3xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
+          >
+            Hello {currentUser.email}
+          </h2>
+        ) : (
+          <h2
+            className="my-4 text 2xl md:text-3xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
+          >
+            Hello World
+          </h2>
+        )}
+      </section>
     </>
   );
 }

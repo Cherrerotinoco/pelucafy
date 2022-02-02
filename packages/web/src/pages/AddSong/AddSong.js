@@ -5,7 +5,6 @@ import Header from "../../components/Header";
 const AddSong = () => {
   return (
     <>
-      <Header />
       <main className="Login">
         <section className="Login__wrapper">
           <TrackForm />

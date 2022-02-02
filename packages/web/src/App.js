@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Particles from "react-tsparticles";
@@ -7,17 +7,14 @@ import particlesOptions from "./particles.json";
 
 import "./styles/App.scss";
 
-import * as ROUTES from "./routes";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import ResetPassword from "./pages/ResetPassword";
-import Profile from "./pages/Profile";
+import ScreenLayout from "./components/ScreenLayout";
+import Header from "./components/Header";
+
+import UserBox from "./components/UserBox";
+import ContentBox from "./components/ContentBox";
 
 import { onAuthStateChanged } from "./services/auth";
 import { syncSignIn, signOut } from "./redux/auth/auth-actions";
-import AddSong from "./pages/AddSong";
-import MySongs from "./pages/MySongs";
 import { authSelector } from "./redux/auth/auth-selectors";
 
 function App() {
@@ -51,16 +48,17 @@ function App() {
   return (
     <div className="App__container">
       <Particles options={particlesOptions} />
-
-      <Switch>
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-        <Route path={ROUTES.PROFILE} component={Profile} />
-        <Route path={ROUTES.LOGIN} component={Login} />
-        <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-        <Route path={ROUTES.HOME} component={Home} exact />
-        <Route path={ROUTES.ADDSONG} component={AddSong} exact />
-        <Route path={ROUTES.MYSONGS} component={MySongs} exact />
-      </Switch>
+      <BrowserRouter>
+        <div className="flex mb-4">
+          <div className="flex-auto w-3/4">
+            <Header />
+            <ContentBox />
+          </div>
+          <div className="flex-auto w-1/4">
+            <UserBox />
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

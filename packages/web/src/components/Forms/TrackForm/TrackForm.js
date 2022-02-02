@@ -37,9 +37,15 @@ const TrackForm = () => {
         }}
       >
         {({ errors }) => (
-          <Form className="formulario">
+          <Form
+            className="
+w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+          >
             <div>
-              <label className="form-label" htmlFor="title">
+              <label
+                className="form-label block text-blue-300 py-2 font-bold mb-2"
+                htmlFor="title"
+              >
                 Title
               </label>
               <Field
@@ -55,7 +61,10 @@ const TrackForm = () => {
               />
             </div>
             <div>
-              <label className="form-label" htmlFor="genre">
+              <label
+                className="form-label block text-blue-300 py-2 font-bold mb-2"
+                htmlFor="genre"
+              >
                 Genre
               </label>
               <Field
@@ -71,7 +80,11 @@ const TrackForm = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary w-full">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+            >
               Submit
             </button>
             {fromSubmiting && <p className="exito">Form submitted</p>}

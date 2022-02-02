@@ -33,7 +33,7 @@ function Header() {
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
               <button
                 type="button"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
               >
                 <NavLink to={ROUTES.LOGIN}>Login</NavLink>
               </button>
@@ -45,13 +45,15 @@ function Header() {
           <>
             <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
               <button
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
                 type="button"
               >
                 <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
               </button>
               <button
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
                 type="button"
               >
                 <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>

@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import Particles from "react-tsparticles";
+import particlesOptions from "./particles.json";
+
 import "./styles/App.scss";
 
 import * as ROUTES from "./routes";
@@ -47,6 +50,8 @@ function App() {
 
   return (
     <div className="App__container">
+      <Particles options={particlesOptions} />
+
       <Switch>
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
         <Route path={ROUTES.PROFILE} component={Profile} />

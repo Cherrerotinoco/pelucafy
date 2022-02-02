@@ -1,5 +1,18 @@
 @import "./utils.scss";
 
-.App__container {
-  @apply h-screen bg-dark-dark text-white;
+body {
+  background-image: url("https://wallpaperaccess.com/full/19608.jpg"); 
+  background-color: #000000;
+  background-size: cover;
+ }
+
+#tsparticles {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }

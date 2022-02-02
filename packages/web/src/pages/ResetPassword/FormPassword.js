@@ -40,12 +40,20 @@ function FormPassword({ handleDataSubmit, buttonText }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="oldPassword" className="form-label">
+      <form
+        className="
+w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
+        <label
+          htmlFor="oldPassword"
+          className="form-label block text-blue-300 py-2 font-bold mb-2"
+        >
           Old Password
         </label>
         <input
           type="password"
+          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="oldPassword"
           name="oldPassword"
           className="form-input"
@@ -54,11 +62,15 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           required
         />
         {errorMsg.oldPassword ? errorMsg.oldPassword : null}
-        <label htmlFor="newPassword" className="form-label">
+        <label
+          htmlFor="newPassword"
+          className="form-label block text-blue-300 py-2 font-bold mb-2"
+        >
           New Password
         </label>
         <input
           type="password"
+          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="newPassword"
           name="newPassword"
           className="form-input"
@@ -67,11 +79,15 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           required
         />
         {errorMsg.newPassword ? errorMsg.newPassword : null}
-        <label htmlFor="newPassword2" className="form-label">
+        <label
+          htmlFor="newPassword2"
+          className="form-label block text-blue-300 py-2 font-bold mb-2"
+        >
           Repeat New Password
         </label>
         <input
           type="password"
+          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="newPassword2"
           name="newPassword2"
           className="form-input"
@@ -82,7 +98,8 @@ function FormPassword({ handleDataSubmit, buttonText }) {
         {errorMsg.newPassword2 ? errorMsg.newPassword2 : null}
         <button
           type="submit"
-          className="btn btn-primary w-full"
+          className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
           disabled={isSendingPasswordReset || passwordResetSent}
         >
           {buttonText(isSendingPasswordReset, passwordResetSent)}

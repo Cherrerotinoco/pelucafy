@@ -29,7 +29,12 @@ const FileUploader = ({ callback, ...props }) => {
 
   return (
     <>
-      <button type="button" onClick={() => cloudinaryWidget.open()}>
+      <button
+        className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+        type="button"
+        onClick={() => cloudinaryWidget.open()}
+      >
         Upload image
       </button>
     </>

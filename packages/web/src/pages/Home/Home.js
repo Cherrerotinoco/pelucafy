@@ -14,9 +14,13 @@ function Home() {
       <main className="p-4">
         <section className="p-4">
           {isAuthenticated && currentUser ? (
-            <h1 className="text-xl">Hello {currentUser.email}</h1>
+            <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+              Hello {currentUser.email}
+            </h1>
           ) : (
-            <h1 className="text-xl">Hello World</h1>
+            <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+              Hello World
+            </h1>
           )}
         </section>
       </main>

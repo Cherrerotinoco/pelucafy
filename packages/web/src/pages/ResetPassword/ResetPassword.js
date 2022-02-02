@@ -52,7 +52,7 @@ function ResetPassword() {
       <Header />
       <main className="ResetPassword">
         <section className="Login__wrapper">
-          <h1 className="text-2xl font-bold mb-6">
+          <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
             {isAuthenticated ? "Password Reset" : "Forgot my password"}
           </h1>
           <hr className="my-4" />

@@ -114,25 +114,36 @@ function Profile() {
       <Header />
       <main className="Profile p-4">
         <ProfileImage />
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="firstName" className="form-label">
+        <form
+          className="
+w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit}
+        >
+          <label
+            htmlFor="firstName"
+            className="form-label block text-blue-300 py-2 font-bold mb-2"
+          >
             firstName
           </label>
           <input
             type="text"
             id="firstName"
             name="firstName"
-            className="form-input"
+            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             value={firstName}
             onChange={handleChange}
           />
           {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
-          <label htmlFor="lastName" className="form-label">
+          <label
+            htmlFor="lastName"
+            className="form-label block text-blue-300 py-2 font-bold mb-2"
+          >
             Name
           </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             id="lastName"
             name="lastName"
             className="form-input"
@@ -141,11 +152,15 @@ function Profile() {
           />
           {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
-          <label htmlFor="email" className="form-label">
+          <label
+            htmlFor="email"
+            className="form-label block text-blue-300 py-2 font-bold mb-2"
+          >
             Email
           </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             id="email"
             className="form-input"
             name="email"
@@ -155,7 +170,8 @@ function Profile() {
           {errorMessage.email && <div>{errorMessage.email}</div>}
 
           <button
-            className="btn btn-primary w-full"
+            className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
             type="submit"
             disabled={isSigningUp}
           >
@@ -165,7 +181,7 @@ function Profile() {
         <hr className="mt-1 mb-4" />
         <Link
           to={ROUTES.RESET_PASSWORD}
-          className="underline text-blue-gray-200 w-full text-center block mb-2"
+          className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
         >
           Change Password
         </Link>

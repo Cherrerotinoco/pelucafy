@@ -7,6 +7,7 @@ import { signOut } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 import ThumbnailDropDown from "../thumbnailDropDown/ThumbnailDropDown";
+import ProfileImage from "../ProfileImage/ProfileImage";
 
 function Header() {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ function Header() {
               type="button"
               onClick={() => setDropDown(!dropDown)}
             >
-              <img src={currentUser.thumbnailUrl} alt="avatar" />
+              <ProfileImage thumbnail="true" />
             </button>
           </>
         )}

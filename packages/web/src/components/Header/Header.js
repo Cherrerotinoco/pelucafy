@@ -64,7 +64,7 @@ function Header() {
               type="button"
               onClick={() => setDropDown(!dropDown)}
             >
-              <ProfileImage thumbnail="true" />
+              <ProfileImage thumbnail />
             </button>
           </>
         )}

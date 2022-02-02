@@ -39,9 +39,11 @@ function App() {
     };
   }, [dispatch]);
 
+  /*
   useEffect(() => {
         if (!saveCredentials) window.indexedDB.deleteDatabase('firebaseLocalStorageDb')
   }, [saveCredentials])
+  */
 
   return (
     <div className="App__container">

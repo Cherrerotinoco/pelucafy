@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ import * as ROUTES from "../../routes";
 import api from "../../api";
 import * as auth from "../../services/auth";
 
-import FormImage from "../../components/FormImage/FormImage";
+import FileUploader from "../../components/FileUploader";
 import { syncSignIn } from "../../redux/auth/auth-actions";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
@@ -48,15 +48,13 @@ function Profile() {
       return;
     }
 
-    console.log("Enviando formulario");
-
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
 
-    // updateUserData(formData);
+    updateUserData(formData);
   }
 
-  async function updateUserData(userData) {
+    const updateUserData = async (userData) => {
     // Get token
     const token = await auth.getCurrentUserToken();
     if (!token) {
@@ -90,12 +88,26 @@ function Profile() {
     }
   }
 
+  const updateUserImage = (error, result) => {
+    if (!error && result && result.event === "success") {
+      updateUserData({
+        imageUrl: result.info.secure_url,
+        thumbnailUrl: result.info.thumbnail_url,
+      });
+
+    }
+  }
+
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
 
   if (!isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
+  }
+
+  if (!isDataPending && isDataSuccess && !isDataError) {
+    // return <Redirect to={ROUTES.PROFILE} />;
   }
 
   return (
@@ -158,7 +170,7 @@ function Profile() {
         >
           Change Password
         </Link>
-        <FormImage />
+        <FileUploader callback={updateUserImage} />
         <div className="">
           {isDataError && "Los datos insertados no son validos"}
           {isDataPending && "Guardando datos"}

@@ -9,10 +9,7 @@ function ProfileImage({thumbnail, ...props}) {
   const { currentUser } = useSelector(authSelector);
   const { imageUrl, thumbnailUrl } = currentUser;
   
-  let image;
-  image = imageUrl
-  if (thumbnail) image = thumbnailUrl
-  const url = image || getCurrentUserPhoto() || getRandomePhoto();
+  const url = thumbnailUrl || imageUrl || getCurrentUserPhoto() || getRandomePhoto();
 
   function getRandomePhoto() {
     return "https://picsum.photos/seed/picsum/50/50";

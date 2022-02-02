@@ -63,7 +63,10 @@ const FormImage = () => {
     (error, result) => {
       if (!error && result && result.event === "success") {
         console.log("Done! Here is the image info: ", result.info);
-        updateUserImage({ imageUrl: result.info.secure_url });
+        updateUserImage({
+          imageUrl: result.info.secure_url,
+          thumbnailUrl: result.info.thumbnail_url,
+        });
       } else {
         console.log(cloudinaryConfig.cloudName, cloudinaryConfig.uploadPreset);
       }

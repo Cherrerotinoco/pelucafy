@@ -8,5 +8,5 @@ export {
   signOut,
   getCurrentUserToken,
   getCurrentUserEmail,
-  getCurrentUserPhoto
+  getCurrentUserPhoto,
 } from "./auth";

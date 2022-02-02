@@ -13,7 +13,8 @@ export const AuthInitialState = {
     email: null,
     firstName: null,
     lastName: null,
-    imageUrl: null
+    imageUrl: null,
+    thumbnailUrl: null,
   },
   saveCredentials: false
 };

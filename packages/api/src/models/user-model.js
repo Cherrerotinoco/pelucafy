@@ -28,6 +28,10 @@ const UserSchema = Schema(
       type: String,
       trim: true,
     },
+    thumbnailUrl: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,

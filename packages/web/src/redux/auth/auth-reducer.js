@@ -16,7 +16,7 @@ export const AuthInitialState = {
     imageUrl: null,
     thumbnailUrl: null,
   },
-  saveCredentials: false
+  saveCredentials: false,
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {
@@ -27,7 +27,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
         ...state,
         isSigningUp: true,
         signUpError: null,
-        saveCredentials: payload.saveCredentials
+        saveCredentials: payload.saveCredentials,
       };
     }
 

@@ -9,8 +9,8 @@ export const resetStoreAndLogOut = () => ({
 export const signUpRequest = (saveCredentials) => ({
   type: AuthTypes.SIGN_UP_REQUEST,
   payload: {
-    saveCredentials: saveCredentials
-  }
+    saveCredentials: saveCredentials,
+  },
 });
 
 export const signUpError = (message) => ({

@@ -54,7 +54,7 @@ function Profile() {
     updateUserData(formData);
   }
 
-    const updateUserData = async (userData) => {
+  const updateUserData = async (userData) => {
     // Get token
     const token = await auth.getCurrentUserToken();
     if (!token) {
@@ -86,7 +86,7 @@ function Profile() {
       setRequest({ ...request, isDataError: true, errorMsg: error.message });
       return null;
     }
-  }
+  };
 
   const updateUserImage = (error, result) => {
     if (!error && result && result.event === "success") {
@@ -94,9 +94,8 @@ function Profile() {
         imageUrl: result.info.secure_url,
         thumbnailUrl: result.info.thumbnail_url,
       });
-
     }
-  }
+  };
 
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });

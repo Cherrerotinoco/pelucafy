@@ -22,7 +22,7 @@ function SignUp() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [saveCredentials, setSaveCredentials] = useState(false)
+  const [saveCredentials, setSaveCredentials] = useState(false);
 
   useEffect(() => {
     dispatch(resetAuthState());
@@ -99,9 +99,14 @@ function SignUp() {
               Sign Up
             </button>
 
-            <input type="checkbox" id="saveCredentials" name="saveCredentials" checked={saveCredentials} onChange={(e) => setSaveCredentials(e.target.checked)} />
+            <input
+              type="checkbox"
+              id="saveCredentials"
+              name="saveCredentials"
+              checked={saveCredentials}
+              onChange={(e) => setSaveCredentials(e.target.checked)}
+            />
             <label htmlFor="saveCredentials">Remember login?</label>
-
           </form>
 
           {signUpError && (

@@ -19,7 +19,7 @@ import { authSelector } from "./redux/auth/auth-selectors";
 
 function App() {
   const dispatch = useDispatch();
-  const {saveCredentials} = useSelector(authSelector)
+  const { saveCredentials } = useSelector(authSelector);
 
   useEffect(() => {
     let unsubscribeFromAuth = null;

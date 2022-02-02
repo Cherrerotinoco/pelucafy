@@ -1,24 +1,22 @@
-import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
+import ThumbnailDropDown from "../thumbnailDropDown/ThumbnailDropDown";
+
 function Header() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector(authSelector);
-
-  const navigate = useHistory();
+  const { isAuthenticated, currentUser } = useSelector(authSelector);
 
   function handleSignOut() {
     dispatch(signOut());
   }
 
-  function handleViewProfile() {
-    navigate.push(ROUTES.PROFILE);
-  }
+  const [dropDown, setDropDown] = useState(false);
 
   return (
     <header className="p-4">
@@ -49,12 +47,6 @@ function Header() {
                 className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
                 type="button"
               >
-                <NavLink to={ROUTES.PROFILE}>Profile</NavLink>
-              </button>
-              <button
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
-                type="button"
-              >
                 <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
               </button>
               <button
@@ -64,12 +56,14 @@ function Header() {
                 <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>
               </button>
             </div>
+
+            {dropDown ? <ThumbnailDropDown /> : null}
             <button
               className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
               type="button"
-              onClick={handleSignOut}
+              onClick={() => setDropDown(!dropDown)}
             >
-              Sign Out
+              <img src={currentUser.thumbnailUrl} alt="avatar" />
             </button>
           </>
         )}

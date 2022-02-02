@@ -67,8 +67,6 @@ const FormImage = () => {
           imageUrl: result.info.secure_url,
           thumbnailUrl: result.info.thumbnail_url,
         });
-      } else {
-        console.log(cloudinaryConfig.cloudName, cloudinaryConfig.uploadPreset);
       }
     },
   );

@@ -22,6 +22,7 @@ function SignUp() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [saveCredentials, setSaveCredentials] = useState(false)
 
   useEffect(() => {
     dispatch(resetAuthState());
@@ -29,13 +30,13 @@ function SignUp() {
 
   function handleLoginWithGoogle(e) {
     e.preventDefault();
-    dispatch(signUpWithGoogleRequest());
+    dispatch(signUpWithGoogleRequest(saveCredentials));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    dispatch(signUpWithEmailRequest(email, password));
+    dispatch(signUpWithEmailRequest(email, password, saveCredentials));
 
     setEmail("");
     setPassword("");
@@ -97,6 +98,10 @@ function SignUp() {
             >
               Sign Up
             </button>
+
+            <input type="checkbox" id="saveCredentials" name="saveCredentials" checked={saveCredentials} onChange={(e) => setSaveCredentials(e.target.checked)} />
+            <label htmlFor="saveCredentials">Remember login?</label>
+
           </form>
 
           {signUpError && (

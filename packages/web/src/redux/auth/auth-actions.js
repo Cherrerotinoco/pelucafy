@@ -6,8 +6,11 @@ export const resetStoreAndLogOut = () => ({
   type: AuthTypes.RESET_STORE_AND_LOG_OUT,
 });
 
-export const signUpRequest = () => ({
+export const signUpRequest = (saveCredentials) => ({
   type: AuthTypes.SIGN_UP_REQUEST,
+  payload: {
+    saveCredentials: saveCredentials
+  }
 });
 
 export const signUpError = (message) => ({
@@ -15,9 +18,9 @@ export const signUpError = (message) => ({
   payload: message,
 });
 
-export function signUpWithGoogleRequest() {
+export function signUpWithGoogleRequest(saveCredentials) {
   return async function signUpThunk(dispatch) {
-    dispatch(signUpRequest());
+    dispatch(signUpRequest(saveCredentials));
     try {
       await auth.singInWithGoogle();
     } catch (error) {
@@ -26,9 +29,9 @@ export function signUpWithGoogleRequest() {
   };
 }
 
-export function signUpWithEmailRequest(email, password) {
+export function signUpWithEmailRequest(email, password, saveCredentials) {
   return async function signUpThunk(dispatch) {
-    dispatch(signUpRequest());
+    dispatch(signUpRequest(saveCredentials));
     try {
       await auth.singUpWithEmailAndPassword(email, password);
     } catch (error) {

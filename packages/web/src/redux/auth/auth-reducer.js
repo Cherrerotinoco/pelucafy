@@ -13,8 +13,9 @@ export const AuthInitialState = {
     email: null,
     firstName: null,
     lastName: null,
-    imageUrl: null,
+    imageUrl: null
   },
+  saveCredentials: false
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {
@@ -25,6 +26,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
         ...state,
         isSigningUp: true,
         signUpError: null,
+        saveCredentials: payload.saveCredentials
       };
     }
 

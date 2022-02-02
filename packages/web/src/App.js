@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./styles/App.scss";
 
@@ -15,9 +15,11 @@ import { onAuthStateChanged } from "./services/auth";
 import { syncSignIn, signOut } from "./redux/auth/auth-actions";
 import AddSong from "./pages/AddSong";
 import MySongs from "./pages/MySongs";
+import { authSelector } from "./redux/auth/auth-selectors";
 
 function App() {
   const dispatch = useDispatch();
+  const {saveCredentials} = useSelector(authSelector)
 
   useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -36,6 +38,10 @@ function App() {
       }
     };
   }, [dispatch]);
+
+  useEffect(() => {
+        if (!saveCredentials) window.indexedDB.deleteDatabase('firebaseLocalStorageDb')
+  }, [saveCredentials])
 
   return (
     <div className="App__container">

@@ -48,12 +48,10 @@ function Profile() {
       return;
     }
 
-    console.log("Enviando formulario");
-
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
 
-    // updateUserData(formData);
+    updateUserData(formData);
   }
 
   async function updateUserData(userData) {

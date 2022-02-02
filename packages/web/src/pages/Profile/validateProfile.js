@@ -10,6 +10,8 @@ export default function validateProfile(profile) {
 
   if (!profile.lastName) {
     errores.lastName = "El lastName es obligatorio";
+  } else if (profile.lastName.length < 2 || profile.lastName.length > 20) {
+    errores.lastName = "El lastName debe contener entre 2 y 20 caracteres";
   }
 
   // validar el email

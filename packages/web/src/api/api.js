@@ -43,12 +43,22 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function getTracks(headers, body) {
+    return request({
+      url: "/tracks",
+      requestMethod: "POST",
+      headers: headers,
+      body: body,
+    });
+  }
+
   return {
     signUp: signUp,
     signOut: signOut,
     saveUserData: saveUserData,
     saveImage: saveImage,
     addNewSong: addNewSong,
+    getTracks: getTracks
   };
 }
 

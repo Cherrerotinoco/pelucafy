@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Route, useHistory, Switch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Particles from "react-tsparticles";
 import particlesOptions from "./particles.json";
+import * as ROUTES from "./routes";
 
 import "./styles/App.scss";
 
@@ -18,9 +19,18 @@ import { authSelector } from "./redux/auth/auth-selectors";
 
 function App() {
   const dispatch = useDispatch();
-  const { saveCredentials, isAuthenticated } = useSelector(authSelector);
+  const { isAuthenticated } = useSelector(authSelector);
 
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      if (location.pathname !== ROUTES.SIGN_UP) {
+        history.push("/login");
+      }
+    }
+  }, [history, location.pathname, isAuthenticated]);
 
   useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -45,11 +55,6 @@ function App() {
         if (!saveCredentials) window.indexedDB.deleteDatabase('firebaseLocalStorageDb')
   }, [saveCredentials])
   */
-  useEffect(() => {
-    if (!isAuthenticated) {
-      history.push("/login");
-    }
-  });
 
   return (
     <div className="App__container">

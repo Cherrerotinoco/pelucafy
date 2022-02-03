@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import api from "../../api";
@@ -6,6 +6,10 @@ import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 
 import validateAddSong from "./validateAddSong";
+import Title from "../../components/elements/Title";
+import Label from "../../components/elements/Label";
+import Button from "../../components/elements/Button";
+import Input from "../../components/elements/Input";
 
 const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
@@ -87,9 +91,12 @@ const AddSong = () => {
     }
   };
 
-  function handleChange(e) {
-    setSong({ ...song, [e.target.name]: e.target.value });
-  }
+  const handleChange = useCallback(
+    (e) => {
+      setSong({ ...song, [e.target.name]: e.target.value });
+    },
+    [song],
+  );
 
   const updateSongUrl = (error, result) => {
     if (!error && result && result.event === "success") {
@@ -117,52 +124,50 @@ const AddSong = () => {
     <>
       <main className="Login">
         <section className="Login__wrapper">
-          <h1 className="text-2xl font-bold mb-6">Upload Song</h1>
+          <Title weight="3" align="left">
+            Upload Song
+          </Title>
           <form onSubmit={handleSubmit}>
             {!song.url || !song.thumbnail ? (
               <>
-                <FileUploader callback={updateSongUrl} text="Song" />
-                {errorMessage.url && <div>{errorMessage.url}</div>}
+                <div>
+                  <Label>Step 1: Upload your song</Label>
+                  <FileUploader callback={updateSongUrl} text="Song" />
+                  {errorMessage.url && <div>{errorMessage.url}</div>}
+                </div>
 
-                <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
-                {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+                <div>
+                  <Label>Step 2: Upload your song cover</Label>
+                  <FileUploader
+                    callback={updateThumbnailUrl}
+                    text="Thumbnail"
+                  />
+                  {errorMessage.thumbnail && (
+                    <div>{errorMessage.thumbnail}</div>
+                  )}
+                </div>
               </>
             ) : null}
 
             {song.url && song.thumbnail && (
               <>
-                <label htmlFor="title" className="form-label">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  className="form-input"
-                  value={title}
-                  onChange={handleChange}
-                />
+                <Label htmlFor="title"> Title</Label>
+                <Input name="title" value={title} action={handleChange} />
+
                 {errorMessage.title && <div>{errorMessage.title}</div>}
 
-                <label htmlFor="genre" className="form-label">
-                  Genre
-                </label>
-                <input
-                  type="text"
-                  id="genre"
-                  name="genre"
-                  className="form-input"
-                  value={genre}
-                  onChange={handleChange}
-                />
+                <Label htmlFor="genre"> Genre</Label>
+                <Input name="genre" value={genre} action={handleChange} />
+
                 {errorMessage.genre && <div>{errorMessage.genre}</div>}
-                <button
-                  className="btn btn-primary w-full"
-                  type="submit"
+
+                <Button
+                  submit="true"
+                  styles="noBackgroundHover"
                   disabled={request.isDataPending}
                 >
                   Upload
-                </button>
+                </Button>
               </>
             )}
           </form>

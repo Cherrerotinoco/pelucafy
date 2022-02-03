@@ -28,21 +28,25 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           <>
             <Button
               submit={false}
-              styles="background"
+              styles="noBackgroundHover"
               action={() => handlerRenderedComponet({ [ROUTES.PROFILE]: true })}
             >
               <GoSettings />
             </Button>
             <Button
               submit={false}
-              styles="background"
+              styles="noBackgroundHover"
               action={() =>
                 handlerRenderedComponet({ [ROUTES.RESET_PASSWORD]: true })
               }
             >
               <ImStatsBars />
             </Button>
-            <Button submit={false} styles="background" action={handleSignOut}>
+            <Button
+              submit={false}
+              styles="noBackgroundHover"
+              action={handleSignOut}
+            >
               <ImExit />
             </Button>
           </>

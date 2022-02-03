@@ -26,7 +26,6 @@ const FileUploader = ({ callback, text, ...props }) => {
         type="button"
         onClick={() => cloudinaryWidget.open()}
       >
-        {console.log("me renderizo", text)}
         {text}
       </button>
     </>

@@ -5,6 +5,7 @@ import api from "../../api";
 import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 import Header from "../../components/Header";
+import validateAddSong from "./validateAddSong";
 
 const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
@@ -14,7 +15,7 @@ const AddSong = () => {
     isDataSuccess: false,
     isDataError: "",
   });
-  const { isDataPending, isDataSuccess, isDataError } = request;
+  const { isDataPending } = request;
 
   const [song, setSong] = useState({
     userId: currentUser._id,
@@ -25,10 +26,24 @@ const AddSong = () => {
   });
   const { title, genre } = song;
 
+  const [errorMessage, setErrorMesage] = useState({});
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const errors = validateAddSong(song);
+    setErrorMesage(errors);
+
+    if (Object.keys(errors).length > 0) {
+      setRequest({
+        ...request,
+        isDataError: true,
+      });
+      return;
+    }
+
     updateSong(song);
-    console.log(song);
+
     setSong({
       userId: currentUser._id,
       title: "",
@@ -105,41 +120,52 @@ const AddSong = () => {
         <section className="Login__wrapper">
           <h1 className="text-2xl font-bold mb-6">Upload Song</h1>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="title" className="form-label">
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              className="form-input"
-              value={title}
-              onChange={handleChange}
-            />
+            {!song.url || !song.thumbnail ? (
+              <>
+                <FileUploader callback={updateSongUrl} text="Song" />
+                {errorMessage.url && <div>{errorMessage.url}</div>}
 
-            <label htmlFor="genre" className="form-label">
-              Genre
-            </label>
-            <input
-              type="text"
-              id="genre"
-              name="genre"
-              className="form-input"
-              value={genre}
-              onChange={handleChange}
-            />
+                <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
+                {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+              </>
+            ) : null}
 
-            <FileUploader callback={updateSongUrl} text="Song" />
+            {song.url && song.thumbnail && (
+              <>
+                <label htmlFor="title" className="form-label">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  className="form-input"
+                  value={title}
+                  onChange={handleChange}
+                />
+                {errorMessage.title && <div>{errorMessage.title}</div>}
 
-            <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
-
-            <button
-              className="btn btn-primary w-full"
-              type="submit"
-              disabled={isDataPending}
-            >
-              Upload
-            </button>
+                <label htmlFor="genre" className="form-label">
+                  Genre
+                </label>
+                <input
+                  type="text"
+                  id="genre"
+                  name="genre"
+                  className="form-input"
+                  value={genre}
+                  onChange={handleChange}
+                />
+                {errorMessage.genre && <div>{errorMessage.genre}</div>}
+                <button
+                  className="btn btn-primary w-full"
+                  type="submit"
+                  disabled={request.isDataPending}
+                >
+                  Upload
+                </button>
+              </>
+            )}
           </form>
         </section>
       </main>

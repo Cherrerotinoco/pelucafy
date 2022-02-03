@@ -32,12 +32,22 @@ const UserSchema = Schema(
       type: String,
       trim: true,
     },
+    following: [{
+      userId: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }],
+    followedBy: [{
+      userId: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true
+    }]
   },
   {
     timestamps: true,
   },
 );
 
-const User = mongoose.model("user", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

@@ -16,6 +16,7 @@ import {
 
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
+import Label from "../../components/elements/Label";
 
 function Login() {
   const dispatch = useDispatch();
@@ -69,12 +70,8 @@ function Login() {
 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
-            <label
-              htmlFor="email"
-              className="form-label block text-blue-300 py-2 font-bold mb-2"
-            >
-              Email
-            </label>
+            <Label htmlFor="email"> Genre</Label>
+
             <input
               type="text"
               id="email"
@@ -82,12 +79,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               value={email}
               onChange={handleSetEmail}
             />
-            <label
-              htmlFor="password"
-              className="form-label block text-blue-300 py-2 font-bold mb-2"
-            >
-              Password
-            </label>
+            <Label htmlFor="password"> Password</Label>
             <input
               type="password"
               id="password"
@@ -104,9 +96,8 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               >
                 Login
               </button>
-              <span className="form-label block text-blue-300 py-2 font-bold m-2">
-                or
-              </span>
+              <Label> or</Label>
+
               <button
                 className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
  text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
@@ -127,12 +118,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
                 checked={saveCredentials}
                 onChange={(e) => setSaveCredentials(e.target.checked)}
               />
-              <label
-                htmlFor="saveCredentials"
-                className="form-label block text-blue-300 py-2 font-bold mb-2"
-              >
-                Remember login?
-              </label>
+              <Label htmlFor="saveCredentials"> Remember login?</Label>
             </div>
           </form>
           {signUpError && (

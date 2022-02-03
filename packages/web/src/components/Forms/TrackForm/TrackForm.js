@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Label from "../../elements/Label";
 
 const TrackForm = () => {
   const [fromSubmiting, setFormSubmiting] = useState(false);
@@ -42,12 +43,7 @@ const TrackForm = () => {
 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
           >
             <div>
-              <label
-                className="form-label block text-blue-300 py-2 font-bold mb-2"
-                htmlFor="title"
-              >
-                Title
-              </label>
+              <Label htmlFor="title"> Title</Label>
               <Field
                 className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
@@ -61,12 +57,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               />
             </div>
             <div>
-              <label
-                className="form-label block text-blue-300 py-2 font-bold mb-2"
-                htmlFor="genre"
-              >
-                Genre
-              </label>
+              <Label htmlFor="genre"> Genre</Label>
               <Field
                 className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"

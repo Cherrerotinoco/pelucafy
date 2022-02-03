@@ -15,6 +15,7 @@ import {
 
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
+import Label from "../../components/elements/Label";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -78,12 +79,8 @@ function SignUp() {
 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
-            <label
-              htmlFor="email"
-              className="form-label block text-blue-300 py-2 font-bold mb-2"
-            >
-              Email
-            </label>
+            <Label htmlFor="email"> Email</Label>
+
             <input
               type="text"
               className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -92,12 +89,8 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               value={email}
               onChange={handleSetEmail}
             />
-            <label
-              htmlFor="password"
-              className="form-label block text-blue-300 py-2 font-bold mb-2"
-            >
-              Password
-            </label>
+            <Label htmlFor="password"> Password</Label>
+
             <input
               type="password"
               className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -122,12 +115,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               checked={saveCredentials}
               onChange={(e) => setSaveCredentials(e.target.checked)}
             />
-            <label
-              className="form-label block text-blue-300 py-2 font-bold mb-2"
-              htmlFor="saveCredentials"
-            >
-              Remember login?
-            </label>
+            <Label htmlFor="saveCredentials"> Remember login?</Label>
           </form>
 
           {signUpError && (

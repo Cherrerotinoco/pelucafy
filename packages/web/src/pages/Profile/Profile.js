@@ -15,6 +15,7 @@ import { syncSignIn } from "../../redux/auth/auth-actions";
 
 import validateProfile from "./validateProfile";
 import Title from "../../components/elements/Title";
+import Label from "../../components/elements/Label";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -119,12 +120,7 @@ function Profile() {
 w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           onSubmit={handleSubmit}
         >
-          <label
-            htmlFor="firstName"
-            className="form-label block text-blue-300 py-2 font-bold mb-2"
-          >
-            firstName
-          </label>
+          <Label htmlFor="firstName"> Firs Name</Label>
           <input
             type="text"
             id="firstName"
@@ -135,12 +131,7 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           />
           {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
-          <label
-            htmlFor="lastName"
-            className="form-label block text-blue-300 py-2 font-bold mb-2"
-          >
-            Name
-          </label>
+          <Label htmlFor="lastName"> Last Name</Label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -151,12 +142,7 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           />
           {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
-          <label
-            htmlFor="email"
-            className="form-label block text-blue-300 py-2 font-bold mb-2"
-          >
-            Email
-          </label>
+          <Label htmlFor="email"> Email</Label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import passwordValidation from "../../utils/validation/passwordValidation";
+import Label from "../../components/elements/Label";
 
 function FormPassword({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
@@ -44,12 +45,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
         className="w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
-        <label
-          htmlFor="oldPassword"
-          className="form-label block text-blue-300 py-2 font-bold mb-2"
-        >
-          Old Password
-        </label>
+        <Label htmlFor="oldPassword"> Old Password</Label>
         <input
           type="password"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -60,12 +56,8 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           required
         />
         {errorMsg.oldPassword ? errorMsg.oldPassword : null}
-        <label
-          htmlFor="newPassword"
-          className="form-label block text-blue-300 py-2 font-bold mb-2"
-        >
-          New Password
-        </label>
+
+        <Label htmlFor="newPassword"> New Password</Label>
         <input
           type="password"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
@@ -76,12 +68,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           required
         />
         {errorMsg.newPassword ? errorMsg.newPassword : null}
-        <label
-          htmlFor="newPassword2"
-          className="form-label block text-blue-300 py-2 font-bold mb-2"
-        >
-          Repeat New Password
-        </label>
+        <Label htmlFor="newPassword2">Repeat New Password</Label>
         <input
           type="password"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"

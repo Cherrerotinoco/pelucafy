@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./ResetPassword.scss";
 
-import Header from "../../components/Header";
 import FormPassword from "./FormPassword";
 import FormEmail from "./FormEmail";
 

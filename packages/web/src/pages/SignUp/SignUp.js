@@ -13,15 +13,14 @@ import {
 } from "../../redux/auth/auth-actions";
 
 import { authSelector } from "../../redux/auth/auth-selectors";
-import Title from "../../components/elements/Title";
-import Label from "../../components/elements/Label";
-import Input from "../../components/elements/Input";
-import Button from "../../components/elements/Button";
+import { Elements } from "../../components/elements";
 
 function SignUp() {
   const dispatch = useDispatch();
   const { isSigningUp, signUpError, isAuthenticated } =
     useSelector(authSelector);
+
+  const { Button, Title, Label, Input } = Elements;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

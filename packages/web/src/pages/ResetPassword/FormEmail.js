@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import emailValidation from "../../utils/validation/emailValidation";
-import Label from "../../components/elements/Label";
-import Input from "../../components/elements/Input";
-import Button from "../../components/elements/Button";
+import { Elements } from "../../components/elements";
 
 function FormEmail({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
     useSelector(authSelector);
+
+  const { Button, Label, Input } = Elements;
 
   const history = useHistory();
 

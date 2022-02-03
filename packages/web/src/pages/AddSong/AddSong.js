@@ -6,13 +6,13 @@ import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 
 import validateAddSong from "./validateAddSong";
-import Title from "../../components/elements/Title";
-import Label from "../../components/elements/Label";
-import Button from "../../components/elements/Button";
-import Input from "../../components/elements/Input";
+import { Elements } from "../../components/elements";
+//
 
 const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
+
+  const { Button, Title, Label, Input } = Elements;
 
   const [request, setRequest] = useState({
     isDataPending: false,

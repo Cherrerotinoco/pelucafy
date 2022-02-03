@@ -14,16 +14,16 @@ import FileUploader from "../../components/FileUploader";
 import { syncSignIn } from "../../redux/auth/auth-actions";
 
 import validateProfile from "./validateProfile";
-import Title from "../../components/elements/Title";
-import Label from "../../components/elements/Label";
-import Input from "../../components/elements/Input";
-import Button from "../../components/elements/Button";
+import { Elements } from "../../components/elements";
 
 function Profile() {
   const dispatch = useDispatch();
 
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
+
+  const { Button, Title, Label, Input } = Elements;
+
   const [data, setData] = useState(currentUser);
   const { firstName, lastName, email } = data;
 

@@ -30,7 +30,7 @@ function FormEmail({ handleDataSubmit, buttonText }) {
     <>
       <form
         className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <label

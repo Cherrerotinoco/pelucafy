@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./Profile.scss";
-import Header from "../../components/Header";
+
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 import * as ROUTES from "../../routes";
@@ -12,8 +12,6 @@ import * as auth from "../../services/auth";
 
 import FileUploader from "../../components/FileUploader";
 import { syncSignIn } from "../../redux/auth/auth-actions";
-
-import ProfileImage from "../../components/ProfileImage/ProfileImage";
 
 import validateProfile from "./validateProfile";
 
@@ -111,11 +109,13 @@ function Profile() {
 
   return (
     <>
-      <main className="Profile p-4">
-        <ProfileImage />
+      <section className="Profile p-4">
+        <h2 className=" text-2xl md:text-2xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+          Profile
+        </h2>
         <form
           className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           onSubmit={handleSubmit}
         >
           <label
@@ -145,7 +145,6 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             id="lastName"
             name="lastName"
-            className="form-input"
             value={lastName}
             onChange={handleChange}
           />
@@ -161,7 +160,6 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             type="text"
             className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             id="email"
-            className="form-input"
             name="email"
             value={email}
             onChange={handleChange}
@@ -176,6 +174,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
           >
             Save
           </button>
+          <FileUploader callback={updateUserImage} />
         </form>
         <hr className="mt-1 mb-4" />
         <Link
@@ -184,13 +183,13 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
         >
           Change Password
         </Link>
-        <FileUploader callback={updateUserImage} />
-        <div className="">
+
+        <div className="text-sky-50  w-full text-center block mb-2">
           {isDataError && "Los datos insertados no son validos"}
           {isDataPending && "Guardando datos"}
           {isDataSuccess && "Usuario guardado!"}
         </div>
-      </main>
+      </section>
     </>
   );
 }

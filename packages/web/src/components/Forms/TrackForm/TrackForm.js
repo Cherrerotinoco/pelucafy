@@ -49,7 +49,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
                 Title
               </label>
               <Field
-                className="form-input"
+                className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
                 id="title"
                 name="title"
@@ -68,7 +68,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
                 Genre
               </label>
               <Field
-                className="form-input"
+                className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
                 id="genre"
                 name="genre"

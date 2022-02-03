@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -6,71 +6,65 @@ import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
-import ThumbnailDropDown from "../thumbnailDropDown/ThumbnailDropDown";
-import ProfileImage from "../ProfileImage/ProfileImage";
+import LogoHome from "../LogoHome/LogoHome";
 
 function Header() {
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = useSelector(authSelector);
+  const { isAuthenticated } = useSelector(authSelector);
 
   function handleSignOut() {
     dispatch(signOut());
   }
 
-  const [dropDown, setDropDown] = useState(false);
-
   return (
     <header className="p-4">
-      <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
-        <div className="flex items-center flex-no-shrink text-white mr-6">
-          <NavLink to={ROUTES.HOME}>
-            <img src="/images/logo.png" width="100" />
-          </NavLink>
-        </div>
-
-        {!isAuthenticated && (
-          <>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-              <button
-                type="button"
-                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              >
-                <NavLink to={ROUTES.LOGIN}>Login</NavLink>
-              </button>
-            </div>
-          </>
-        )}
-
-        {isAuthenticated && (
-          <>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-              <button
-                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-              >
-                <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
-              </button>
-              <button
-                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-              >
-                <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>
-              </button>
-            </div>
-
-            {dropDown ? <ThumbnailDropDown /> : null}
-            <button
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
-              type="button"
-              onClick={() => setDropDown(!dropDown)}
+      {!isAuthenticated && (
+        <>
+          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <h1
+              className="m-4 text-2xl md:text-4xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
             >
-              <ProfileImage thumbnail />
+              456 users{" "}
+            </h1>
+            <h1
+              className="m-4 text-2xl md:text-4xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
+            >
+              1739 songs{" "}
+            </h1>
+
+            <h1
+              className="m-4 text-2xl md:text-4xl
+ text-white opacity-75 font-bold leading-tight text-center md:text-left"
+            >
+              149 playlist{" "}
+            </h1>
+          </div>
+        </>
+      )}
+
+      {isAuthenticated && (
+        <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
+          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <button
+              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+              type="button"
+            >
+              <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
             </button>
-          </>
-        )}
-      </nav>
+            <button
+              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
+ text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+              type="button"
+            >
+              <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>
+            </button>
+          </div>
+        </nav>
+      )}
+      {!isAuthenticated && <LogoHome />}
     </header>
   );
 }

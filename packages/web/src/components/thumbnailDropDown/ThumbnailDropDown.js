@@ -2,6 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import { GoSettings } from "react-icons/go";
+import { ImExit, ImStatsBars } from "react-icons/im";
+
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 
@@ -13,23 +16,27 @@ function ThumbnailDropDown() {
   return (
     <>
       <button
-        className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+        className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
         type="button"
       >
-        <NavLink to={ROUTES.PROFILE}>⚙</NavLink>
+        <NavLink to={ROUTES.PROFILE}>
+          <GoSettings />
+        </NavLink>
       </button>
       <button
-        className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+        className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
         type="button"
       >
-        <NavLink to={ROUTES.RESET_PASSWORD}>🗝</NavLink>
+        <NavLink to={ROUTES.RESET_PASSWORD}>
+          <ImStatsBars />
+        </NavLink>
       </button>
       <button
-        className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+        className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
         type="button"
         onClick={handleSignOut}
       >
-        💀
+        <ImExit />
       </button>
     </>
   );

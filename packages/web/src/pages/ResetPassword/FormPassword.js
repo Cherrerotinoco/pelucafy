@@ -41,8 +41,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
   return (
     <>
       <form
-        className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+        className="w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <label
@@ -56,7 +55,6 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="oldPassword"
           name="oldPassword"
-          className="form-input"
           value={password.oldPassword}
           onChange={handleChange}
           required
@@ -73,7 +71,6 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="newPassword"
           name="newPassword"
-          className="form-input"
           value={password.newPassword}
           onChange={handleChange}
           required
@@ -90,7 +87,6 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
           className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
           id="newPassword2"
           name="newPassword2"
-          className="form-input"
           value={password.newPassword2}
           onChange={handleChange}
           required

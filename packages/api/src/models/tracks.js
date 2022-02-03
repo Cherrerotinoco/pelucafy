@@ -3,40 +3,39 @@ const { Schema } = require("mongoose");
 
 const TrackSchema = Schema(
   {
-    name: String,
+    title: String,
     rating: Number,
     url: {
       type: String,
-      required: true
+      required: true,
     },
     popularity: String,
     thumbnail: String,
     createdAt: String,
-    realeased: String ,
-    duration: mongoose.Decimal128,
+    realeased: String,
+    duration: Number,
     color: String,
     userId: String,
-    genre: {
-      id: String,
-      name: String,
-      ref: 'Genre'
-    },
-    albums: [{
-      type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Album',
-      unique: true
-    }],
-    likedBy: [{
-      type: mongoose.Schema.Types.ObjectId, 
-      ref: 'User',
-      unique: true
-    }]
+    genre: String,
+    // genre: {
+    //   id: String,
+    //   name: String,
+    // },
+    albums: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,
   },
 );
-
 
 const Track = mongoose.model("Track", TrackSchema);
 

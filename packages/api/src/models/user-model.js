@@ -32,16 +32,16 @@ const UserSchema = Schema(
       type: String,
       trim: true,
     },
-    following: [{
-      userId: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      unique: true
-    }],
-    followedBy: [{
-      userId: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      unique: true
-    }]
+    following: [
+      {
+        userId: mongoose.Schema.Types.ObjectId,
+      },
+    ],
+    followedBy: [
+      {
+        userId: mongoose.Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,

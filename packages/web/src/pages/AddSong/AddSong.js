@@ -10,11 +10,11 @@ const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
 
   const [request, setRequest] = useState({
-    isDataRequesting: false,
+    isDataPending: false,
     isDataSuccess: false,
-    isDataError: false,
+    isDataError: "",
   });
-  const { isDataRequesting, isDataSuccess, isDataError } = request;
+  const { isDataPending, isDataSuccess, isDataError } = request;
 
   const [song, setSong] = useState({
     userId: currentUser._id,
@@ -33,6 +33,7 @@ const AddSong = () => {
 
   const updateSong = async (songData) => {
     // Get token
+
     const token = await auth.getCurrentUserToken();
     if (!token) {
       return setRequest({ ...request, isDataError: "User not auth" });
@@ -41,7 +42,7 @@ const AddSong = () => {
     setRequest({ ...request, isDataPending: true });
 
     try {
-      const response = await api.addNewSong(
+      const response = api.addNewSong(
         {
           Authorization: `Bearer ${token}`,
         },
@@ -54,7 +55,7 @@ const AddSong = () => {
         ...request,
         isDataPending: false,
         isDataSuccess: true,
-        isDataError: false,
+        isDataError: "",
       });
       // setSong({
       //   userId: currentUser._id,
@@ -79,7 +80,9 @@ const AddSong = () => {
     if (!error && result && result.event === "success") {
       setSong({
         ...song,
+        duration: Math.ceil(result.info.duration),
         url: result.info.secure_url,
+        createdAt: result.info.created_at,
       });
     }
   };
@@ -133,11 +136,10 @@ const AddSong = () => {
             <button
               className="btn btn-primary w-full"
               type="submit"
-              disabled={isDataRequesting}
+              disabled={isDataPending}
             >
               Upload
             </button>
-            {/* {isDataError && <div>{isDataError}</div>} */}
           </form>
         </section>
       </main>

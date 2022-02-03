@@ -59,7 +59,7 @@ function Login() {
     <>
       <main className="Login">
         <section className="Login__wrapper">
-          <h2 className="my-4 text-3xl md:text-3xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+          <h2 className="my-4 text-3xl md:text-3xl text-white  font-bold leading-tight text-center md:text-left">
             Login
           </h2>
 

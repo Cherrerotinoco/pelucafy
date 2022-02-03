@@ -23,20 +23,20 @@ function Header() {
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <h1
               className="m-4 text-2xl md:text-4xl
- text-white opacity-75 font-bold leading-tight text-center md:text-left"
+ text-white  font-bold leading-tight text-center md:text-left"
             >
               456 users{" "}
             </h1>
             <h1
               className="m-4 text-2xl md:text-4xl
- text-white opacity-75 font-bold leading-tight text-center md:text-left"
+ text-white  font-bold leading-tight text-center md:text-left"
             >
               1739 songs{" "}
             </h1>
 
             <h1
               className="m-4 text-2xl md:text-4xl
- text-white opacity-75 font-bold leading-tight text-center md:text-left"
+ text-white  font-bold leading-tight text-center md:text-left"
             >
               149 playlist{" "}
             </h1>

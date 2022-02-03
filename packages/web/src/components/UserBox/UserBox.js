@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -13,10 +13,25 @@ import UserNavPanel from "../UserNavPanel";
 
 function UserBox() {
   const { isAuthenticated } = useSelector(authSelector);
+  const [renderedComponent, setRenderedComponent] = useState({
+    [ROUTES.PROFILE]: false,
+    [ROUTES.RESET_PASSWORD]: false,
+  });
+
+  const handlerRenderedComponet = useCallback(
+    (componetReded) => {
+      setRenderedComponent(componetReded);
+    },
+    [setRenderedComponent],
+  );
 
   return (
     <>
-      {isAuthenticated && <UserNavPanel />}
+      {isAuthenticated && (
+        <UserNavPanel handlerRenderedComponet={handlerRenderedComponet} />
+      )}
+      {renderedComponent[ROUTES.PROFILE] && <Profile />}
+      {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
       <Switch>
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
         <Route path={ROUTES.PROFILE} component={Profile} />

@@ -1,14 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
-
-  const history = useHistory();
 
   return (
     <>
@@ -20,9 +17,7 @@ function Home() {
           >
             Hello {currentUser.email}
           </h2>
-        ) : (
-          history.push("/login")
-        )}
+        ) : null}
       </section>
     </>
   );

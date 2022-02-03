@@ -29,6 +29,13 @@ const AddSong = () => {
     e.preventDefault();
     updateSong(song);
     console.log(song);
+    setSong({
+      userId: currentUser._id,
+      title: "",
+      genre: "",
+      url: "",
+      thumbnail: "",
+    });
   };
 
   const updateSong = async (songData) => {
@@ -57,13 +64,6 @@ const AddSong = () => {
         isDataSuccess: true,
         isDataError: "",
       });
-      // setSong({
-      //   userId: currentUser._id,
-      //   title: "",
-      //   genre: "",
-      //   url: "",
-      //   thumbnail: "",
-      // });
 
       return null;
     } catch (error) {

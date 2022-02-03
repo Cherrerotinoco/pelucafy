@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import emailValidation from "../../utils/validation/emailValidation";
 import Label from "../../components/elements/Label";
+import Input from "../../components/elements/Input";
 
 function FormEmail({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
@@ -22,10 +23,9 @@ function FormEmail({ handleDataSubmit, buttonText }) {
       history.push("/");
     }
   }
-
-  function handleChange(e) {
+  const handleChange = useCallback((e) => {
     setEmail(e.target.value);
-  }
+  }, []);
 
   return (
     <>
@@ -35,15 +35,8 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <Label htmlFor="email"> Email</Label>
-        <input
-          type="email"
-          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-          id="email"
-          className="form-input"
-          value={email}
-          onChange={handleChange}
-          required
-        />
+        <Input type="email" name="email" value={email} action={handleChange} />
+
         <div>
           {email === "" ? (
             <span className=" text-blue-300 py-2 font-bold mb-2">

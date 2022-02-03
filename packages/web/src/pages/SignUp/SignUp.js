@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 import "./SignUp.scss";
 
-import Header from "../../components/Header";
 import * as ROUTES from "../../routes";
 
 import {
@@ -16,6 +15,7 @@ import {
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
+import Input from "../../components/elements/Input";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -44,13 +44,13 @@ function SignUp() {
     setPassword("");
   }
 
-  function handleSetEmail(e) {
+  const handleSetEmail = useCallback((e) => {
     setEmail(e.target.value);
-  }
+  }, []);
 
-  function handleSetPassword(e) {
+  const handleSetPassword = useCallback((e) => {
     setPassword(e.target.value);
-  }
+  }, []);
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
@@ -80,24 +80,14 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <Label htmlFor="email"> Email</Label>
+            <Input name="email" value={email} action={handleSetEmail} />
 
-            <input
-              type="text"
-              className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              id="email"
-              className="form-input"
-              value={email}
-              onChange={handleSetEmail}
-            />
             <Label htmlFor="password"> Password</Label>
-
-            <input
+            <Input
               type="password"
-              className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              id="password"
-              className="form-input"
+              name="password"
               value={password}
-              onChange={handleSetPassword}
+              action={handleSetPassword}
             />
             <button
               className="btn btn-primary w-full"
@@ -109,7 +99,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
 
             <input
               type="checkbox"
-              className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+              className="shadow appearance-none border rounded "
               id="saveCredentials"
               name="saveCredentials"
               checked={saveCredentials}

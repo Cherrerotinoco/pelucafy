@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +16,7 @@ import { syncSignIn } from "../../redux/auth/auth-actions";
 import validateProfile from "./validateProfile";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
+import Input from "../../components/elements/Input";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -97,9 +98,12 @@ function Profile() {
     }
   };
 
-  function handleChange(e) {
-    setData({ ...data, [e.target.name]: e.target.value });
-  }
+  const handleChange = useCallback(
+    (e) => {
+      setData({ ...data, [e.target.name]: e.target.value });
+    },
+    [data],
+  );
 
   if (!isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
@@ -121,36 +125,17 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           onSubmit={handleSubmit}
         >
           <Label htmlFor="firstName"> Firs Name</Label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-            value={firstName}
-            onChange={handleChange}
-          />
+          <Input name="firstName" value={firstName} action={handleChange} />
           {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
           <Label htmlFor="lastName"> Last Name</Label>
-          <input
-            type="text"
-            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-            id="lastName"
-            name="lastName"
-            value={lastName}
-            onChange={handleChange}
-          />
+          <Input name="lastName" value={lastName} action={handleChange} />
+
           {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
           <Label htmlFor="email"> Email</Label>
-          <input
-            type="text"
-            className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
+          <Input name="email" value={email} action={handleChange} />
+
           {errorMessage.email && <div>{errorMessage.email}</div>}
 
           <button

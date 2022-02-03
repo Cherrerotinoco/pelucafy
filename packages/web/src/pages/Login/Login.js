@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
@@ -17,6 +17,7 @@ import {
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
+import Input from "../../components/elements/Input";
 
 function Login() {
   const dispatch = useDispatch();
@@ -45,13 +46,13 @@ function Login() {
     setPassword("");
   }
 
-  function handleSetEmail(e) {
+  const handleSetEmail = useCallback((e) => {
     setEmail(e.target.value);
-  }
+  }, []);
 
-  function handleSetPassword(e) {
+  const handleSetPassword = useCallback((e) => {
     setPassword(e.target.value);
-  }
+  }, []);
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
@@ -71,22 +72,16 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <Label htmlFor="email"> Genre</Label>
+            <Input name="email" value={email} action={handleSetEmail} />
 
-            <input
-              type="text"
-              id="email"
-              className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              value={email}
-              onChange={handleSetEmail}
-            />
             <Label htmlFor="password"> Password</Label>
-            <input
+            <Input
               type="password"
-              id="password"
-              className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+              name="password"
               value={password}
-              onChange={handleSetPassword}
+              action={handleSetPassword}
             />
+
             <div className="block flex-grow lg:flex lg:items-center">
               <button
                 className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900

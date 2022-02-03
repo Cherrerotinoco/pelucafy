@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import passwordValidation from "../../utils/validation/passwordValidation";
 import Label from "../../components/elements/Label";
+import Input from "../../components/elements/Input";
 
 function FormPassword({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
@@ -32,12 +33,15 @@ function FormPassword({ handleDataSubmit, buttonText }) {
     }
   }
 
-  function handleChange(e) {
-    if (errorMsg[e.target.name] !== "") {
-      setErrorMsg({ ...errorMsg, [e.target.name]: "" });
-    }
-    setPassword({ ...password, [e.target.name]: e.target.value });
-  }
+  const handleChange = useCallback(
+    (e) => {
+      if (errorMsg[e.target.name] !== "") {
+        setErrorMsg({ ...errorMsg, [e.target.name]: "" });
+      }
+      setPassword({ ...password, [e.target.name]: e.target.value });
+    },
+    [errorMsg, password],
+  );
 
   return (
     <>
@@ -46,37 +50,29 @@ function FormPassword({ handleDataSubmit, buttonText }) {
         onSubmit={handleSubmit}
       >
         <Label htmlFor="oldPassword"> Old Password</Label>
-        <input
+        <Input
           type="password"
-          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-          id="oldPassword"
           name="oldPassword"
           value={password.oldPassword}
-          onChange={handleChange}
-          required
+          action={handleChange}
         />
+
         {errorMsg.oldPassword ? errorMsg.oldPassword : null}
 
         <Label htmlFor="newPassword"> New Password</Label>
-        <input
+        <Input
           type="password"
-          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-          id="newPassword"
           name="newPassword"
           value={password.newPassword}
-          onChange={handleChange}
-          required
+          action={handleChange}
         />
         {errorMsg.newPassword ? errorMsg.newPassword : null}
         <Label htmlFor="newPassword2">Repeat New Password</Label>
-        <input
+        <Input
           type="password"
-          className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-          id="newPassword2"
           name="newPassword2"
           value={password.newPassword2}
-          onChange={handleChange}
-          required
+          action={handleChange}
         />
         {errorMsg.newPassword2 ? errorMsg.newPassword2 : null}
         <button

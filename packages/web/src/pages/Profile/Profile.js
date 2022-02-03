@@ -14,6 +14,7 @@ import FileUploader from "../../components/FileUploader";
 import { syncSignIn } from "../../redux/auth/auth-actions";
 
 import validateProfile from "./validateProfile";
+import Title from "../../components/elements/Title";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -110,9 +111,9 @@ function Profile() {
   return (
     <>
       <section className="Profile p-4">
-        <h2 className=" text-2xl md:text-2xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+        <Title weight="2" align="center">
           Profile
-        </h2>
+        </Title>
         <form
           className="
 w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"

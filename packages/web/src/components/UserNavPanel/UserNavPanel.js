@@ -10,6 +10,7 @@ import { ImExit, ImStatsBars } from "react-icons/im";
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import ProfileImage from "../ProfileImage/ProfileImage";
+import Title from "../elements/Title";
 
 const UserNavPanel = ({ handlerRenderedComponet }) => {
   const dispatch = useDispatch();
@@ -58,9 +59,9 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             </button>
           </>
         ) : (
-          <h2 className="mx-10 text-3xl md:text-3xl text-white font-bold leading-tight text-justify">
+          <Title weight="3" align="center">
             SONGFY
-          </h2>
+          </Title>
         )}
 
         <button

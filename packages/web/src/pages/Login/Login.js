@@ -15,6 +15,7 @@ import {
 } from "../../redux/auth/auth-actions";
 
 import { authSelector } from "../../redux/auth/auth-selectors";
+import Title from "../../components/elements/Title";
 
 function Login() {
   const dispatch = useDispatch();
@@ -59,10 +60,9 @@ function Login() {
     <>
       <main className="Login">
         <section className="Login__wrapper">
-          <h2 className="my-4 text-3xl md:text-3xl text-white  font-bold leading-tight text-center md:text-left">
+          <Title weight="3" align="center">
             Login
-          </h2>
-
+          </Title>
           <hr className="mt-1 mb-4" />
           <form
             className="

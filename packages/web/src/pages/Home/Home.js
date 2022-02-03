@@ -15,17 +15,11 @@ function Home() {
     <>
       <section className="p-4">
         {isAuthenticated && currentUser ? (
-          <h2
-            className="my-4 text-2xl md:text-3xl
- text-white opacity-75 font-bold leading-tight text-center md:text-left"
-          >
-            Hello {currentUser.email}
-          </h2>
+          <Title weight="2" align="center">
+            WELLCOME {currentUser.email}
+          </Title>
         ) : null}
 
-        <Title weight="2" align="center">
-          Esto es un ejemplo
-        </Title>
         <Label htmlFor="htmlFor"> Para copiar y pegar</Label>
         <Input
           name="name + id"

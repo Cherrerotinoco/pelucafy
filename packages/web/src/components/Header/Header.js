@@ -7,6 +7,7 @@ import { signOut } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 import LogoHome from "../LogoHome/LogoHome";
+import Title from "../elements/Title";
 
 function Header() {
   const dispatch = useDispatch();
@@ -21,25 +22,15 @@ function Header() {
       {!isAuthenticated && (
         <>
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <h1
-              className="m-4 text-2xl md:text-4xl
- text-white  font-bold leading-tight text-center md:text-left"
-            >
-              456 users{" "}
-            </h1>
-            <h1
-              className="m-4 text-2xl md:text-4xl
- text-white  font-bold leading-tight text-center md:text-left"
-            >
-              1739 songs{" "}
-            </h1>
-
-            <h1
-              className="m-4 text-2xl md:text-4xl
- text-white  font-bold leading-tight text-center md:text-left"
-            >
-              149 playlist{" "}
-            </h1>
+            <Title weight="2" align="center">
+              456 users
+            </Title>
+            <Title weight="2" align="center">
+              1739 songs
+            </Title>
+            <Title weight="2" align="center">
+              149 playlist
+            </Title>
           </div>
         </>
       )}

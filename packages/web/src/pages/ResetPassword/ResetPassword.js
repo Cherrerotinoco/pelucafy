@@ -13,6 +13,7 @@ import {
   sendPasswordResetPassword,
 } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import Title from "../../components/elements/Title";
 
 function ResetPassword() {
   const dispatch = useDispatch();
@@ -51,9 +52,9 @@ function ResetPassword() {
     <>
       <section className="ResetPassword p-1">
         <section className="Login__wrapper">
-          <h2 className=" text-2xl md:text-2xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+          <Title weight="2" align="center">
             {isAuthenticated ? "Password Reset" : "Forgot my password"}
-          </h2>
+          </Title>
 
           {isAuthenticated ? (
             <FormPassword

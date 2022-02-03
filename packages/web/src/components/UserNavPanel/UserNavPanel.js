@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 import { GoSettings } from "react-icons/go";
 import { ImExit, ImStatsBars } from "react-icons/im";

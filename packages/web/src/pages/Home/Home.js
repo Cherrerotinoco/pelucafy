@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import Button from "../../components/elements/Button";
 
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
@@ -18,6 +19,8 @@ function Home() {
             Hello {currentUser.email}
           </h2>
         ) : null}
+
+        <Button action={() => console.log("clicked!")}>Click me</Button>
       </section>
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "../elements/Button";
 
-const FileUploader = ({ callback, ...props }) => {
+const FileUploader = ({ callback, text, ...props }) => {
   const cloudinaryConfig = {
     apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY,
     apiSecret: process.env.REACT_APP_CLOUDINARY_API_SECRET,
@@ -15,18 +15,10 @@ const FileUploader = ({ callback, ...props }) => {
     {
       cloudName: cloudinaryConfig.cloudName,
       uploadPreset: cloudinaryConfig.uploadPreset,
+      sources: ["local"],
     },
     callback,
   );
-
-  /* (error, result) => {
-      if (!error && result && result.event === "success") {
-        updateUserImage({
-          imageUrl: result.info.secure_url,
-          thumbnailUrl: result.info.thumbnail_url,
-        });
-      }
-    }, */
 
   return (
     <>
@@ -35,7 +27,7 @@ const FileUploader = ({ callback, ...props }) => {
         styles="background"
         action={() => cloudinaryWidget.open()}
       >
-        Upload File
+        {text}
       </Button>
     </>
   );
@@ -43,10 +35,12 @@ const FileUploader = ({ callback, ...props }) => {
 
 FileUploader.defaultProps = {
   callback: null,
+  text: "Update Image",
 };
 
 FileUploader.propTypes = {
   callback: PropTypes.func,
+  text: PropTypes.string,
 };
 
 export default FileUploader;

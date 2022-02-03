@@ -4,7 +4,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import api from "../../api";
 import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
-import Header from "../../components/Header";
+
 import validateAddSong from "./validateAddSong";
 
 const AddSong = () => {

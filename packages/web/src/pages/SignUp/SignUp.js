@@ -16,6 +16,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
 import Input from "../../components/elements/Input";
+import Button from "../../components/elements/Button";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -65,14 +66,15 @@ function SignUp() {
           </Title>
 
           <hr className="my-4" />
-          <button
-            className="btn btn-primary w-full"
-            type="button"
-            onClick={handleLoginWithGoogle}
+          <Button
+            submit={false}
+            styles="background"
             disabled={isSigningUp}
+            action={{ handleLoginWithGoogle }}
           >
             SignUp with Google
-          </button>
+          </Button>
+
           <hr className="mt-1 mb-4" />
           <form
             className="
@@ -89,13 +91,9 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               value={password}
               action={handleSetPassword}
             />
-            <button
-              className="btn btn-primary w-full"
-              type="submit"
-              disabled={isSigningUp}
-            >
-              Sign Up
-            </button>
+            <Button submit="true" styles="background" disabled={isSigningUp}>
+              SignUp with Google
+            </Button>
 
             <input
               type="checkbox"

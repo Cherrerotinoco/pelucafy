@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Label from "../../elements/Label";
+import Button from "../../elements/Button";
 
 const TrackForm = () => {
   const [fromSubmiting, setFormSubmiting] = useState(false);
@@ -71,13 +72,14 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               />
             </div>
 
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+            <Button
+              submit="true"
+              styles="background"
+              action={() => console.log("click")}
             >
               Submit
-            </button>
+            </Button>
+
             {fromSubmiting && <p className="exito">Form submitted</p>}
           </Form>
         )}

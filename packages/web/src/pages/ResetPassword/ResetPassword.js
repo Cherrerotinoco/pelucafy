@@ -31,6 +31,7 @@ function ResetPassword() {
     },
     [dispatch, isAuthenticated],
   );
+
   const button = useCallback(
     (loading, sent) => {
       if (loading) {

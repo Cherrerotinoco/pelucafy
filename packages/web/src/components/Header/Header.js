@@ -8,6 +8,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 
 import LogoHome from "../LogoHome/LogoHome";
 import Title from "../elements/Title";
+import Button from "../elements/Button";
 
 function Header() {
   const dispatch = useDispatch();
@@ -38,20 +39,13 @@ function Header() {
       {isAuthenticated && (
         <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <button
-              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              type="button"
-            >
+            <Button submit={false} styles="background">
               <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
-            </button>
-            <button
-              className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              type="button"
-            >
-              <NavLink to={ROUTES.ADDSONG}>Add song</NavLink>
-            </button>
+            </Button>
+
+            <Button submit={false} styles="background">
+              <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
+            </Button>
           </div>
         </nav>
       )}

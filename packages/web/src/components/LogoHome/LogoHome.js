@@ -4,6 +4,7 @@ import {
   FaTwitterSquare,
   FaYoutubeSquare,
 } from "react-icons/fa";
+import Button from "../elements/Button";
 
 const LogoHome = () => {
   return (
@@ -13,28 +14,19 @@ const LogoHome = () => {
           <img src="/images/logo.png" alt="logo" />
           <div className="flex  mt-10">
             <div className="flex-auto w-1/3 m-5">
-              <button
-                className=" text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-              >
+              <Button submit={false} styles="noBackground">
                 <FaInstagramSquare />
-              </button>
+              </Button>
             </div>
             <div className="flex-auto w-1/3 m-5">
-              <button
-                className=" text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-              >
+              <Button submit={false} styles="noBackground">
                 <FaTwitterSquare />
-              </button>
+              </Button>
             </div>
             <div className="flex-auto w-1/3 m-5">
-              <button
-                className=" text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-              >
+              <Button submit={false} styles="noBackground">
                 <FaYoutubeSquare />
-              </button>
+              </Button>
             </div>
           </div>
         </div>

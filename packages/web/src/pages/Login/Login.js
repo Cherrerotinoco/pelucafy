@@ -18,6 +18,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
 import Input from "../../components/elements/Input";
+import Button from "../../components/elements/Button";
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,10 +33,13 @@ function Login() {
     dispatch(resetAuthState());
   }, [dispatch]);
 
-  function handleLoginWithGoogle(e) {
-    e.preventDefault();
-    dispatch(signUpWithGoogleRequest(saveCredentials));
-  }
+  const handleLoginWithGoogle = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(signUpWithGoogleRequest(saveCredentials));
+    },
+    [dispatch, saveCredentials],
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -83,25 +87,24 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             />
 
             <div className="block flex-grow lg:flex lg:items-center">
-              <button
-                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="submit"
-                disabled={isSigningUp}
+              <Button
+                submit="true"
+                styles="background"
+                action={{ isSigningUp }}
               >
                 Login
-              </button>
+              </Button>
+
               <Label> or</Label>
 
-              <button
-                className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-                type="button"
-                onClick={handleLoginWithGoogle}
+              <Button
+                submit={false}
+                styles="background"
+                action={handleLoginWithGoogle}
                 disabled={isSigningUp}
               >
                 <FcGoogle />
-              </button>
+              </Button>
             </div>
 
             <div className="block flex-grow lg:flex lg:items-center">

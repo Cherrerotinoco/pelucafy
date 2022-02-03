@@ -5,6 +5,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import passwordValidation from "../../utils/validation/passwordValidation";
 import Label from "../../components/elements/Label";
 import Input from "../../components/elements/Input";
+import Button from "../../components/elements/Button";
 
 function FormPassword({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
@@ -75,14 +76,15 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           action={handleChange}
         />
         {errorMsg.newPassword2 ? errorMsg.newPassword2 : null}
-        <button
-          type="submit"
-          className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
+        {buttonText(isSendingPasswordReset, passwordResetSent)}
+
+        <Button
+          submit="true"
+          styles="background"
           disabled={isSendingPasswordReset || passwordResetSent}
         >
           {buttonText(isSendingPasswordReset, passwordResetSent)}
-        </button>
+        </Button>
       </form>
     </>
   );

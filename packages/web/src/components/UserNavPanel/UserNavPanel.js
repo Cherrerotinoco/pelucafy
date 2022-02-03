@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import PropTypes from "prop-types";
 
@@ -11,12 +11,14 @@ import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import Title from "../elements/Title";
+import Button from "../elements/Button";
 
 const UserNavPanel = ({ handlerRenderedComponet }) => {
   const dispatch = useDispatch();
-  function handleSignOut() {
+
+  const handleSignOut = useCallback(() => {
     dispatch(signOut());
-  }
+  }, [dispatch]);
 
   const [dropDown, setDropDown] = useState(false);
   return (
@@ -24,39 +26,25 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
       <div className="w-full block items-center justify-end flex-grow lg:flex lg:items-center lg:w-auto m-5">
         {dropDown ? (
           <>
-            <button
-              className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              type="button"
-              onClick={() =>
-                handlerRenderedComponet({ [ROUTES.PROFILE]: true })
-              }
+            <Button
+              submit={false}
+              styles="background"
+              action={() => handlerRenderedComponet({ [ROUTES.PROFILE]: true })}
             >
               <GoSettings />
-              {/* <NavLink to={ROUTES.PROFILE}>
-                <GoSettings />
-              </NavLink> */}
-            </button>
-            <button
-              className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              type="button"
-              onClick={() =>
-                handlerRenderedComponet({
-                  [ROUTES.RESET_PASSWORD]: true,
-                })
+            </Button>
+            <Button
+              submit={false}
+              styles="background"
+              action={() =>
+                handlerRenderedComponet({ [ROUTES.RESET_PASSWORD]: true })
               }
             >
               <ImStatsBars />
-              {/* <NavLink to={ROUTES.RESET_PASSWORD}>
-                <ImStatsBars />
-              </NavLink> */}
-            </button>
-            <button
-              className="text-white text-2xl font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-              type="button"
-              onClick={handleSignOut}
-            >
+            </Button>
+            <Button submit={false} styles="background" action={handleSignOut}>
               <ImExit />
-            </button>
+            </Button>
           </>
         ) : (
           <Title weight="3" align="center">
@@ -64,13 +52,13 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           </Title>
         )}
 
-        <button
-          className="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white"
-          type="button"
-          onClick={() => setDropDown(!dropDown)}
+        <Button
+          submit={false}
+          styles="noBackgroundHover"
+          action={() => setDropDown(!dropDown)}
         >
           <ProfileImage thumbnail />
-        </button>
+        </Button>
       </div>
       <hr className="mt-1 mb-4" />
     </>

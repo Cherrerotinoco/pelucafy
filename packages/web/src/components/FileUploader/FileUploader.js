@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../elements/Button";
 
 const FileUploader = ({ callback, ...props }) => {
   const cloudinaryConfig = {
@@ -29,14 +30,13 @@ const FileUploader = ({ callback, ...props }) => {
 
   return (
     <>
-      <button
-        className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-        type="button"
-        onClick={() => cloudinaryWidget.open()}
+      <Button
+        submit={false}
+        styles="background"
+        action={() => cloudinaryWidget.open()}
       >
-        Upload image
-      </button>
+        Upload File
+      </Button>
     </>
   );
 };

@@ -17,6 +17,7 @@ import validateProfile from "./validateProfile";
 import Title from "../../components/elements/Title";
 import Label from "../../components/elements/Label";
 import Input from "../../components/elements/Input";
+import Button from "../../components/elements/Button";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -137,15 +138,9 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           <Input name="email" value={email} action={handleChange} />
 
           {errorMessage.email && <div>{errorMessage.email}</div>}
-
-          <button
-            className="bg-gradient-to-r from-gray-900 to-sky-300 hover:from-sky-300 hover:to-gray-900
- text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-1"
-            type="submit"
-            disabled={isSigningUp}
-          >
+          <Button submit="true" styles="background" disabled={isSigningUp}>
             Save
-          </button>
+          </Button>
           <FileUploader callback={updateUserImage} />
         </form>
         <hr className="mt-1 mb-4" />

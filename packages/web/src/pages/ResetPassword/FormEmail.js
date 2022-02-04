@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import emailValidation from "../../utils/validation/emailValidation";
+import { Elements } from "../../components/elements";
 
 function FormEmail({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
     useSelector(authSelector);
+
+  const { Button, Label, Input } = Elements;
 
   const history = useHistory();
 
@@ -21,33 +24,40 @@ function FormEmail({ handleDataSubmit, buttonText }) {
       history.push("/");
     }
   }
-
-  function handleChange(e) {
+  const handleChange = useCallback((e) => {
     setEmail(e.target.value);
-  }
+  }, []);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
+      <form
+        className="
+w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+        onSubmit={handleSubmit}
+      >
+        <Label htmlFor="email"> Email</Label>
+        <Input
           type="email"
-          id="email"
-          className="form-input"
+          name="email"
           value={email}
           onChange={handleChange}
-          required
         />
-        {email === "" ? <span>Please, insert email</span> : null}
-        <button
-          type="submit"
-          className="btn btn-primary w-full"
+
+        <div>
+          {email === "" ? (
+            <span className=" text-blue-300 py-2 font-bold mb-2">
+              Please, insert email
+            </span>
+          ) : null}
+        </div>
+
+        <Button
+          submit
+          styles="background"
           disabled={isSendingPasswordReset || passwordResetSent || email === ""}
         >
           {buttonText(isSendingPasswordReset, passwordResetSent)}
-        </button>
+        </Button>
       </form>
     </>
   );

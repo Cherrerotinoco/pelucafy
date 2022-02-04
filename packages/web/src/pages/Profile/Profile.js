@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./Profile.scss";
-import Header from "../../components/Header";
+
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 import * as ROUTES from "../../routes";
@@ -13,15 +13,17 @@ import * as auth from "../../services/auth";
 import FileUploader from "../../components/FileUploader";
 import { syncSignIn } from "../../redux/auth/auth-actions";
 
-import ProfileImage from "../../components/ProfileImage/ProfileImage";
-
 import validateProfile from "./validateProfile";
+import { Elements } from "../../components/elements";
 
 function Profile() {
   const dispatch = useDispatch();
 
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
+
+  const { Button, Title, Label, Input } = Elements;
+
   const [data, setData] = useState(currentUser);
   const { firstName, lastName, email } = data;
 
@@ -97,9 +99,12 @@ function Profile() {
     }
   };
 
-  function handleChange(e) {
-    setData({ ...data, [e.target.name]: e.target.value });
-  }
+  const handleChange = useCallback(
+    (e) => {
+      setData({ ...data, [e.target.name]: e.target.value });
+    },
+    [data],
+  );
 
   if (!isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
@@ -111,71 +116,47 @@ function Profile() {
 
   return (
     <>
-      <Header />
-      <main className="Profile p-4">
-        <ProfileImage />
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="firstName" className="form-label">
-            firstName
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            className="form-input"
-            value={firstName}
-            onChange={handleChange}
-          />
+      <section className="Profile p-4">
+        <Title weight="2" align="center">
+          Profile
+        </Title>
+        <form
+          className="
+w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+          onSubmit={handleSubmit}
+        >
+          <Label htmlFor="firstName"> Firs Name</Label>
+          <Input name="firstName" value={firstName} onChange={handleChange} />
           {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
-          <label htmlFor="lastName" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            className="form-input"
-            value={lastName}
-            onChange={handleChange}
-          />
+          <Label htmlFor="lastName"> Last Name</Label>
+          <Input name="lastName" value={lastName} onChange={handleChange} />
+
           {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="text"
-            id="email"
-            className="form-input"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-          {errorMessage.email && <div>{errorMessage.email}</div>}
+          <Label htmlFor="email"> Email</Label>
+          <Input name="email" value={email} onChange={handleChange} />
 
-          <button
-            className="btn btn-primary w-full"
-            type="submit"
-            disabled={isSigningUp}
-          >
+          {errorMessage.email && <div>{errorMessage.email}</div>}
+          <Button submit styles="background" disabled={isSigningUp}>
             Save
-          </button>
+          </Button>
+          <FileUploader callback={updateUserImage} />
         </form>
         <hr className="mt-1 mb-4" />
         <Link
           to={ROUTES.RESET_PASSWORD}
-          className="underline text-blue-gray-200 w-full text-center block mb-2"
+          className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
         >
           Change Password
         </Link>
-        <FileUploader callback={updateUserImage} />
-        <div className="">
+
+        <div className="text-sky-50  w-full text-center block mb-2">
           {isDataError && "Los datos insertados no son validos"}
           {isDataPending && "Guardando datos"}
           {isDataSuccess && "Usuario guardado!"}
         </div>
-      </main>
+      </section>
     </>
   );
 }

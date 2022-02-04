@@ -18,7 +18,7 @@ function ProfileImage({ thumbnail, ...props }) {
   return (
     <img
       {...props}
-      className="mr-auto ml-auto"
+      className="mr-auto ml-auto rounded-full mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
       src={url}
       alt="test"
       width="auto"

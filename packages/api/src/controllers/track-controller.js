@@ -11,19 +11,26 @@ async function uploadSong(req, res) {
 }
 
 async function getSongs(req, res) {
-  const { query, limit, order, skip } = req.query;
+  // Static key names
+  const arrayKeys = ['limit', 'order', 'skip'];
+  const params = req.query
 
-  // Convert query string to object
-
-  //subirlo a mongo
+  // Build an object to set in find() mongoose method
+  let query = {};
+  Object.entries(params).forEach(([key, value]) => {
+    if ( arrayKeys.includes(key) ) return
+    query[key] = value
+  })
+  
+  // Send query to DB
   try {
+    const { limit, order, skip } = req.query;
     const response = await TrackRepo.findAll({
       query: query || {},
-      limit: limit || 1,
-      toSkip: parseInt(skip) || 0, // 1
+      limit: limit || 10,
+      toSkip: parseInt(skip) || 0,
       order: order || { createdAt: -1 },
     });
-
 
     res.send(response.data);
   } catch (error) {

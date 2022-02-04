@@ -74,31 +74,26 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <Label htmlFor="email"> Genre</Label>
-            <Input name="email" value={email} action={handleSetEmail} />
+            <Input name="email" value={email} onChange={handleSetEmail} />
 
             <Label htmlFor="password"> Password</Label>
             <Input
               type="password"
               name="password"
               value={password}
-              action={handleSetPassword}
+              onChange={handleSetPassword}
             />
 
             <div className="block flex-grow lg:flex lg:items-center">
-              <Button
-                submit="true"
-                styles="background"
-                action={{ isSigningUp }}
-              >
+              <Button submit styles="background" disabled={isSigningUp}>
                 Login
               </Button>
 
               <Label> or</Label>
 
               <Button
-                submit={false}
                 styles="background"
-                action={handleLoginWithGoogle}
+                onClick={handleLoginWithGoogle}
                 disabled={isSigningUp}
               >
                 <FcGoogle />

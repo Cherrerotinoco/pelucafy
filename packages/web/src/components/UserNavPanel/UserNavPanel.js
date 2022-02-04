@@ -27,26 +27,22 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
         {dropDown ? (
           <>
             <Button
-              submit={false}
               styles="noBackgroundHover"
-              action={() => handlerRenderedComponet({ [ROUTES.PROFILE]: true })}
+              onClick={() =>
+                handlerRenderedComponet({ [ROUTES.PROFILE]: true })
+              }
             >
               <GoSettings />
             </Button>
             <Button
-              submit={false}
               styles="noBackgroundHover"
-              action={() =>
-                handlerRenderedComponet({ [ROUTES.RESET_PASSWORD]: true })
-              }
+              onClick={handlerRenderedComponet({
+                [ROUTES.RESET_PASSWORD]: true,
+              })}
             >
               <ImStatsBars />
             </Button>
-            <Button
-              submit={false}
-              styles="noBackgroundHover"
-              action={handleSignOut}
-            >
+            <Button styles="noBackgroundHover" onClick={handleSignOut}>
               <ImExit />
             </Button>
           </>
@@ -56,11 +52,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           </Title>
         )}
 
-        <Button
-          submit={false}
-          styles="noBackgroundHover"
-          action={() => setDropDown(!dropDown)}
-        >
+        <Button styles="noBackgroundHover" onClick={setDropDown(!dropDown)}>
           <ProfileImage thumbnail />
         </Button>
       </div>

@@ -43,12 +43,20 @@ function makeApi(request = makeRequest()) {
     });
   }
 
-  function getTracks(headers, body) {
+  function getTracks(headers, params) {
+
+    let url = "/tracks?"
+
+    Object.entries(params).map(([key, value]) => {
+      url += value ? `${key}=${value}&` : ''
+      return url
+    })
+
     return request({
-      url: "/tracks",
-      requestMethod: "POST",
+      url: url,
+      requestMethod: "GET",
       headers: headers,
-      body: body,
+      body: null,
     });
   }
 

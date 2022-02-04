@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes, { bool } from "prop-types";
+import PropTypes from "prop-types";
 import api from '../../api';
+import {Elements} from "../elements"
 
 const TrackList = ({ 
   fromUser, 
@@ -12,9 +13,10 @@ const TrackList = ({
   ...props
 }) => {
 
+  const { Button } = Elements;
   const [trackList, setTrackList] = useState([])
   const [error, setError] = useState(null)
-  const [currentTracksLength, setCurrentTracksLength] = useState(0)
+  const [page, setPage] = useState(0)
 
   // On load, fetch data
   useEffect(() => {
@@ -27,8 +29,8 @@ const TrackList = ({
       
       if (response.data.error) throw Error(response.errorMessage);
 
-      setTrackList(response.data)
-      setCurrentTracksLength(response.data.length)
+      setTrackList((prevTracks) => [...prevTracks, ...response.data])
+      setPage((prevPage) => prevPage + 1)
       setError(null)
     } catch (e) {
       setError(e.message);
@@ -38,12 +40,12 @@ const TrackList = ({
   return (
     <div>
       {error && <p>{error}</p>}
-      {trackList && trackList.length > 0 && trackList.map(elm => (
+      {trackList && trackList.length > 0 && trackList.map(elm => {
           // Track Component
-          <p key={elm._id}>{elm.title}</p>
-      ))}
+          return <p key={elm._id}>{elm.title}</p>
+      })}
 
-      <button type='button' onClick={() => getTracks({skip: currentTracksLength})}>Load More // current {currentTracksLength}</button>
+      <Button type='button' onClick={() => getTracks({skip: page})}>Load More // current {page}</Button>
 
     </div>
   )

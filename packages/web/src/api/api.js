@@ -44,14 +44,16 @@ function makeApi(request = makeRequest()) {
   }
 
   function getTracks(headers, params) {
-    const {
-      query,
-      limit,
-      order,
-      skip
-    } = params
+
+    let url = "/tracks?"
+
+    Object.entries(params).map(([key, value]) => {
+      url += value ? `${key}=${value}&` : ''
+      return url
+    })
+
     return request({
-      url: `/tracks?query=${query}&limit=${limit}&order=${order}&skip=${skip}`,
+      url: url,
       requestMethod: "GET",
       headers: headers,
       body: null,

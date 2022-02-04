@@ -133,6 +133,7 @@ const AddSong = () => {
                 <div>
                   <Label>Step 1: Upload your song</Label>
                   <FileUploader callback={updateSongUrl} text="Song" />
+                  {song.url && <div>{song.url}</div>}
                   {errorMessage.url && <div>{errorMessage.url}</div>}
                 </div>
 
@@ -142,6 +143,8 @@ const AddSong = () => {
                     callback={updateThumbnailUrl}
                     text="Thumbnail"
                   />
+                  {song.thumbnail && <div>{song.thumbnail}</div>}
+
                   {errorMessage.thumbnail && (
                     <div>{errorMessage.thumbnail}</div>
                   )}

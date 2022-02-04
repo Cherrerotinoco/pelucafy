@@ -118,11 +118,11 @@ function Profile() {
     <>
       <section className="Profile p-4">
         <Title weight="2" align="center">
-          Profile
+          Accout
         </Title>
         <form
           className="
-w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+w-full  rounded-lg px-8 pt-4 pb-4 mb-4"
           onSubmit={handleSubmit}
         >
           <Label htmlFor="firstName"> Firs Name</Label>
@@ -138,7 +138,7 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           <Input name="email" value={email} onChange={handleChange} />
 
           {errorMessage.email && <div>{errorMessage.email}</div>}
-          <Button submit styles="background" disabled={isSigningUp}>
+          <Button submit styles="light" disabled={isSigningUp}>
             Save
           </Button>
           <FileUploader callback={updateUserImage} />

@@ -7,6 +7,16 @@ body {
   background-repeat: no-repeat;
  }
 
+.light
+  {
+    
+    box-shadow:0px 0px 10px 1px rgba(50, 135, 200 , 0.46);
+}
+
+.lightBackgroun{
+  background-color: rgba(205, 205, 205, 0.25);
+}
+
 #tsparticles {
   position: fixed;
   height: 100%;

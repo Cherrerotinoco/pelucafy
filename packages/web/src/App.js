@@ -50,21 +50,21 @@ function App() {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!saveCredentials)
-      window.indexedDB.deleteDatabase("firebaseLocalStorageDb");
-  }, [saveCredentials]);
+  // useEffect(() => {
+  //   if (!saveCredentials)
+  //     window.indexedDB.deleteDatabase("firebaseLocalStorageDb");
+  // }, [saveCredentials]);
 
   return (
     <div className="App__container">
       <Particles options={particlesOptions} />
 
-      <div className="flex h-screen mb-4">
+      <div className="flex h-screen m-4">
         <div className="flex-auto w-3/4">
           <Header />
           <ContentBox />
         </div>
-        <div className="flex-auto w-1/4">
+        <div className="flex-auto w-1/3">
           <UserBox />
         </div>
       </div>

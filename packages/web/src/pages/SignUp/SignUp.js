@@ -74,7 +74,7 @@ function SignUp() {
 
           <hr className="my-4" />
           <Button
-            styles="background"
+            styles="light"
             disabled={isSigningUp}
             onClick={handleLoginWithGoogle}
           >
@@ -84,7 +84,7 @@ function SignUp() {
           <hr className="mt-1 mb-4" />
           <form
             className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+w-full  rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <Label htmlFor="email"> Email</Label>
@@ -97,7 +97,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               value={password}
               onChange={handleSetPassword}
             />
-            <Button submit styles="background" disabled={isSigningUp}>
+            <Button submit styles="light" disabled={isSigningUp}>
               SignUp with Google
             </Button>
 

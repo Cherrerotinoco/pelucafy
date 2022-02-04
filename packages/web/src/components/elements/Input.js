@@ -12,7 +12,7 @@ const Input = ({ type, name, value, isrequired, ...props }) => {
         className={
           type === "checkbox"
             ? "shadow appearance-none border rounded "
-            : "shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+            : "shadow appearance-none border rounded max-w-md w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
         }
         value={value}
         {...props}

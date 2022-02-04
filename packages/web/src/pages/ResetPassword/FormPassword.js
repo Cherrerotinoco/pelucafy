@@ -47,7 +47,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
   return (
     <>
       <form
-        className="w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+        className="w-full  rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <Label htmlFor="oldPassword"> Old Password</Label>
@@ -80,7 +80,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
 
         <Button
           submit
-          styles="background"
+          styles="light"
           disabled={isSendingPasswordReset || passwordResetSent}
         >
           {buttonText(isSendingPasswordReset, passwordResetSent)}

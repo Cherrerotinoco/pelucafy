@@ -23,11 +23,11 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
   const [dropDown, setDropDown] = useState(false);
   return (
     <>
-      <div className="w-full block items-center justify-end flex-grow lg:flex lg:items-center lg:w-auto m-5">
+      <div className="w-full block items-center justify-end flex-grow lg:flex lg:items-center lg:w-auto ">
         {dropDown ? (
           <>
             <Button
-              styles="noBackgroundHover"
+              styles="noRing"
               onClick={() =>
                 handlerRenderedComponet({ [ROUTES.PROFILE]: true })
               }
@@ -35,7 +35,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
               <GoSettings />
             </Button>
             <Button
-              styles="noBackgroundHover"
+              styles="noRing"
               onClick={() =>
                 handlerRenderedComponet({
                   [ROUTES.RESET_PASSWORD]: true,
@@ -44,7 +44,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             >
               <ImStatsBars />
             </Button>
-            <Button styles="noBackgroundHover" onClick={handleSignOut}>
+            <Button styles="noRing" onClick={handleSignOut}>
               <ImExit />
             </Button>
           </>
@@ -54,10 +54,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           </Title>
         )}
 
-        <Button
-          styles="noBackgroundHover"
-          onClick={() => setDropDown(!dropDown)}
-        >
+        <Button styles="noRing" onClick={() => setDropDown(!dropDown)}>
           <ProfileImage thumbnail />
         </Button>
       </div>

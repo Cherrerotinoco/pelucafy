@@ -12,7 +12,7 @@ import { Elements } from "../../components/elements";
 const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, Card } = Elements;
 
   const [request, setRequest] = useState({
     isDataPending: false,
@@ -122,57 +122,46 @@ const AddSong = () => {
 
   return (
     <>
-      <main className="Login">
-        <section className="Login__wrapper">
-          <Title weight="3" align="left">
-            Upload Song
-          </Title>
-          <form onSubmit={handleSubmit}>
-            {!song.url || !song.thumbnail ? (
-              <>
-                <div>
-                  <Label>Step 1: Upload your song</Label>
-                  <FileUploader callback={updateSongUrl} text="Song" />
-                  {errorMessage.url && <div>{errorMessage.url}</div>}
-                </div>
+      <Card>
+        <Title weight="3" align="left">
+          Upload Song
+        </Title>
+        <form onSubmit={handleSubmit}>
+          {!song.url || !song.thumbnail ? (
+            <>
+              <div>
+                <Label>Step 1: Upload your song</Label>
+                <FileUploader callback={updateSongUrl} text="Song" />
+                {errorMessage.url && <div>{errorMessage.url}</div>}
+              </div>
 
-                <div>
-                  <Label>Step 2: Upload your song cover</Label>
-                  <FileUploader
-                    callback={updateThumbnailUrl}
-                    text="Thumbnail"
-                  />
-                  {errorMessage.thumbnail && (
-                    <div>{errorMessage.thumbnail}</div>
-                  )}
-                </div>
-              </>
-            ) : null}
+              <div>
+                <Label>Step 2: Upload your song cover</Label>
+                <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
+                {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+              </div>
+            </>
+          ) : null}
 
-            {song.url && song.thumbnail && (
-              <>
-                <Label htmlFor="title"> Title</Label>
-                <Input name="title" value={title} onChange={handleChange} />
+          {song.url && song.thumbnail && (
+            <>
+              <Label htmlFor="title"> Title</Label>
+              <Input name="title" value={title} onChange={handleChange} />
 
-                {errorMessage.title && <div>{errorMessage.title}</div>}
+              {errorMessage.title && <div>{errorMessage.title}</div>}
 
-                <Label htmlFor="genre"> Genre</Label>
-                <Input name="genre" value={genre} onChange={handleChange} />
+              <Label htmlFor="genre"> Genre</Label>
+              <Input name="genre" value={genre} onChange={handleChange} />
 
-                {errorMessage.genre && <div>{errorMessage.genre}</div>}
+              {errorMessage.genre && <div>{errorMessage.genre}</div>}
 
-                <Button
-                  submit
-                  styles="noBackgroundHover"
-                  disabled={request.isDataPending}
-                >
-                  Upload
-                </Button>
-              </>
-            )}
-          </form>
-        </section>
-      </main>
+              <Button submit styles="noRing" disabled={request.isDataPending}>
+                Upload
+              </Button>
+            </>
+          )}
+        </form>
+      </Card>
     </>
   );
 };

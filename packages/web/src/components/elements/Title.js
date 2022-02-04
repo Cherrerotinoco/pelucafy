@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Title = ({ weight, align, children }) => {
-  const style = `m-4 text-${weight}xl md:text-${weight}xl text-white  font-bold leading-tight text-${align} md:text-${align}`;
+  const style = `mx-4 my-2 drop-shadow text-${weight}xl md:text-${weight}xl text-white  font-bold leading-tight text-${align} md:text-${align}`;
   return (
     <>
       <h1 className={style}>{children}</h1>

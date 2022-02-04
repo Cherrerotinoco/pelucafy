@@ -4,10 +4,11 @@ import { useSelector } from "react-redux";
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import { Elements } from "../../components/elements";
+import ErrorMsg from "../../components/elements/ErrorMsg";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
-// ! const { Button, Title, Label, Input } = Elements;
+// ! const { Button, Title, Label, Input, ErrorMsg, Card } = Elements;
 
 // ? const handleSetEmail = useCallback((e) => {
 // ?    setEmail(e.target.value);
@@ -15,10 +16,10 @@ import { Elements } from "../../components/elements";
 
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, Card } = Elements;
   return (
     <>
-      <section className="p-4">
+      <Card>
         {isAuthenticated && currentUser ? (
           <Title weight="2" align="center">
             WELLCOME {currentUser.email}
@@ -31,13 +32,12 @@ function Home() {
           value="valor del ejemplo"
           onChange={() => window.alert("action onChange")}
         />
-        <Button
-          styles="background"
-          onClick={() => window.alert("action onClick")}
-        >
+        <Button styles="light" onClick={() => window.alert("action onClick")}>
           texto boton
         </Button>
-      </section>
+
+        <ErrorMsg> Error de prueba</ErrorMsg>
+      </Card>
     </>
   );
 }

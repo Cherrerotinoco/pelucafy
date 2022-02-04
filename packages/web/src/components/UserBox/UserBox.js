@@ -10,6 +10,7 @@ import Login from "../../pages/Login";
 import ResetPassword from "../../pages/ResetPassword";
 import Profile from "../../pages/Profile";
 import UserNavPanel from "../UserNavPanel";
+import Card from "../elements/Card";
 
 function UserBox() {
   const { isAuthenticated } = useSelector(authSelector);
@@ -29,10 +30,15 @@ function UserBox() {
   return (
     <>
       {isAuthenticated && (
-        <UserNavPanel handlerRenderedComponet={handlerRenderedComponet} />
+        <Card>
+          <>
+            <UserNavPanel handlerRenderedComponet={handlerRenderedComponet} />
+            {renderedComponent[ROUTES.PROFILE] && <Profile />}
+            {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
+          </>
+        </Card>
       )}
-      {renderedComponent[ROUTES.PROFILE] && <Profile />}
-      {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
+
       <Switch>
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
         <Route path={ROUTES.LOGIN} component={Login} />

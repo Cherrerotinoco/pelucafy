@@ -39,11 +39,16 @@ function Header() {
       {isAuthenticated && (
         <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <Button styles="background">
+            <img
+              src="/images/logo.png"
+              className="light max-h-20 mr-5"
+              alt="logo"
+            />
+            <Button styles="light">
               <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
             </Button>
 
-            <Button styles="background">
+            <Button styles="light">
               <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
             </Button>
           </div>

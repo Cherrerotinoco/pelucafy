@@ -22,7 +22,7 @@ const FileUploader = ({ callback, text, ...props }) => {
 
   return (
     <>
-      <Button styles="background" onClick={() => cloudinaryWidget.open()}>
+      <Button styles="light" onClick={() => cloudinaryWidget.open()}>
         {text}
       </Button>
     </>

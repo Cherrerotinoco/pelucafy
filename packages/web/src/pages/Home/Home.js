@@ -38,10 +38,6 @@ function Home() {
         >
           texto boton
         </Button>
-<<<<<<< HEAD
-=======
-
->>>>>>> dev-tracks
         <TrackList />
       </section>
     </>

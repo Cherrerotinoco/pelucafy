@@ -14,17 +14,17 @@ const LogoHome = () => {
           <img src="/images/logo.png" alt="logo" />
           <div className="flex  mt-10">
             <div className="flex-auto w-1/3 m-5">
-              <Button submit={false} styles="noBackground">
+              <Button styles="noBackground">
                 <FaInstagramSquare />
               </Button>
             </div>
             <div className="flex-auto w-1/3 m-5">
-              <Button submit={false} styles="noBackground">
+              <Button styles="noBackground">
                 <FaTwitterSquare />
               </Button>
             </div>
             <div className="flex-auto w-1/3 m-5">
-              <Button submit={false} styles="noBackground">
+              <Button styles="noBackground">
                 <FaYoutubeSquare />
               </Button>
             </div>

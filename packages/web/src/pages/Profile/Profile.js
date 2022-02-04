@@ -126,19 +126,19 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           onSubmit={handleSubmit}
         >
           <Label htmlFor="firstName"> Firs Name</Label>
-          <Input name="firstName" value={firstName} action={handleChange} />
+          <Input name="firstName" value={firstName} onChange={handleChange} />
           {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
 
           <Label htmlFor="lastName"> Last Name</Label>
-          <Input name="lastName" value={lastName} action={handleChange} />
+          <Input name="lastName" value={lastName} onChange={handleChange} />
 
           {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
 
           <Label htmlFor="email"> Email</Label>
-          <Input name="email" value={email} action={handleChange} />
+          <Input name="email" value={email} onChange={handleChange} />
 
           {errorMessage.email && <div>{errorMessage.email}</div>}
-          <Button submit="true" styles="background" disabled={isSigningUp}>
+          <Button submit styles="background" disabled={isSigningUp}>
             Save
           </Button>
           <FileUploader callback={updateUserImage} />

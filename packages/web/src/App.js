@@ -19,7 +19,7 @@ import { authSelector } from "./redux/auth/auth-selectors";
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector(authSelector);
+  const { isAuthenticated, saveCredentials } = useSelector(authSelector);
 
   const history = useHistory();
   const location = useLocation();
@@ -50,11 +50,10 @@ function App() {
     };
   }, [dispatch]);
 
-  /*
   useEffect(() => {
-        if (!saveCredentials) window.indexedDB.deleteDatabase('firebaseLocalStorageDb')
-  }, [saveCredentials])
-  */
+    if (!saveCredentials)
+      window.indexedDB.deleteDatabase("firebaseLocalStorageDb");
+  }, [saveCredentials]);
 
   return (
     <div className="App__container">

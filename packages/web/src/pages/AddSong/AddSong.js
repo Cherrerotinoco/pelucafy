@@ -152,17 +152,17 @@ const AddSong = () => {
             {song.url && song.thumbnail && (
               <>
                 <Label htmlFor="title"> Title</Label>
-                <Input name="title" value={title} action={handleChange} />
+                <Input name="title" value={title} onChange={handleChange} />
 
                 {errorMessage.title && <div>{errorMessage.title}</div>}
 
                 <Label htmlFor="genre"> Genre</Label>
-                <Input name="genre" value={genre} action={handleChange} />
+                <Input name="genre" value={genre} onChange={handleChange} />
 
                 {errorMessage.genre && <div>{errorMessage.genre}</div>}
 
                 <Button
-                  submit="true"
+                  submit
                   styles="noBackgroundHover"
                   disabled={request.isDataPending}
                 >

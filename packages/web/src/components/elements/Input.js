@@ -2,16 +2,20 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-const Input = ({ type, name, value, isrequired, action }) => {
+const Input = ({ type, name, value, isrequired, ...props }) => {
   return (
     <>
       <input
         type={type}
         name={name}
         id={name}
-        className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+        className={
+          type === "checkbox"
+            ? "shadow appearance-none border rounded "
+            : "shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+        }
         value={value}
-        onChange={action}
+        {...props}
         required={isrequired}
       />
     </>
@@ -20,14 +24,12 @@ const Input = ({ type, name, value, isrequired, action }) => {
 
 Input.defaultProps = {
   type: "text",
-  action: PropTypes.any,
   value: PropTypes.any,
   name: PropTypes.string,
   isrequired: true,
 };
 Input.propTypes = {
   type: PropTypes.string,
-  action: PropTypes.any,
   value: PropTypes.any,
   name: PropTypes.string,
   isrequired: PropTypes.bool,

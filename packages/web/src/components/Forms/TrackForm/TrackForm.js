@@ -72,11 +72,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               />
             </div>
 
-            <Button
-              submit="true"
-              styles="background"
-              action={() => console.log("click")}
-            >
+            <Button submit styles="background">
               Submit
             </Button>
 

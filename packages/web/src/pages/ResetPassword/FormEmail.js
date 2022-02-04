@@ -36,7 +36,12 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <Label htmlFor="email"> Email</Label>
-        <Input type="email" name="email" value={email} action={handleChange} />
+        <Input
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
 
         <div>
           {email === "" ? (
@@ -47,7 +52,7 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
         </div>
 
         <Button
-          submit="true"
+          submit
           styles="background"
           disabled={isSendingPasswordReset || passwordResetSent || email === ""}
         >

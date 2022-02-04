@@ -13,14 +13,15 @@ import UserNavPanel from "../UserNavPanel";
 
 function UserBox() {
   const { isAuthenticated } = useSelector(authSelector);
+
   const [renderedComponent, setRenderedComponent] = useState({
     [ROUTES.PROFILE]: false,
     [ROUTES.RESET_PASSWORD]: false,
   });
 
   const handlerRenderedComponet = useCallback(
-    (componetReded) => {
-      setRenderedComponent(componetReded);
+    (componentRended) => {
+      setRenderedComponent(componentRended);
     },
     [setRenderedComponent],
   );

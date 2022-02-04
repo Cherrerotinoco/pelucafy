@@ -30,10 +30,18 @@ function SignUp() {
     dispatch(resetAuthState());
   }, [dispatch]);
 
-  function handleLoginWithGoogle(e) {
-    e.preventDefault();
-    dispatch(signUpWithGoogleRequest(saveCredentials));
-  }
+  const handleLoginWithGoogle = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(signUpWithGoogleRequest(saveCredentials));
+    },
+    [dispatch, saveCredentials],
+  );
+
+  // function handleLoginWithGoogle(e) {
+  //   e.preventDefault();
+  //   dispatch(signUpWithGoogleRequest(saveCredentials));
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -66,10 +74,9 @@ function SignUp() {
 
           <hr className="my-4" />
           <Button
-            submit={false}
             styles="background"
             disabled={isSigningUp}
-            action={{ handleLoginWithGoogle }}
+            onClick={handleLoginWithGoogle}
           >
             SignUp with Google
           </Button>
@@ -81,20 +88,20 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <Label htmlFor="email"> Email</Label>
-            <Input name="email" value={email} action={handleSetEmail} />
+            <Input name="email" value={email} onChange={handleSetEmail} />
 
             <Label htmlFor="password"> Password</Label>
             <Input
               type="password"
               name="password"
               value={password}
-              action={handleSetPassword}
+              onChange={handleSetPassword}
             />
-            <Button submit="true" styles="background" disabled={isSigningUp}>
+            <Button submit styles="background" disabled={isSigningUp}>
               SignUp with Google
             </Button>
 
-            <input
+            <Input
               type="checkbox"
               className="shadow appearance-none border rounded "
               id="saveCredentials"

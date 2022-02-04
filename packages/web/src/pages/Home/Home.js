@@ -10,6 +10,10 @@ import { Elements } from "../../components/elements";
 // ! import { Elements } from "../../components/elements";
 // ! const { Button, Title, Label, Input } = Elements;
 
+// ? const handleSetEmail = useCallback((e) => {
+// ?    setEmail(e.target.value);
+// ?  }, []);
+
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const { Button, Title, Label, Input } = Elements;
@@ -26,12 +30,11 @@ function Home() {
         <Input
           name="name + id"
           value="valor del ejemplo"
-          action={() => window.alert("action onChange")}
+          onChange={() => window.alert("action onChange")}
         />
         <Button
-          submit={false}
           styles="background"
-          action={() => window.alert("action onClick")}
+          onClick={() => window.alert("action onClick")}
         >
           texto boton
         </Button>

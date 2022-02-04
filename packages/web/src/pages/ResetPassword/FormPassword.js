@@ -55,7 +55,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           type="password"
           name="oldPassword"
           value={password.oldPassword}
-          action={handleChange}
+          onChange={handleChange}
         />
 
         {errorMsg.oldPassword ? errorMsg.oldPassword : null}
@@ -65,7 +65,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           type="password"
           name="newPassword"
           value={password.newPassword}
-          action={handleChange}
+          onChange={handleChange}
         />
         {errorMsg.newPassword ? errorMsg.newPassword : null}
         <Label htmlFor="newPassword2">Repeat New Password</Label>
@@ -73,13 +73,13 @@ function FormPassword({ handleDataSubmit, buttonText }) {
           type="password"
           name="newPassword2"
           value={password.newPassword2}
-          action={handleChange}
+          onChange={handleChange}
         />
         {errorMsg.newPassword2 ? errorMsg.newPassword2 : null}
         {buttonText(isSendingPasswordReset, passwordResetSent)}
 
         <Button
-          submit="true"
+          submit
           styles="background"
           disabled={isSendingPasswordReset || passwordResetSent}
         >

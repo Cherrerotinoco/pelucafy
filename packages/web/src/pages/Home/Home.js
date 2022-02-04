@@ -3,15 +3,12 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
-<<<<<<< HEAD
 import TrackList from "../../components/TrackList";
-=======
 import { Elements } from "../../components/elements";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
 // ! const { Button, Title, Label, Input } = Elements;
->>>>>>> origin/dev-Home
 
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
@@ -38,6 +35,8 @@ function Home() {
         >
           texto boton
         </Button>
+
+        <TrackList />
       </section>
     </>
   );

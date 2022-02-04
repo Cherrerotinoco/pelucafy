@@ -43,12 +43,18 @@ function makeApi(request = makeRequest()) {
     });
   }
 
-  function getTracks(headers, body) {
+  function getTracks(headers, params) {
+    const {
+      query,
+      limit,
+      order,
+      skip
+    } = params
     return request({
-      url: "/tracks",
-      requestMethod: "POST",
+      url: `/tracks?query=${query}&limit=${limit}&order=${order}&skip=${skip}`,
+      requestMethod: "GET",
       headers: headers,
-      body: body,
+      body: null,
     });
   }
 

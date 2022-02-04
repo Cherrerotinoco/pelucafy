@@ -22,16 +22,8 @@ const TrackList = ({
   }, [])
 
   const getTracks = async ({query, limit, order, skip}) => {
-
-    const data = {
-      query: query,
-      limit: limit,
-      order: order,
-      skip: skip
-    }
-
     try {
-      const response = await api.getTracks(null, data);
+      const response = await api.getTracks(null, {query, limit, order, skip});
       
       if (response.data.error) throw Error(response.errorMessage);
 

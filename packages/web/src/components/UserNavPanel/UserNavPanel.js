@@ -36,9 +36,11 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             </Button>
             <Button
               styles="noBackgroundHover"
-              onClick={handlerRenderedComponet({
-                [ROUTES.RESET_PASSWORD]: true,
-              })}
+              onClick={() =>
+                handlerRenderedComponet({
+                  [ROUTES.RESET_PASSWORD]: true,
+                })
+              }
             >
               <ImStatsBars />
             </Button>
@@ -52,7 +54,10 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           </Title>
         )}
 
-        <Button styles="noBackgroundHover" onClick={setDropDown(!dropDown)}>
+        <Button
+          styles="noBackgroundHover"
+          onClick={() => setDropDown(!dropDown)}
+        >
           <ProfileImage thumbnail />
         </Button>
       </div>

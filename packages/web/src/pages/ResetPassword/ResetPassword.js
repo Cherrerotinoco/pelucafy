@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./ResetPassword.scss";
 
-import Header from "../../components/Header";
 import FormPassword from "./FormPassword";
 import FormEmail from "./FormEmail";
 
@@ -13,6 +12,7 @@ import {
   sendPasswordResetPassword,
 } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import Title from "../../components/elements/Title";
 
 function ResetPassword() {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ function ResetPassword() {
     },
     [dispatch, isAuthenticated],
   );
+
   const button = useCallback(
     (loading, sent) => {
       if (loading) {
@@ -49,13 +50,11 @@ function ResetPassword() {
 
   return (
     <>
-      <Header />
-      <main className="ResetPassword">
+      <section className="ResetPassword p-1">
         <section className="Login__wrapper">
-          <h1 className="text-2xl font-bold mb-6">
+          <Title weight="2" align="center">
             {isAuthenticated ? "Password Reset" : "Forgot my password"}
-          </h1>
-          <hr className="my-4" />
+          </Title>
 
           {isAuthenticated ? (
             <FormPassword
@@ -69,10 +68,11 @@ function ResetPassword() {
             />
           )}
         </section>
+        <hr className="mt-1 mb-4" />
         {passwordResetError && (
           <section className="mt-4">{passwordResetError}</section>
         )}
-      </main>
+      </section>
     </>
   );
 }

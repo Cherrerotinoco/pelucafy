@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Label from "../../elements/Label";
+import Button from "../../elements/Button";
 
 const TrackForm = () => {
   const [fromSubmiting, setFormSubmiting] = useState(false);
@@ -37,13 +39,14 @@ const TrackForm = () => {
         }}
       >
         {({ errors }) => (
-          <Form className="formulario">
+          <Form
+            className="
+w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+          >
             <div>
-              <label className="form-label" htmlFor="title">
-                Title
-              </label>
+              <Label htmlFor="title"> Title</Label>
               <Field
-                className="form-input"
+                className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
                 id="title"
                 name="title"
@@ -55,11 +58,9 @@ const TrackForm = () => {
               />
             </div>
             <div>
-              <label className="form-label" htmlFor="genre">
-                Genre
-              </label>
+              <Label htmlFor="genre"> Genre</Label>
               <Field
-                className="form-input"
+                className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="text"
                 id="genre"
                 name="genre"
@@ -71,9 +72,14 @@ const TrackForm = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary w-full">
+            <Button
+              submit="true"
+              styles="background"
+              action={() => console.log("click")}
+            >
               Submit
-            </button>
+            </Button>
+
             {fromSubmiting && <p className="exito">Form submitted</p>}
           </Form>
         )}

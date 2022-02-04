@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 import "./Login.scss";
+import { FcGoogle } from "react-icons/fc";
 
-import Header from "../../components/Header";
 import * as ROUTES from "../../routes";
 
 import {
@@ -14,11 +14,14 @@ import {
 } from "../../redux/auth/auth-actions";
 
 import { authSelector } from "../../redux/auth/auth-selectors";
-
+import { Elements } from "../../components/elements";
+//
 function Login() {
   const dispatch = useDispatch();
   const { isSigningUp, signUpError, isAuthenticated } =
     useSelector(authSelector);
+
+  const { Button, Title, Label, Input } = Elements;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,10 +31,13 @@ function Login() {
     dispatch(resetAuthState());
   }, [dispatch]);
 
-  function handleLoginWithGoogle(e) {
-    e.preventDefault();
-    dispatch(signUpWithGoogleRequest(saveCredentials));
-  }
+  const handleLoginWithGoogle = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(signUpWithGoogleRequest(saveCredentials));
+    },
+    [dispatch, saveCredentials],
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,13 +48,13 @@ function Login() {
     setPassword("");
   }
 
-  function handleSetEmail(e) {
+  const handleSetEmail = useCallback((e) => {
     setEmail(e.target.value);
-  }
+  }, []);
 
-  function handleSetPassword(e) {
+  const handleSetPassword = useCallback((e) => {
     setPassword(e.target.value);
-  }
+  }, []);
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
@@ -56,57 +62,60 @@ function Login() {
 
   return (
     <>
-      <Header />
       <main className="Login">
         <section className="Login__wrapper">
-          <h1 className="text-2xl font-bold mb-6">Login</h1>
-          <hr className="my-4" />
-          <button
-            className="btn btn-primary w-full"
-            type="button"
-            onClick={handleLoginWithGoogle}
-            disabled={isSigningUp}
-          >
-            Login with Google
-          </button>
+          <Title weight="3" align="center">
+            Login
+          </Title>
           <hr className="mt-1 mb-4" />
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              className="form-input"
-              value={email}
-              onChange={handleSetEmail}
-            />
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="form-input"
-              value={password}
-              onChange={handleSetPassword}
-            />
-            <button
-              className="btn btn-primary w-full"
-              type="submit"
-              disabled={isSigningUp}
-            >
-              Login
-            </button>
+          <form
+            className="
+w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+            onSubmit={handleSubmit}
+          >
+            <Label htmlFor="email"> Genre</Label>
+            <Input name="email" value={email} action={handleSetEmail} />
 
-            <input
-              type="checkbox"
-              id="saveCredentials"
-              name="saveCredentials"
-              checked={saveCredentials}
-              onChange={(e) => setSaveCredentials(e.target.checked)}
+            <Label htmlFor="password"> Password</Label>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              action={handleSetPassword}
             />
-            <label htmlFor="saveCredentials">Remember login?</label>
+
+            <div className="block flex-grow lg:flex lg:items-center">
+              <Button
+                submit="true"
+                styles="background"
+                action={{ isSigningUp }}
+              >
+                Login
+              </Button>
+
+              <Label> or</Label>
+
+              <Button
+                submit={false}
+                styles="background"
+                action={handleLoginWithGoogle}
+                disabled={isSigningUp}
+              >
+                <FcGoogle />
+              </Button>
+            </div>
+
+            <div className="block flex-grow lg:flex lg:items-center">
+              <input
+                type="checkbox"
+                className="m-2"
+                id="saveCredentials"
+                name="saveCredentials"
+                checked={saveCredentials}
+                onChange={(e) => setSaveCredentials(e.target.checked)}
+              />
+              <Label htmlFor="saveCredentials"> Remember login?</Label>
+            </div>
           </form>
           {signUpError && (
             <section className="mt-4">{signUpError.payload}</section>
@@ -115,15 +124,15 @@ function Login() {
             <hr className="mt-1 mb-4" />
             <Link
               to={ROUTES.RESET_PASSWORD}
-              className="underline text-blue-gray-200 w-full text-center block mb-2"
+              className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
             >
               Forgot Password?
             </Link>
             <Link
               to={ROUTES.SIGN_UP}
-              className="underline text-blue-gray-200 w-full text-center block"
+              className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
             >
-              Don&apos;t have an account? Sign in
+              Don&apos;t have an account? Sign up
             </Link>
           </section>
         </section>

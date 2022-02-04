@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../elements/Button";
 
 const FileUploader = ({ callback, text, ...props }) => {
   const cloudinaryConfig = {
@@ -21,13 +22,13 @@ const FileUploader = ({ callback, text, ...props }) => {
 
   return (
     <>
-      <button
-        className="btn btn-primary w-full"
-        type="button"
-        onClick={() => cloudinaryWidget.open()}
+      <Button
+        submit={false}
+        styles="background"
+        action={() => cloudinaryWidget.open()}
       >
         {text}
-      </button>
+      </Button>
     </>
   );
 };

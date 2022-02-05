@@ -43,12 +43,30 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function getTracks(headers, params) {
+
+    let url = "/tracks?"
+
+    Object.entries(params).map(([key, value]) => {
+      url += value ? `${key}=${value}&` : ''
+      return url
+    })
+
+    return request({
+      url: url,
+      requestMethod: "GET",
+      headers: headers,
+      body: null,
+    });
+  }
+
   return {
     signUp: signUp,
     signOut: signOut,
     saveUserData: saveUserData,
     saveImage: saveImage,
     addNewSong: addNewSong,
+    getTracks: getTracks
   };
 }
 

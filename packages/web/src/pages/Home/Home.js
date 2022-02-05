@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import TrackList from "../../components/TrackList";
 import { Elements } from "../../components/elements";
 import ErrorMsg from "../../components/elements/ErrorMsg";
 

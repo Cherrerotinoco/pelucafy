@@ -12,6 +12,11 @@ class TrackRepository {
   findAndUpdate(query, update) {
     return normalizeDBQuery(db.Track.findOneAndUpdate(query, update));
   }
+  findAll({ query, limit, order, toSkip }) {
+    return normalizeDBQuery(
+      db.Track.find(query).sort(order).skip(toSkip).limit(limit),
+    );
+  }
 }
 
 module.exports = new TrackRepository();

@@ -117,9 +117,6 @@ function Profile() {
   return (
     <>
       <section className="Profile p-4">
-        <Title weight="2" align="center">
-          Accout
-        </Title>
         <form
           className="
 w-full  rounded-lg px-8 pt-4 pb-4 mb-4"

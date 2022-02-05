@@ -64,7 +64,7 @@ function App() {
           <Header />
           <ContentBox />
         </div>
-        <div className="flex-auto w-1/3">
+        <div className="flex-auto w-1/4">
           <UserBox />
         </div>
       </div>

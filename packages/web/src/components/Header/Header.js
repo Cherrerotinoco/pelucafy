@@ -15,7 +15,7 @@ function Header() {
   const { isAuthenticated } = useSelector(authSelector);
 
   return (
-    <header className="p-4">
+    <header className="p-2">
       {!isAuthenticated && (
         <>
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -33,31 +33,28 @@ function Header() {
       )}
 
       {isAuthenticated && (
-        <nav className="flex items-center justify-between flex-nowrap p-6">
-          <div className="w-full flex items-center  flex-grow lg:flex lg:items-center lg:w-auto">
-            <div className="flex  w-1/2">
-              <div className="w-1/3">
-                <NavLink to={ROUTES.HOME}>
-                  <img src="/images/logo.png" className="light" alt="logo" />
-                </NavLink>
-              </div>
-              <div className=" flex items-center w-2/3">
-                <Button styles="light">
-                  <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
-                </Button>
-
-                <Button styles="light">
-                  <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
-                </Button>
-              </div>
+        <nav className="flex items-center justify-between flex-nowrap">
+          <div className="w-full flex flex-grow lg:flex lg:items-center lg:w-auto">
+            <div className="w-1/4">
+              <NavLink to={ROUTES.HOME}>
+                <img src="/images/logo.png" className="light" alt="logo" />
+              </NavLink>
             </div>
-            <div className="flex-auto w-1/2">
-              <div className="w-full mx-4">
-                <Input
-                  placeholder="Search somthig"
-                  onChange={() => console.log("searching...")}
-                />
-              </div>
+            <div className=" flex justify-around items-center w-2/3">
+              <Button styles="light">
+                <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
+              </Button>
+
+              <Button styles="light">
+                <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
+              </Button>
+            </div>
+
+            <div className="w-full">
+              <Input
+                placeholder="Search somthig"
+                onChange={() => console.log("searching...")}
+              />
             </div>
           </div>
         </nav>

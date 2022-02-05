@@ -21,7 +21,7 @@ const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <>
+    <div className=" p-2 m-2 rounded-xl outline-white">
       <div className=" px-4">
         <input
           type="range"
@@ -36,8 +36,8 @@ const Player = () => {
         />
       </div>
 
-      <div className="flex audio-controls text-white text-xl text-bold w-full mx-4 ">
-        <div className="w-1/5">
+      <div className="flex audio-controls justify-around text-white text-xl text-bold w-full mx-4 ">
+        <div className="w-1/5 text-3xl">
           <button
             type="button"
             className="shuffle"
@@ -47,7 +47,7 @@ const Player = () => {
             <TiArrowShuffle />
           </button>
         </div>
-        <div className="w-1/5">
+        <div className="w-1/5 text-3xl">
           <button
             type="button"
             className="prev"
@@ -58,7 +58,7 @@ const Player = () => {
           </button>
         </div>
         {isPlaying ? (
-          <div className="w-1/5 text-3xl ">
+          <div className="w-1/5 text-4xl ">
             <button
               type="button"
               className="pause"
@@ -69,7 +69,7 @@ const Player = () => {
             </button>
           </div>
         ) : (
-          <div className="w-1/5 text-3xl">
+          <div className="w-1/5 text-4xl">
             <button
               type="button"
               className="play"
@@ -80,7 +80,7 @@ const Player = () => {
             </button>
           </div>
         )}
-        <div className="w-1/5">
+        <div className="w-1/5 text-3xl">
           <button
             type="button"
             className="next"
@@ -90,7 +90,7 @@ const Player = () => {
             <CgPlayTrackNextO />
           </button>
         </div>
-        <div className="w-1/5">
+        <div className="w-1/5 text-3xl">
           <button
             type="button"
             className="next"
@@ -101,7 +101,7 @@ const Player = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

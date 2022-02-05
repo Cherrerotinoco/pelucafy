@@ -52,9 +52,13 @@ function ResetPassword() {
     <>
       <section className="ResetPassword p-1">
         <section className="Login__wrapper">
-          <Title weight="2" align="center">
-            {isAuthenticated ? "Password Reset" : "Forgot my password"}
-          </Title>
+          {isAuthenticated ? (
+            ""
+          ) : (
+            <Title weight="2" align="center">
+              Forgot my password
+            </Title>
+          )}
 
           {isAuthenticated ? (
             <FormPassword

@@ -19,25 +19,124 @@ function Home() {
   const { Button, Title, Label, Input, Card } = Elements;
   return (
     <>
-      <Card>
-        {isAuthenticated && currentUser ? (
-          <Title weight="2" align="center">
-            WELLCOME {currentUser.email}
-          </Title>
-        ) : null}
+      <Title weight="2">Recently Played</Title>
 
-        <Label htmlFor="htmlFor"> Para copiar y pegar</Label>
-        <Input
-          name="name + id"
-          value="valor del ejemplo"
-          onChange={() => window.alert("action onChange")}
-        />
-        <Button styles="light" onClick={() => window.alert("action onClick")}>
-          texto boton
-        </Button>
+      <div className="w-full  justify-between flex-grow  lg:flex lg:items-center lg:w-auto">
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
 
-        <ErrorMsg> Error de prueba</ErrorMsg>
-      </Card>
+          <Label>Title</Label>
+        </div>
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
+
+          <Label>Title</Label>
+        </div>
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
+
+          <Label>Title</Label>
+        </div>
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
+
+          <Label>Title</Label>
+        </div>
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
+
+          <Label>Title</Label>
+        </div>
+        <div className="w-1/6 justify-around block flex-grow">
+          <img
+            src="/images/logo.png"
+            className="light self-center w-1/2"
+            alt="logo"
+          />
+
+          <Label>Title</Label>
+        </div>
+      </div>
+
+      <Title weight="2">Favourites</Title>
+      <div className="w-full  justify-between flex-grow  lg:flex lg:items-center lg:w-auto">
+        <Card>
+          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
+            <img
+              src="/images/logo.png"
+              className="light self-center w-1/2"
+              alt="logo"
+            />
+
+            <div className="w-1/2 p-2">
+              <Label>Title</Label>
+              <Label>Album</Label>
+            </div>
+          </div>
+        </Card>
+        <Card>
+          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
+            <img
+              src="/images/logo.png"
+              className="light self-center w-1/2"
+              alt="logo"
+            />
+
+            <div className="w-1/2 p-2">
+              <Label>Title</Label>
+              <Label>Album</Label>
+            </div>
+          </div>
+        </Card>
+        <Card>
+          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
+            <img
+              src="/images/logo.png"
+              className="light self-center w-1/2"
+              alt="logo"
+            />
+
+            <div className="w-1/2 p-2">
+              <Label>Title</Label>
+              <Label>Album</Label>
+            </div>
+          </div>
+        </Card>
+        <Card>
+          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
+            <img
+              src="/images/logo.png"
+              className="light self-center w-1/2"
+              alt="logo"
+            />
+
+            <div className="w-1/2 p-2">
+              <Label>Title</Label>
+              <Label>TiAlbumtle</Label>
+            </div>
+          </div>
+        </Card>
+      </div>
     </>
   );
 }

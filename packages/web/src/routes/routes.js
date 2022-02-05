@@ -5,3 +5,5 @@ export const RESET_PASSWORD = "/reset-password";
 export const PROFILE = "/profile";
 export const MYSONGS = "/my-songs";
 export const ADDSONG = "/add-song";
+export const NOWPLAYING = "/now-playin";
+export const STATS = "/stats";

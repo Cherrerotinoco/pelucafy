@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
 import { useDispatch } from "react-redux";
 
 import { GoSettings } from "react-icons/go";
-import { ImExit, ImStatsBars } from "react-icons/im";
 
+import { ImPlay2, ImExit, ImStatsBars } from "react-icons/im"; // GiSoundWaves
+import { useLocation } from "react-router-dom";
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import ProfileImage from "../ProfileImage/ProfileImage";
@@ -15,12 +16,23 @@ import Button from "../elements/Button";
 
 const UserNavPanel = ({ handlerRenderedComponet }) => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const handleSignOut = useCallback(() => {
     dispatch(signOut());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (location.pathname === ROUTES.RESET_PASSWORD) {
+      handlerRenderedComponet({
+        [ROUTES.RESET_PASSWORD]: true,
+      });
+      setTitle("New Pasword");
+      setDropDown(false);
+    }
+  }, [location.pathname, handlerRenderedComponet]);
+
   const [dropDown, setDropDown] = useState(false);
+  const [title, setTitle] = useState("Playing");
   return (
     <>
       <div className="w-full block items-center justify-end flex-grow lg:flex lg:items-center lg:w-auto ">
@@ -28,19 +40,37 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           <>
             <Button
               styles="noRing"
-              onClick={() =>
-                handlerRenderedComponet({ [ROUTES.PROFILE]: true })
-              }
+              onClick={() => {
+                handlerRenderedComponet({
+                  [ROUTES.NOWPLAYING]: true,
+                });
+                setTitle("Playing");
+                setDropDown(false);
+              }}
+            >
+              <ImPlay2 />
+            </Button>
+            <Button
+              styles="noRing"
+              onClick={() => {
+                handlerRenderedComponet({
+                  [ROUTES.PROFILE]: true,
+                });
+                setTitle("Profile");
+                setDropDown(false);
+              }}
             >
               <GoSettings />
             </Button>
             <Button
               styles="noRing"
-              onClick={() =>
+              onClick={() => {
                 handlerRenderedComponet({
-                  [ROUTES.RESET_PASSWORD]: true,
-                })
-              }
+                  [ROUTES.STATS]: true,
+                });
+                setTitle("Stats");
+                setDropDown(false);
+              }}
             >
               <ImStatsBars />
             </Button>
@@ -49,8 +79,8 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             </Button>
           </>
         ) : (
-          <Title weight="3" align="center">
-            SONGFY
+          <Title weight="2" align="center">
+            {title}
           </Title>
         )}
 
@@ -58,7 +88,6 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
           <ProfileImage thumbnail />
         </Button>
       </div>
-      <hr className="mt-1 mb-4" />
     </>
   );
 };

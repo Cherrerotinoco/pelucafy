@@ -21,7 +21,7 @@ const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className=" p-2 m-2 rounded-xl outline-white">
+    <div className=" p-2 m-2  outline-white">
       <div className=" px-4">
         <input
           type="range"

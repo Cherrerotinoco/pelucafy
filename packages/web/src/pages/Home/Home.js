@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import TrackList from "../../components/TrackList";
+import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
-import ErrorMsg from "../../components/elements/ErrorMsg";
+
+import { generateSongs } from "../../utils/DBTest";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
@@ -22,121 +23,26 @@ function Home() {
     <>
       <Title weight="2">Recently Played</Title>
 
-      <div className="w-full  justify-between flex-grow  lg:flex lg:items-center lg:w-auto">
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
-        <div className="w-1/6 justify-around block flex-grow">
-          <img
-            src="/images/logo.png"
-            className="light self-center w-1/2"
-            alt="logo"
-          />
-
-          <Label>Title</Label>
-        </div>
+      <div className="flex flex-wrap">
+        {generateSongs(2).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="M" />
+          </>
+        ))}
+        {generateSongs(6).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="S" />
+          </>
+        ))}
       </div>
 
-      <Title weight="2">Favourites</Title>
-      <div className="w-full  justify-between flex-grow  lg:flex lg:items-center lg:w-auto">
-        <Card>
-          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
-            <img
-              src="/images/logo.png"
-              className="light self-center w-1/2"
-              alt="logo"
-            />
-
-            <div className="w-1/2 p-2">
-              <Label>Title</Label>
-              <Label>Album</Label>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
-            <img
-              src="/images/logo.png"
-              className="light self-center w-1/2"
-              alt="logo"
-            />
-
-            <div className="w-1/2 p-2">
-              <Label>Title</Label>
-              <Label>Album</Label>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
-            <img
-              src="/images/logo.png"
-              className="light self-center w-1/2"
-              alt="logo"
-            />
-
-            <div className="w-1/2 p-2">
-              <Label>Title</Label>
-              <Label>Album</Label>
-            </div>
-          </div>
-        </Card>
-        <Card>
-          <div className="w-1/6 block flex-grow lg:flex lg:items-center lg:w-auto">
-            <img
-              src="/images/logo.png"
-              className="light self-center w-1/2"
-              alt="logo"
-            />
-
-            <div className="w-1/2 p-2">
-              <Label>Title</Label>
-              <Label>TiAlbumtle</Label>
-            </div>
-          </div>
-        </Card>
+      <Title weight="2">Suggested</Title>
+      <div className="flex flex-wrap">
+        {generateSongs(4).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="S" />
+          </>
+        ))}
       </div>
     </>
   );

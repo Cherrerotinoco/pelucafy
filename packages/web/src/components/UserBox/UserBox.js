@@ -36,14 +36,19 @@ function UserBox() {
   return (
     <>
       {isAuthenticated && (
-        <div className="place-content-center min-h-screen">
+        <div className="place-content-center ">
           <Card>
-            <UserNavPanel handlerRenderedComponet={handlerRenderedComponet} />
+            <div className="userNavBar">
+              <UserNavPanel handlerRenderedComponet={handlerRenderedComponet} />
+            </div>
+
             <hr className="mt-1 mb-4 " />
-            {renderedComponent[ROUTES.PROFILE] && <Profile />}
-            {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
-            {renderedComponent[ROUTES.NOWPLAYING] && <NowPlaying />}
-            {renderedComponent[ROUTES.STATS] && <UserStats />}
+            <div className="userBoxContent">
+              {renderedComponent[ROUTES.PROFILE] && <Profile />}
+              {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
+              {renderedComponent[ROUTES.NOWPLAYING] && <NowPlaying />}
+              {renderedComponent[ROUTES.STATS] && <UserStats />}
+            </div>
             <hr className="mt-4 mb-1" />
             <Player />
           </Card>

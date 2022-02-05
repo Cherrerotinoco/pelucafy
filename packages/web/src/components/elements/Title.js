@@ -14,7 +14,7 @@ const Title = ({ weight, align, children }) => {
 Title.defaultProps = {
   children: PropTypes.any,
   weight: PropTypes.any,
-  align: PropTypes.string,
+  align: "left",
 };
 Title.propTypes = {
   children: PropTypes.any,

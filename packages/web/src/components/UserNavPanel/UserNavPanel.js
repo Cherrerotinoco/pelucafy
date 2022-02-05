@@ -32,7 +32,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
   }, [location.pathname, handlerRenderedComponet]);
 
   const [dropDown, setDropDown] = useState(false);
-  const [title, setTitle] = useState("Playing");
+  const [title, setTitle] = useState("Now Playing");
   return (
     <>
       <div className="w-full block items-center justify-end flex-grow lg:flex lg:items-center lg:w-auto ">
@@ -44,7 +44,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
                 handlerRenderedComponet({
                   [ROUTES.NOWPLAYING]: true,
                 });
-                setTitle("Playing");
+                setTitle("Now Playing");
                 setDropDown(false);
               }}
             >

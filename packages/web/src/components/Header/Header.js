@@ -52,6 +52,8 @@ function Header() {
 
             <div className="w-full">
               <Input
+                name="search"
+                value=""
                 placeholder="Search somthig"
                 onChange={() => console.log("searching...")}
               />

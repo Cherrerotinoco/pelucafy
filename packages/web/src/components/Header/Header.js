@@ -37,7 +37,7 @@ function Header() {
           <div className="w-full flex flex-grow lg:flex lg:items-center lg:w-auto">
             <div className="w-1/4">
               <NavLink to={ROUTES.HOME}>
-                <img src="/images/logo.png" className="light" alt="logo" />
+                <img src="/images/logo.png" className="light w-20" alt="logo" />
               </NavLink>
             </div>
             <div className=" flex justify-around items-center w-2/3">

@@ -2,21 +2,22 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-const Card = ({ children }) => {
+const Card = ({ padding, children }) => {
+  const style = `flex flex-col mx-1 p-${padding} lightBackgroun w-auto`;
   return (
     <section className="p-2 ">
-      <div className="flex flex-col mx-1 p-4 lightBackgroun w-auto ">
-        {children}
-      </div>
+      <div className={style}>{children}</div>
     </section>
   );
 };
 
 Card.defaultProps = {
   children: PropTypes.any,
+  padding: "4",
 };
 Card.propTypes = {
   children: PropTypes.any,
+  padding: PropTypes.string,
 };
 
 export default Card;

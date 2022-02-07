@@ -1,21 +1,19 @@
 import * as TrackTypes from "./track-types";
 
 export const TrackInitialState = {
-  name: null,
-  source: null,
-  image: null,
-  genre: null,
-  album: null,
+  trackPlaying : null,
+  trackEditing: {
+
+  },
 };
 
-const AuthReducer = (state = TrackInitialState, action) => {
+const TrackReducer = (state = TrackInitialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case TrackTypes.PLAY_TRACK: {
       return {
         ...state,
-        name: payload.name,
-        source: payload.source,
+        trackPlaying: payload,
       };
     }
 
@@ -25,4 +23,4 @@ const AuthReducer = (state = TrackInitialState, action) => {
   }
 };
 
-export default AuthReducer;
+export default TrackReducer;

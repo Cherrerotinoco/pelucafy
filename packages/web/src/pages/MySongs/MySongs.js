@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Song from "../../components/Song";
 import useTracks from "../../hooks/useTracks";
+import Title from "../../components/elements/Title";
 
 const MySongs = () => {
   const { currentUser } = useSelector(authSelector);
@@ -11,30 +12,21 @@ const MySongs = () => {
   const { trackList, error, page } = useTracks({
     query: { userId: currentUser._id },
   });
-  console.log(trackList);
 
   // state
   // tracklist
 
   return (
     <>
-      <section className="Login__wrapper flex flex-row">
-        <article className="basis-1/2">
-          <h3 className="text-center text-xl font-bold text-green-600">
-            MY SONGS
-          </h3>
-          {error && <p>{error}</p>}
-          <div className="flex flex-col items-center min-h-screen bg-center bg-cover">
-            <div className="max-w-3xl w-full mx-auto z-10">
-              <div className="flex flex-col">
-                {trackList &&
-                  trackList.map((song) => (
-                    <Song key={song._id} song={song} size="M" />
-                  ))}
-              </div>
-            </div>
-          </div>
-        </article>
+      <section className="MySongs w-full">
+        <Title weight="3">My songs</Title>
+        {error && <p>{error}</p>}
+        <div className="min-w-full">
+          {trackList &&
+            trackList.map((song) => (
+              <Song key={song._id} song={song} size="XS" />
+            ))}
+        </div>
       </section>
     </>
   );

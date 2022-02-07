@@ -1,24 +1,38 @@
 import React from "react";
-import { generateSongs } from "../../utils/DBTest";
+import AudioPlayer from "react-audio-element";
+import { useSelector } from "react-redux";
+import { trackSelector } from "../../redux/track/track-selectors";
 
 // !
 import { Elements } from "../../components/elements";
 import Song from "../../components/Song";
+
 // !
 
 const NowPlaying = () => {
   const { Button, Title, Label, Input, ErrorMsg, Card } = Elements;
+
+  // const {track} = useSelector(trackSelector)
+  const track = {
+    source: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  };
   return (
     <>
-      <div className="flex-no-shrink">
-        {generateSongs(1).map((song) => (
-          <>
-            <Song song={song} key={song._id.$oid} size="L" />
-          </>
-        ))}
-      </div>
+      {track && (
+        <>
+          <AudioPlayer src={track.source} />
+        </>
+      )}
     </>
   );
+
+  /*
+  return (
+      <div className="flex-no-shrink">
+        <Song song={track} key={song._id.$oid} size="L" />
+      </div>
+  );
+  */
 };
 
 export default NowPlaying;

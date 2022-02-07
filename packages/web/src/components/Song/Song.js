@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Elements } from "../elements";
+import { setCurrentTrack } from "../../redux/track/track-actions";
 
 const Song = ({ song, size }) => {
   const { title, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
+
+  const dispatch = useDispatch();
+  const [like, setLike] = useState(null);
+
+  const playTrack = () => {
+    dispatch(
+      setCurrentTrack({
+        name: title,
+        source: url,
+      }),
+    );
+  };
+
+  const likeTrack = () => {
+    if (like) {
+      // Send like to DB
+    }
+  };
 
   return (
     <>

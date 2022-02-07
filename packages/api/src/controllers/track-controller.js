@@ -12,24 +12,24 @@ async function uploadSong(req, res) {
 
 async function getSongs(req, res) {
   // Static key names
-  const arrayKeys = ['limit', 'order', 'skip'];
-  const params = req.query
+  const arrayKeys = ["limit", "order", "skip"];
+  const params = req.query;
 
   // Build an object to set in find() mongoose method
   let query = {};
   Object.entries(params).forEach(([key, value]) => {
-    if ( arrayKeys.includes(key) ) return
-    query[key] = value
-  })
-  
+    if (arrayKeys.includes(key)) return;
+    query[key] = value;
+  });
+
   // Send query to DB
   try {
     const { limit, order, skip } = req.query;
     const response = await TrackRepo.findAll({
       query: query || {},
-      limit: limit || 10,
+      limit: parseInt(limit) || 10,
       toSkip: parseInt(skip) || 0,
-      order: order || { createdAt: -1 },
+      order: order || "createdAt",
     });
 
     res.send(response.data);

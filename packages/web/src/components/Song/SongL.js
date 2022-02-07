@@ -1,11 +1,10 @@
 import React from "react";
-import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
+import { FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
-
 const SongL = ({ song }) => {
-  const { title, thumbnail, genre, albums, url } = song;
+  const { name, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
 
   return (
@@ -13,12 +12,12 @@ const SongL = ({ song }) => {
       <div className="flex-none sm:flex justify-around mas-w-full">
         <div className="items-center flex-col">
           <Title weight="3" align="center">
-            {title}
+            {name}
           </Title>
           <div className="sm:mb-0 mb-3">
             <img
               src={thumbnail}
-              alt={title}
+              alt={name}
               className="max-w-fit object-cover large-img"
             />
           </div>
@@ -63,11 +62,35 @@ const SongL = ({ song }) => {
 };
 
 SongL.defaultProps = {
-  song: {}
+  song: {
+    _id: {
+      $oid: `61fd4bffc9decf991a9e7b`,
+    },
+    albums: [],
+    likedBy: [],
+    userId: "TZAcGcsMp3SIxvzLnGNHMgUAtIn2",
+    title: `Song`,
+    genre: "Pop",
+    url: "https://res.cloudinary.com/dfd26tpqi/video/upload/v1643887696/songprueba_lmhm4y.mp3",
+    thumbnail:
+      "https://res.cloudinary.com/dfd26tpqi/image/upload/v1643887701/thumbnailprueba_nmfgnf.png", // ! IURL-MAGE
+    duration: {
+      $numberInt: `155`,
+    },
+    createdAt: "2022-02-03T11:28:16Z",
+    updatedAt: {
+      $date: {
+        $numberLong: "1643887696000",
+      },
+    },
+    __v: {
+      $numberInt: "0",
+    },
+  },
 };
 
 SongL.propTypes = {
-  song: PropTypes.object
+  song: PropTypes.object,
 };
 
 export default SongL;

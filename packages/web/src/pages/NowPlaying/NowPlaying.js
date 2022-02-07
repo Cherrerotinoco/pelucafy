@@ -7,15 +7,14 @@ import SongL from "../../components/Song/SongL";
 // !
 
 const NowPlaying = () => {
-
-  const {trackPlaying} = useSelector(trackSelector)
+  const { trackPlaying } = useSelector(trackSelector);
+  console.log(trackPlaying);
 
   return (
-      <div className="flex-no-shrink">
-        <SongL song={trackPlaying} />
-      </div>
+    <div className="flex-no-shrink">
+      {trackPlaying && <SongL song={trackPlaying} />}
+    </div>
   );
-
 };
 
 export default NowPlaying;

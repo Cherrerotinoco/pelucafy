@@ -44,13 +44,29 @@ function makeApi(request = makeRequest()) {
   }
 
   function getTracks(headers, params) {
+    const { query, ...rest } = params;
 
-    let url = "/tracks?"
+    // let url = "/tracks?";
 
-    Object.entries(params).map(([key, value]) => {
-      url += value ? `${key}=${value}&` : ''
-      return url
-    })
+    function buildParam(param) {
+      let url = "";
+      Object.entries(param).forEach(([key, value]) => {
+        url += value ? `${key}=${value}&` : "";
+      });
+      return url;
+    }
+
+    const url = `/tracks?${buildParam(query)}${buildParam(rest)}`;
+
+    // Object.entries(query).map(([key, value]) => {
+    //   url += value ? `${key}=${value}&` : "";
+    //   return url;
+    // });
+
+    // Object.entries(rest).map(([key, value]) => {
+    //   url += value ? `${key}=${value}&` : "";
+    //   return url;
+    // });
 
     return request({
       url: url,
@@ -66,7 +82,7 @@ function makeApi(request = makeRequest()) {
     saveUserData: saveUserData,
     saveImage: saveImage,
     addNewSong: addNewSong,
-    getTracks: getTracks
+    getTracks: getTracks,
   };
 }
 

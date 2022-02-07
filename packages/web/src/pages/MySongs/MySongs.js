@@ -1,59 +1,22 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { authSelector } from "../../redux/auth/auth-selectors";
 import Song from "../../components/Song";
+import useTracks from "../../hooks/useTracks";
 
-const songtest = [
-  {
-    _id: {
-      $oid: "61fd4bffc9decf991a9e7b46",
-    },
-    albums: [],
-    likedBy: [],
-    userId: "TZAcGcsMp3SIxvzLnGNHMgUAtIn2",
-    title: "titulo ",
-    genre: "genero",
-    url: "https://res.cloudinary.com/dfd26tpqi/video/upload/v1643887696/songprueba_lmhm4y.mp3",
-    thumbnail:
-      "https://res.cloudinary.com/dfd26tpqi/image/upload/v1643887701/thumbnailprueba_nmfgnf.png",
-    duration: {
-      $numberInt: "155",
-    },
-    createdAt: "2022-02-03T11:28:16Z",
-    updatedAt: {
-      $date: {
-        $numberLong: "1643887696000",
-      },
-    },
-    __v: {
-      $numberInt: "0",
-    },
-  },
-  {
-    _id: {
-      $oid: "61fd4f04c9decf991a9e7b47",
-    },
-    albums: [],
-    likedBy: [],
-    userId: "TZAcGcsMp3SIxvzLnGNHMgUAtIn2",
-    title: "Titulo3",
-    genre: "Genero escogido",
-    url: "https://res.cloudinary.com/dfd26tpqi/video/upload/v1643887541/songprueba_lah3a5.mp3",
-    thumbnail:
-      "https://res.cloudinary.com/dfd26tpqi/image/upload/v1643887549/thumbnailprueba_lyh3cr.png",
-    duration: {
-      $numberInt: "155",
-    },
-    createdAt: "2022-02-03T11:25:41Z",
-    updatedAt: {
-      $date: {
-        $numberLong: "1643887541000",
-      },
-    },
-    __v: {
-      $numberInt: "0",
-    },
-  },
-];
 const MySongs = () => {
+  const { currentUser } = useSelector(authSelector);
+  // traer currentUser
+
+  const { trackList, error, page } = useTracks({
+    query: { userId: currentUser._id },
+    limit: 2,
+    page: 2,
+  });
+
+  // state
+  // tracklist
+
   return (
     <>
       <main className="Login">
@@ -62,16 +25,18 @@ const MySongs = () => {
             <h3 className="text-center text-xl font-bold text-green-600">
               MY SONGS
             </h3>
+            {error && <p>{error}</p>}
             <div className="flex flex-col items-center min-h-screen bg-center bg-cover">
               <div className="max-w-3xl w-full mx-auto z-10">
                 <div className="flex flex-col">
-                  {songtest.map((song) => (
-                    <Song
-                      key={song._id.$oid}
-                      title={song.title}
-                      thumbnail={song.thumbnail}
-                    />
-                  ))}
+                  {trackList &&
+                    trackList.map((song) => (
+                      <Song
+                        key={song._id.$oid}
+                        title={song.title}
+                        thumbnail={song.thumbnail}
+                      />
+                    ))}
                 </div>
               </div>
             </div>

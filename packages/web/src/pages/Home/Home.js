@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import TrackList from "../../components/TrackList";
+// import TrackList from "../../components/TrackList";
 import { Elements } from "../../components/elements";
 
 // ! PARA COPIAR Y PEGAR;
@@ -38,7 +38,7 @@ function Home() {
         >
           texto boton
         </Button>
-        <TrackList />
+        {/* <TrackList /> */}
       </section>
     </>
   );

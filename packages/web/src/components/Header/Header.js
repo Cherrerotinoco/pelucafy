@@ -1,6 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  FaMusic,
+  FaHome,
+  FaFolderOpen,
+  FaSearch,
+  FaPlus,
+  FaFolderPlus,
+} from "react-icons/fa";
 
 import * as ROUTES from "../../routes";
 
@@ -9,7 +17,6 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import LogoHome from "../LogoHome/LogoHome";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
-import Input from "../elements/Input";
 
 function Header() {
   const { isAuthenticated } = useSelector(authSelector);
@@ -29,39 +36,65 @@ function Header() {
               149 playlist
             </Title>
           </div>
+          <LogoHome />
         </>
       )}
 
       {isAuthenticated && (
-        <nav className="flex items-center justify-between flex-nowrap">
-          <div className="w-full flex flex-grow lg:flex lg:items-center lg:w-auto">
-            <div className="w-1/4">
-              <NavLink to={ROUTES.HOME}>
-                <img src="/images/logo.png" className="light w-20" alt="logo" />
-              </NavLink>
-            </div>
-            <div className=" flex justify-around items-center w-2/3">
+        <nav className=" flex-col w-full flex-nowrap">
+          <NavLink to={ROUTES.HOME}>
+            <img
+              src="/images/logo.png"
+              className="flex light justify-around w-20"
+              alt="logo"
+            />
+          </NavLink>
+          <div className="items-center">
+            <div className=" mt-5 flex justify-around items-center">
               <Button styles="light">
-                <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
-              </Button>
-
-              <Button styles="light">
-                <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
+                <NavLink to={ROUTES.HOME}>
+                  <FaHome />
+                </NavLink>
               </Button>
             </div>
-
-            <div className="w-full">
-              <Input
-                name="search"
-                value=""
-                placeholder="Search somthig"
-                onChange={() => console.log("searching...")}
-              />
+            <div className="w-full flex justify-around">
+              <Button styles="light">
+                <NavLink to={ROUTES.HOME}>
+                  <FaSearch />
+                </NavLink>
+              </Button>
+            </div>
+            <div className="w-full flex justify-around">
+              <Button styles="light">
+                <NavLink to={ROUTES.MYSONGS}>
+                  <FaMusic />
+                </NavLink>
+              </Button>
+            </div>
+            <div className="w-full flex justify-around">
+              <Button styles="light">
+                <NavLink to={ROUTES.ADDSONG}>
+                  <FaPlus />
+                </NavLink>
+              </Button>
+            </div>
+            <div className="w-full flex justify-around">
+              <Button styles="light">
+                <NavLink to={ROUTES.ADDSONG}>
+                  <FaFolderOpen />
+                </NavLink>
+              </Button>
+            </div>
+            <div className="w-full flex justify-around">
+              <Button styles="light">
+                <NavLink to={ROUTES.ADDSONG}>
+                  <FaFolderPlus />
+                </NavLink>
+              </Button>
             </div>
           </div>
         </nav>
       )}
-      {!isAuthenticated && <LogoHome />}
     </header>
   );
 }

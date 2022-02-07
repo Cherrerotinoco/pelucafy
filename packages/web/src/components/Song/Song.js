@@ -254,7 +254,7 @@ const Song = ({ song, size }) => {
 
 Song.defaultProps = {
   song: {},
-  size: "s",
+  size: "S",
 };
 
 Song.propTypes = {

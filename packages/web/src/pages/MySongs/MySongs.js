@@ -10,38 +10,31 @@ const MySongs = () => {
 
   const { trackList, error, page } = useTracks({
     query: { userId: currentUser._id },
-    limit: 2,
-    page: 2,
   });
+  console.log(trackList);
 
   // state
   // tracklist
 
   return (
     <>
-      <main className="Login">
-        <section className="Login__wrapper flex flex-row">
-          <article className="basis-1/2">
-            <h3 className="text-center text-xl font-bold text-green-600">
-              MY SONGS
-            </h3>
-            {error && <p>{error}</p>}
-            <div className="flex flex-col items-center min-h-screen bg-center bg-cover">
-              <div className="max-w-3xl w-full mx-auto z-10">
-                <div className="flex flex-col">
-                  {trackList &&
-                    trackList.map((song) => (
-                      <Song
-                        key={song._id.$oid}
-                        title={song.title}
-                        thumbnail={song.thumbnail}
-                      />
-                    ))}
-                </div>
+      <section className="Login__wrapper flex flex-row">
+        <article className="basis-1/2">
+          <h3 className="text-center text-xl font-bold text-green-600">
+            MY SONGS
+          </h3>
+          {error && <p>{error}</p>}
+          <div className="flex flex-col items-center min-h-screen bg-center bg-cover">
+            <div className="max-w-3xl w-full mx-auto z-10">
+              <div className="flex flex-col">
+                {trackList &&
+                  trackList.map((song) => (
+                    <Song key={song._id} song={song} size="M" />
+                  ))}
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </section>
     </>
   );

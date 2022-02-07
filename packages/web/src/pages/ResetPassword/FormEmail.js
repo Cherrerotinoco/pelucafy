@@ -32,7 +32,7 @@ function FormEmail({ handleDataSubmit, buttonText }) {
     <>
       <form
         className="
-w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+w-full  rounded-lg px-8 pt-4 pb-4 mb-4"
         onSubmit={handleSubmit}
       >
         <Label htmlFor="email"> Email</Label>
@@ -53,7 +53,7 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
 
         <Button
           submit
-          styles="background"
+          styles="light"
           disabled={isSendingPasswordReset || passwordResetSent || email === ""}
         >
           {buttonText(isSendingPasswordReset, passwordResetSent)}

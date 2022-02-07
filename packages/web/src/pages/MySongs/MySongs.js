@@ -40,9 +40,9 @@ const MySongs = () => {
                 </div>
               </div>
             </div>
-          </article>
-        </section>
-      </main>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

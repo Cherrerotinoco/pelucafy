@@ -59,7 +59,7 @@ function App() {
     <div className="App__container">
       <Particles options={particlesOptions} />
 
-      <div className="flex h-screen mb-4">
+      <div className="flex h-screen m-4">
         <div className="flex-auto w-3/4">
           <Header />
           <ContentBox />

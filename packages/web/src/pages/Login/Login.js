@@ -21,7 +21,7 @@ function Login() {
   const { isSigningUp, signUpError, isAuthenticated } =
     useSelector(authSelector);
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, Card } = Elements;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,78 +61,76 @@ function Login() {
   }
 
   return (
-    <>
-      <main className="Login">
-        <section className="Login__wrapper">
-          <Title weight="3" align="center">
-            Login
-          </Title>
-          <hr className="mt-1 mb-4" />
-          <form
-            className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
-            onSubmit={handleSubmit}
-          >
-            <Label htmlFor="email"> Genre</Label>
-            <Input name="email" value={email} onChange={handleSetEmail} />
+    <div className="mt-10">
+      <Card>
+        <Title weight="3" align="center">
+          Login
+        </Title>
+        <hr className="mt-1 mb-4" />
+        <form
+          className="
+w-full  rounded-lg px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit}
+        >
+          <Label htmlFor="email"> Genre</Label>
+          <Input name="email" value={email} onChange={handleSetEmail} />
 
-            <Label htmlFor="password"> Password</Label>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleSetPassword}
+          <Label htmlFor="password"> Password</Label>
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleSetPassword}
+          />
+
+          <div className="block flex-grow lg:flex lg:items-center">
+            <Button submit styles="light" disabled={isSigningUp}>
+              Login
+            </Button>
+
+            <Label> or</Label>
+
+            <Button
+              styles="light"
+              onClick={handleLoginWithGoogle}
+              disabled={isSigningUp}
+            >
+              <FcGoogle />
+            </Button>
+          </div>
+
+          <div className="block flex-grow lg:flex lg:items-center">
+            <input
+              type="checkbox"
+              className="m-2"
+              id="saveCredentials"
+              name="saveCredentials"
+              checked={saveCredentials}
+              onChange={(e) => setSaveCredentials(e.target.checked)}
             />
-
-            <div className="block flex-grow lg:flex lg:items-center">
-              <Button submit styles="background" disabled={isSigningUp}>
-                Login
-              </Button>
-
-              <Label> or</Label>
-
-              <Button
-                styles="background"
-                onClick={handleLoginWithGoogle}
-                disabled={isSigningUp}
-              >
-                <FcGoogle />
-              </Button>
-            </div>
-
-            <div className="block flex-grow lg:flex lg:items-center">
-              <input
-                type="checkbox"
-                className="m-2"
-                id="saveCredentials"
-                name="saveCredentials"
-                checked={saveCredentials}
-                onChange={(e) => setSaveCredentials(e.target.checked)}
-              />
-              <Label htmlFor="saveCredentials"> Remember login?</Label>
-            </div>
-          </form>
-          {signUpError && (
-            <section className="mt-4">{signUpError.payload}</section>
-          )}
-          <section className="mt-4">
-            <hr className="mt-1 mb-4" />
-            <Link
-              to={ROUTES.RESET_PASSWORD}
-              className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
-            >
-              Forgot Password?
-            </Link>
-            <Link
-              to={ROUTES.SIGN_UP}
-              className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
-            >
-              Don&apos;t have an account? Sign up
-            </Link>
-          </section>
+            <Label htmlFor="saveCredentials"> Remember login?</Label>
+          </div>
+        </form>
+        {signUpError && (
+          <section className="mt-4">{signUpError.payload}</section>
+        )}
+        <section className="mt-4">
+          <hr className="mt-1 mb-4" />
+          <Link
+            to={ROUTES.RESET_PASSWORD}
+            className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
+          >
+            Forgot Password?
+          </Link>
+          <Link
+            to={ROUTES.SIGN_UP}
+            className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
+          >
+            Don&apos;t have an account? Sign up
+          </Link>
         </section>
-      </main>
-    </>
+      </Card>
+    </div>
   );
 }
 

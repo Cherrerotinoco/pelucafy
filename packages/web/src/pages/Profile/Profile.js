@@ -117,12 +117,9 @@ function Profile() {
   return (
     <>
       <section className="Profile p-4">
-        <Title weight="2" align="center">
-          Profile
-        </Title>
         <form
           className="
-w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
+w-full  rounded-lg "
           onSubmit={handleSubmit}
         >
           <Label htmlFor="firstName"> Firs Name</Label>
@@ -138,15 +135,16 @@ w-full shadow-lg rounded-lg px-8 pt-4 pb-4 mb-4"
           <Input name="email" value={email} onChange={handleChange} />
 
           {errorMessage.email && <div>{errorMessage.email}</div>}
-          <Button submit styles="background" disabled={isSigningUp}>
-            Save
-          </Button>
-          <FileUploader callback={updateUserImage} />
+          <div className="mt-5">
+            <Button submit styles="light" disabled={isSigningUp}>
+              Save
+            </Button>
+            <FileUploader callback={updateUserImage} />
+          </div>
         </form>
-        <hr className="mt-1 mb-4" />
         <Link
           to={ROUTES.RESET_PASSWORD}
-          className="text-sky-50 underline hover:text-blue-300  w-full text-center block mb-2"
+          className="text-sky-50 underline hover:text-blue-300  w-full text-center block "
         >
           Change Password
         </Link>

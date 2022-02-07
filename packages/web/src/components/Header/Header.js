@@ -3,23 +3,19 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as ROUTES from "../../routes";
-import { signOut } from "../../redux/auth/auth-actions";
+
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 import LogoHome from "../LogoHome/LogoHome";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
+import Input from "../elements/Input";
 
 function Header() {
-  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector(authSelector);
 
-  function handleSignOut() {
-    dispatch(signOut());
-  }
-
   return (
-    <header className="p-4">
+    <header className="p-2">
       {!isAuthenticated && (
         <>
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -37,15 +33,31 @@ function Header() {
       )}
 
       {isAuthenticated && (
-        <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
-          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <Button styles="background">
-              <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
-            </Button>
+        <nav className="flex items-center justify-between flex-nowrap">
+          <div className="w-full flex flex-grow lg:flex lg:items-center lg:w-auto">
+            <div className="w-1/4">
+              <NavLink to={ROUTES.HOME}>
+                <img src="/images/logo.png" className="light w-20" alt="logo" />
+              </NavLink>
+            </div>
+            <div className=" flex justify-around items-center w-2/3">
+              <Button styles="light">
+                <NavLink to={ROUTES.MYSONGS}>My songs</NavLink>
+              </Button>
 
-            <Button styles="background">
-              <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
-            </Button>
+              <Button styles="light">
+                <NavLink to={ROUTES.ADDSONG}>Add songs</NavLink>
+              </Button>
+            </div>
+
+            <div className="w-full">
+              <Input
+                name="search"
+                value=""
+                placeholder="Search somthig"
+                onChange={() => console.log("searching...")}
+              />
+            </div>
           </div>
         </nav>
       )}

@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 import { authSelector } from "../../redux/auth/auth-selectors";
-// import TrackList from "../../components/TrackList";
+import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
+
+import { generateSongs } from "../../utils/DBTest";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
-// ! const { Button, Title, Label, Input } = Elements;
+// ! const { Button, Title, Label, Input, ErrorMsg, Card } = Elements;
 
 // ? const handleSetEmail = useCallback((e) => {
 // ?    setEmail(e.target.value);
@@ -16,30 +18,32 @@ import { Elements } from "../../components/elements";
 
 function Home() {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, Card } = Elements;
   return (
     <>
-      <section className="p-4">
-        {isAuthenticated && currentUser ? (
-          <Title weight="2" align="center">
-            WELLCOME {currentUser.email}
-          </Title>
-        ) : null}
+      <Title weight="2">Recently Played</Title>
 
-        <Label htmlFor="htmlFor"> Para copiar y pegar</Label>
-        <Input
-          name="name + id"
-          value="valor del ejemplo"
-          onChange={() => window.alert("action onChange")}
-        />
-        <Button
-          styles="background"
-          onClick={() => window.alert("action onClick")}
-        >
-          texto boton
-        </Button>
-        {/* <TrackList /> */}
-      </section>
+      <div className="flex flex-wrap">
+        {generateSongs(2).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="M" />
+          </>
+        ))}
+        {generateSongs(6).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="S" />
+          </>
+        ))}
+      </div>
+
+      <Title weight="2">Suggested</Title>
+      <div className="flex flex-wrap">
+        {generateSongs(4).map((song) => (
+          <>
+            <Song song={song} key={song._id.$oid} size="S" />
+          </>
+        ))}
+      </div>
     </>
   );
 }

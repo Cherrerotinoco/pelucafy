@@ -11,20 +11,20 @@ const LogoHome = () => {
     <>
       <div className="flex-no-shrink  m-6">
         <div className="w-1/3 mt-20">
-          <img src="/images/logo.png" alt="logo" />
+          <img src="/images/logo.png" className="light" alt="logo" />
           <div className="flex  mt-10">
-            <div className="flex-auto w-1/3 m-5">
-              <Button styles="noBackground">
+            <div className="flex-auto w-1/3 ">
+              <Button styles="noRing">
                 <FaInstagramSquare />
               </Button>
             </div>
-            <div className="flex-auto w-1/3 m-5">
-              <Button styles="noBackground">
+            <div className="flex-auto w-1/3 ">
+              <Button styles="noRing">
                 <FaTwitterSquare />
               </Button>
             </div>
-            <div className="flex-auto w-1/3 m-5">
-              <Button styles="noBackground">
+            <div className="flex-auto w-1/3 ">
+              <Button styles="noRing">
                 <FaYoutubeSquare />
               </Button>
             </div>

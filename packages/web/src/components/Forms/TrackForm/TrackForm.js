@@ -41,7 +41,7 @@ const TrackForm = () => {
         {({ errors }) => (
           <Form
             className="
-w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+w-full  rounded-lg px-8 pt-6 pb-8 mb-4"
           >
             <div>
               <Label htmlFor="title"> Title</Label>
@@ -72,7 +72,7 @@ w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
               />
             </div>
 
-            <Button submit styles="background">
+            <Button submit styles="light">
               Submit
             </Button>
 

@@ -3,9 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Title = ({ weight, align, children }) => {
-  console.log();
-  const style = `m-4 text-${weight}xl md:text-${weight}xl text-white  font-bold leading-tight text-${align} md:text-${align}`;
-  console.log(style);
+  const style = `mx-4 my-2 drop-shadow text-${weight}xl md:text-${weight}xl text-white  font-bold leading-tight text-${align} md:text-${align}`;
   return (
     <>
       <h1 className={style}>{children}</h1>
@@ -16,7 +14,7 @@ const Title = ({ weight, align, children }) => {
 Title.defaultProps = {
   children: PropTypes.any,
   weight: PropTypes.any,
-  align: PropTypes.string,
+  align: "left",
 };
 Title.propTypes = {
   children: PropTypes.any,

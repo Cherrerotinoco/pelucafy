@@ -12,7 +12,7 @@ import { Elements } from "../../components/elements";
 const AddSong = () => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, Card } = Elements;
 
   const [request, setRequest] = useState({
     isDataPending: false,

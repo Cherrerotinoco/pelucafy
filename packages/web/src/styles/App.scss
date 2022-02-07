@@ -1,11 +1,35 @@
 @import "./utils.scss";
 
+
 body {
   background-image: url("https://wallpaperaccess.com/full/19608.jpg"); 
   background-color: #000000;
   background-size: cover;
-  background-repeat: no-repeat;
  }
+
+.userBoxContent {
+  max-height:55vh ;
+  min-height:55vh ;
+  .large-img{
+    max-height:35vh ;
+    min-height:35vh ;  
+  }
+
+}
+
+.userNavBar{
+  max-height:10vh ;
+  min-height:10vh ; 
+}  
+
+.light
+  {
+    box-shadow:0px 0px 10px 1px rgba(50, 135, 200 , 0.46);
+}
+
+.lightBackgroun{
+  background-color: rgba(205, 205, 205, 0.15);
+}
 
 #tsparticles {
   position: fixed;

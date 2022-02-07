@@ -1,23 +1,19 @@
 import React from "react";
-import { generateSongs } from "../../utils/DBTest";
 
-// !
-import { Elements } from "../../components/elements";
-import Song from "../../components/Song";
+import { useSelector } from "react-redux";
+import { trackSelector } from "../../redux/track/track-selectors";
+import SongL from "../../components/Song/SongL";
+
 // !
 
 const NowPlaying = () => {
-  const { Button, Title, Label, Input, ErrorMsg, Card } = Elements;
+  const { trackPlaying } = useSelector(trackSelector);
+  console.log(trackPlaying);
+
   return (
-    <>
-      <div className="flex-no-shrink">
-        {generateSongs(1).map((song) => (
-          <>
-            <Song song={song} key={song._id.$oid} size="L" />
-          </>
-        ))}
-      </div>
-    </>
+    <div className="flex-no-shrink">
+      {trackPlaying && <SongL song={trackPlaying} />}
+    </div>
   );
 };
 

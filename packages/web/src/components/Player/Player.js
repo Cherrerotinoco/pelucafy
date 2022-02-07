@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { TiArrowRepeatOutline, TiArrowShuffle } from "react-icons/ti";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   CgPlayTrackPrevO,
   CgPlayTrackNextO,
   CgPlayButtonO,
   CgPlayPauseO,
 } from "react-icons/cg";
+import AudioPlayer from "react-audio-element";
+import { TiArrowRepeatOutline, TiArrowShuffle } from "react-icons/ti";
+import { useSelector } from "react-redux";
+import { trackSelector } from "../../redux/track/track-selectors";
 
 const Player = () => {
   // ? const audioElement = new Audio(audio source);
@@ -16,28 +20,15 @@ const Player = () => {
   // ? audioElement.ended;
   // ? audioElement.duration;
 
+  const { trackPlaying } = useSelector(trackSelector);
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className=" p-2 m-2  outline-white">
-      <div className=" px-4">
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max="100"
-          className="progress w-full"
-          onChange={() => window.alert("taraaa")}
-          onMouseUp={() => window.alert("taraaa")}
-          onKeyUp={() => window.alert("taraaa")}
-        />
-      </div>
-
-      <div className="flex audio-controls justify-around text-white text-xl text-bold w-full mx-4 ">
-        <div className="w-1/5 text-3xl">
+      <div className="flex audio-controls justify-between text-white w-fit mx-4 ">
+        <div className="w-1/6 text-xl">
           <button
             type="button"
             className="shuffle"
@@ -47,50 +38,20 @@ const Player = () => {
             <TiArrowShuffle />
           </button>
         </div>
-        <div className="w-1/5 text-3xl">
-          <button
-            type="button"
-            className="prev"
-            aria-label="Previous"
-            onClick={() => window.alert("click")}
+        <div className="w-auto">
+          <AudioPlayer
+            src={trackPlaying && trackPlaying.url}
+            overrideStyles
+            classNames={{
+              timeTrack: "w-full flex-grow",
+              sliderTrack: "text-white w-40 h-1  m-2 justify-between",
+              timeText: "",
+            }}
           >
-            <CgPlayTrackPrevO />
-          </button>
+            <canvas className="slider-track" />
+          </AudioPlayer>
         </div>
-        {isPlaying ? (
-          <div className="w-1/5 text-4xl ">
-            <button
-              type="button"
-              className="pause"
-              onClick={() => () => window.alert("click")}
-              aria-label="Pause"
-            >
-              <CgPlayPauseO />
-            </button>
-          </div>
-        ) : (
-          <div className="w-1/5 text-4xl">
-            <button
-              type="button"
-              className="play"
-              onClick={() => window.alert("click")}
-              aria-label="Play"
-            >
-              <CgPlayButtonO />
-            </button>
-          </div>
-        )}
-        <div className="w-1/5 text-3xl">
-          <button
-            type="button"
-            className="next"
-            aria-label="Next"
-            onClick={() => window.alert("click")}
-          >
-            <CgPlayTrackNextO />
-          </button>
-        </div>
-        <div className="w-1/5 text-3xl">
+        <div className="w-1/6 text-xl">
           <button
             type="button"
             className="next"

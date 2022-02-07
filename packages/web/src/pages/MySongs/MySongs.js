@@ -12,7 +12,6 @@ const MySongs = () => {
   const { trackList, error, page } = useTracks({
     query: { userId: currentUser._id },
   });
-  console.log(trackList);
 
   // state
   // tracklist

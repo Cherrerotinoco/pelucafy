@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import PropTypes from 'prop-types'
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import api from "../../api";
@@ -7,9 +8,10 @@ import * as auth from "../../services/auth";
 
 import validateAddSong from "./validateAddSong";
 import { Elements } from "../../components/elements";
+
 //
 
-const AddSong = () => {
+const AddSong = ({isEditing, trackEditing}) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
 
   const { Button, Title, Label, Input, Card } = Elements;
@@ -21,7 +23,7 @@ const AddSong = () => {
   });
   const { isDataPending } = request;
 
-  const [song, setSong] = useState({
+  const [song, setSong] = useState( trackEditing || {
     userId: currentUser._id,
     title: "",
     genre: "",
@@ -125,10 +127,10 @@ const AddSong = () => {
       <main className="Login">
         <section className="Login__wrapper">
           <Title weight="3" align="left">
-            Upload Song
+            {isEditing ? 'Edit song' : 'Upload Song'}
           </Title>
           <form onSubmit={handleSubmit}>
-            {!song.url || !song.thumbnail ? (
+            {!isEditing && (!song.url || !song.thumbnail) ? (
               <>
                 <div>
                   <Label>Step 1: Upload your song</Label>
@@ -152,8 +154,9 @@ const AddSong = () => {
               </>
             ) : null}
 
-            {song.url && song.thumbnail && (
-              <>
+            {(song.url && song.thumbnail) || (isEditing && trackEditing) && (
+              <>  
+              hola
                 <Label htmlFor="title"> Title</Label>
                 <Input name="title" value={title} onChange={handleChange} />
 
@@ -179,5 +182,17 @@ const AddSong = () => {
     </>
   );
 };
+
+
+
+AddSong.defaultProps = {
+  isEditing: false,
+  trackEditing: null
+}
+
+AddSong.propTypes = {
+  isEditing: PropTypes.bool,
+  trackEditing: PropTypes.object
+}
 
 export default AddSong;

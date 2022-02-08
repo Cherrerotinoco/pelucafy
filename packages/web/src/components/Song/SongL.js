@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
 const SongL = ({ song }) => {
-  const { name, thumbnail, genre, albums, url } = song;
+  const { title, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
 
   return (
@@ -12,12 +12,12 @@ const SongL = ({ song }) => {
       <div className="flex-none sm:flex justify-around mas-w-full">
         <div className="items-center flex-col">
           <Title weight="3" align="center">
-            {name}
+            {title}
           </Title>
           <div className="sm:mb-0 mb-3">
             <img
               src={thumbnail}
-              alt={name}
+              alt={title}
               className="max-w-fit object-cover large-img"
             />
           </div>

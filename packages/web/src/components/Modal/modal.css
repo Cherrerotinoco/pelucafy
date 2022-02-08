@@ -1,0 +1,7 @@
+#editing-modal {
+  background-color: grey;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}

@@ -17,6 +17,8 @@ import { onAuthStateChanged } from "./services/auth";
 import { syncSignIn, signOut } from "./redux/auth/auth-actions";
 import { authSelector } from "./redux/auth/auth-selectors";
 
+import Modal from "./components/Modal";
+
 function App() {
   const dispatch = useDispatch();
   const { isAuthenticated, saveCredentials } = useSelector(authSelector);
@@ -68,6 +70,8 @@ function App() {
           <UserBox />
         </div>
       </div>
+
+      <Modal />
     </div>
   );
 }

@@ -8,7 +8,6 @@ import SongL from "../../components/Song/SongL";
 
 const NowPlaying = () => {
   const { trackPlaying } = useSelector(trackSelector);
-  console.log(trackPlaying);
 
   return (
     <div className="flex-no-shrink">

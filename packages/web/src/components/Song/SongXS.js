@@ -3,7 +3,7 @@ import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
-const SongXS = ({ song }) => {
+const SongXS = ({ song, editTrack }) => {
   const { title, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
 
@@ -43,6 +43,7 @@ const SongXS = ({ song }) => {
             <button
               className=" bg-yellow-400 hover:bg-yellow-500 px-2 ml-1 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-yellow-300 hover:border-yellow-500 text-white rounded-full transition ease-in duration-300"
               type="button"
+              onClick={editTrack}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,10 +78,12 @@ const SongXS = ({ song }) => {
 
 SongXS.defaultProps = {
   song: {},
+  editTrack: null,
 };
 
 SongXS.propTypes = {
   song: PropTypes.object,
+  editTrack: PropTypes.func,
 };
 
 export default SongXS;

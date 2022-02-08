@@ -43,10 +43,17 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function updateSong(headers, body) {
+    return request({
+      url: "/tracks",
+      requestMethod: "PUT",
+      headers: headers,
+      body: body,
+    });
+  }
+
   function getTracks(headers, params) {
     const { query, ...rest } = params;
-
-    // let url = "/tracks?";
 
     function buildParam(param) {
       let url = "";
@@ -57,16 +64,6 @@ function makeApi(request = makeRequest()) {
     }
 
     const url = `/tracks?${buildParam(query)}${buildParam(rest)}`;
-
-    // Object.entries(query).map(([key, value]) => {
-    //   url += value ? `${key}=${value}&` : "";
-    //   return url;
-    // });
-
-    // Object.entries(rest).map(([key, value]) => {
-    //   url += value ? `${key}=${value}&` : "";
-    //   return url;
-    // });
 
     return request({
       url: url,
@@ -82,6 +79,7 @@ function makeApi(request = makeRequest()) {
     saveUserData: saveUserData,
     saveImage: saveImage,
     addNewSong: addNewSong,
+    updateSong: updateSong,
     getTracks: getTracks,
   };
 }

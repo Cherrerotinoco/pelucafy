@@ -34,15 +34,9 @@ const Song = ({ song, size }) => {
       {size === "XS" && (
         <SongXS song={song} playTrack={playTrack} editTrack={editTrack} />
       )}
-      {size === "S" && (
-        <SongS song={song} playTrack={playTrack} editTrack={editTrack} />
-      )}
-      {size === "M" && (
-        <SongM song={song} playTrack={playTrack} editTrack={editTrack} />
-      )}
-      {/* {size === "L" && (
-        <SongL song={song} playTrack={playTrack} editTrack={editTrack} />
-      )} */}
+      {size === "S" && <SongS song={song} playTrack={playTrack} />}
+      {size === "M" && <SongM song={song} playTrack={playTrack} />}
+      {size === "L" && <SongL song={song} playTrack={playTrack} />}
     </>
   );
 };

@@ -38,7 +38,22 @@ async function getSongs(req, res) {
   }
 }
 
+async function updateSong(req, res) {
+  const { _id, title, genre, thumbnail } = req.body;
+  //update en mongo
+  try {
+    const response = await TrackRepo.findAndUpdate(
+      { _id: _id.$oid },
+      { title: title, genre: genre, thumbnail: thumbnail },
+    );
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   uploadSong: uploadSong,
   getSongs: getSongs,
+  updateSong: updateSong,
 };

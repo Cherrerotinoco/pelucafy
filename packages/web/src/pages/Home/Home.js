@@ -23,13 +23,13 @@ function Home() {
     <>
       <Title weight="2">Recently Played</Title>
 
-      {generateSongs(3).map((song) => (
+      {generateSongs(10).map((song) => (
         <>
           <Song song={song} key={song._id.$oid} size="XS" />
         </>
       ))}
       <div className="flex flex-wrap">
-        {generateSongs(6).map((song) => (
+        {generateSongs(10).map((song) => (
           <>
             <Song song={song} key={song._id.$oid} size="S" />
           </>
@@ -38,7 +38,7 @@ function Home() {
 
       <Title weight="2">Suggested</Title>
       <div className="flex flex-wrap">
-        {generateSongs(3).map((song) => (
+        {generateSongs(10).map((song) => (
           <>
             <Song song={song} key={song._id.$oid} size="M" />
           </>

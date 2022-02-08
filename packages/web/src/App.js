@@ -59,12 +59,13 @@ function App() {
     <div className="App__container">
       <Particles options={particlesOptions} />
 
-      <div className="flex h-screen m-4">
-        <div className="flex-auto w-3/4">
-          <Header />
+      <div className="w-full flex flex-grow lg:flex  lg:w-auto m-2">
+        <Header />
+
+        <div className="flex-auto w-full  lg:items-center lg:w-auto m-2 scrollable overflow-y-auto">
           <ContentBox />
         </div>
-        <div className="flex-auto w-1/4">
+        <div className="flex-initial basis-2 w-auto lg:items-center m-2">
           <UserBox />
         </div>
       </div>

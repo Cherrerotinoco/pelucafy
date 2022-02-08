@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
 const SongL = ({ song }) => {
-<<<<<<< HEAD
-=======
-  console.log(song);
->>>>>>> main
   const { title, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
 
@@ -22,11 +18,7 @@ const SongL = ({ song }) => {
             <img
               src={thumbnail}
               alt={title}
-<<<<<<< HEAD
-              className="max-w-fit object-cover large-img"
-=======
               className="w-25 object-cover large-img"
->>>>>>> main
             />
           </div>
           <div className="flex items-center">

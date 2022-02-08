@@ -73,6 +73,7 @@ function App() {
       </div>
 
       <Modal />
+      
     </div>
   );
 }

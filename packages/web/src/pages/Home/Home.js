@@ -1,12 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
 import "./Home.scss";
-import { authSelector } from "../../redux/auth/auth-selectors";
 import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
 
-import { generateSongs } from "../../utils/DBTest";
+import useTracks from "../../hooks/useTracks";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
@@ -17,30 +14,33 @@ import { generateSongs } from "../../utils/DBTest";
 // ?  }, []);
 
 function Home() {
-  const { isAuthenticated, currentUser } = useSelector(authSelector);
-  const { Button, Title, Label, Input, Card } = Elements;
+
+  const { Title } = Elements
+
+  
+  const { trackList: popularsTracks } = useTracks({
+    order: '-likedBy',
+  });
+  
+  const { trackList: suggestedTracks } = useTracks({
+    order: '-createdAt',
+  });
+  
+  
   return (
     <>
-      <Title weight="2">Recently Played</Title>
-
-      {generateSongs(10).map((song) => (
-        <>
-          <Song song={song} key={song._id.$oid} size="XS" />
+      <Title weight="2">Populars</Title>
+      {popularsTracks && popularsTracks.map((song) => (
+        <> 
+          <Song song={song} key={song._id} size="XS" />
         </>
       ))}
-      <div className="flex flex-wrap">
-        {generateSongs(10).map((song) => (
-          <>
-            <Song song={song} key={song._id.$oid} size="S" />
-          </>
-        ))}
-      </div>
 
       <Title weight="2">Suggested</Title>
       <div className="flex flex-wrap">
-        {generateSongs(10).map((song) => (
+        {suggestedTracks && suggestedTracks.map((song) => (
           <>
-            <Song song={song} key={song._id.$oid} size="M" />
+            <Song song={song} key={song._id} size="M" />
           </>
         ))}
       </div>

@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from 'prop-types'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import api from "../../api";
 import FileUploader from "../../components/FileUploader";
@@ -8,11 +8,13 @@ import * as auth from "../../services/auth";
 
 import validateAddSong from "./validateAddSong";
 import { Elements } from "../../components/elements";
+import { setEditingTrack } from "../../redux/track/track-actions";
 
 //
 
 const AddSong = ({isEditing, trackEditing}) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
+  const dispatch = useDispatch();
 
   const { Button, Title, Label, Input, Card } = Elements;
 
@@ -21,7 +23,7 @@ const AddSong = ({isEditing, trackEditing}) => {
     isDataSuccess: false,
     isDataError: "",
   });
-  const { isDataPending } = request;
+  const { isDataPending, isDataSuccess, isDataError } = request;
 
   const [song, setSong] = useState( trackEditing || {
     userId: currentUser._id,
@@ -47,8 +49,8 @@ const AddSong = ({isEditing, trackEditing}) => {
       });
       return;
     }
-
-    updateSong(song);
+    
+    uploadSong(song);
 
     setSong({
       userId: currentUser._id,
@@ -59,7 +61,7 @@ const AddSong = ({isEditing, trackEditing}) => {
     });
   };
 
-  const updateSong = async (songData) => {
+  const uploadSong = async (songData) => {
     // Get token
 
     const token = await auth.getCurrentUserToken();
@@ -70,7 +72,10 @@ const AddSong = ({isEditing, trackEditing}) => {
     setRequest({ ...request, isDataPending: true });
 
     try {
-      const response = api.addNewSong(
+
+      const method = isEditing ? api.updateSong : api.addNewSong
+
+      const response = method(
         {
           Authorization: `Bearer ${token}`,
         },
@@ -79,6 +84,8 @@ const AddSong = ({isEditing, trackEditing}) => {
 
       if (response.data.error) throw Error(response.errorMessage);
 
+      // Revisar
+      dispatch(setEditingTrack({}))
       setRequest({
         ...request,
         isDataPending: false,
@@ -130,33 +137,36 @@ const AddSong = ({isEditing, trackEditing}) => {
             {isEditing ? 'Edit song' : 'Upload Song'}
           </Title>
           <form onSubmit={handleSubmit}>
-            {!isEditing && (!song.url || !song.thumbnail) ? (
-              <>
+                {!isEditing && (
                 <div>
                   <Label>Step 1: Upload your song</Label>
                   <FileUploader callback={updateSongUrl} text="Song" />
                   {song.url && <div>{song.url}</div>}
                   {errorMessage.url && <div>{errorMessage.url}</div>}
                 </div>
+                )}
+
+
 
                 <div>
-                  <Label>Step 2: Upload your song cover</Label>
+                  {isEditing && (
+                    <img src={song.thumbnail} alt={song.name} className="large-img" />     
+                  )}
+
+                  <Label>{isEditing ? 'Image' : 'Step 2: Upload your song cover'}</Label>
                   <FileUploader
                     callback={updateThumbnailUrl}
                     text="Thumbnail"
                   />
-                  {song.thumbnail && <div>{song.thumbnail}</div>}
-
+                  
                   {errorMessage.thumbnail && (
                     <div>{errorMessage.thumbnail}</div>
                   )}
                 </div>
-              </>
-            ) : null}
 
-            {(song.url && song.thumbnail) || (isEditing && trackEditing) && (
+            {(song.url && song.thumbnail) && (
               <>  
-              hola
+
                 <Label htmlFor="title"> Title</Label>
                 <Input name="title" value={title} onChange={handleChange} />
 
@@ -172,7 +182,7 @@ const AddSong = ({isEditing, trackEditing}) => {
                   styles="noBackgroundHover"
                   disabled={request.isDataPending}
                 >
-                  Upload
+                  {isEditing ? 'Save' : 'Upload'}
                 </Button>
               </>
             )}

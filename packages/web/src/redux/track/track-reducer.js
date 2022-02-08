@@ -1,12 +1,8 @@
 import * as TrackTypes from "./track-types";
 
 export const TrackInitialState = {
-<<<<<<< HEAD
-  trackPlaying : null,
-=======
-  trackPlaying: null,
->>>>>>> main
-  trackEditing: null,
+  trackPlaying: {},
+  trackEditing: {},
 };
 
 const TrackReducer = (state = TrackInitialState, action) => {

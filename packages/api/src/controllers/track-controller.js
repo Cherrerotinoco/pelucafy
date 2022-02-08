@@ -40,10 +40,11 @@ async function getSongs(req, res) {
 
 async function updateSong(req, res) {
   const { _id, title, genre, thumbnail } = req.body;
+
   //update en mongo
   try {
     const response = await TrackRepo.findAndUpdate(
-      { _id: _id.$oid },
+      { _id: _id },
       { title: title, genre: genre, thumbnail: thumbnail },
     );
     res.send(response.data);

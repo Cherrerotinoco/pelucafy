@@ -62,10 +62,10 @@ function App() {
       <div className="w-full flex flex-grow lg:flex  lg:w-auto m-2">
         <Header />
 
-        <div className="flex-auto w-5/6  lg:items-center lg:w-auto m-2">
+        <div className="flex-auto w-full  lg:items-center lg:w-auto m-2 scrollable overflow-y-auto">
           <ContentBox />
         </div>
-        <div className="flex-auto w-1/6  lg:items-center m-2">
+        <div className="flex-initial basis-2 w-auto lg:items-center m-2">
           <UserBox />
         </div>
       </div>

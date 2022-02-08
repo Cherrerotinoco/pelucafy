@@ -47,9 +47,7 @@ const Player = () => {
               sliderTrack: "text-white w-40 h-1  m-2 justify-between",
               timeText: "",
             }}
-          >
-            <canvas className="slider-track" />
-          </AudioPlayer>
+          />
         </div>
         <div className="w-1/6 text-xl">
           <button

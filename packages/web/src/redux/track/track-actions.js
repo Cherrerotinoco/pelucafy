@@ -8,3 +8,12 @@ export const play = (track) => ({
 export const setCurrentTrack = (track) => {
   return play(track);
 };
+
+export const edit = (track) => ({
+  type: TrackTypes.EDIT_TRACK,
+  payload: track,
+});
+
+export const setEditingTrack = (track) => {
+  return edit(track);
+};

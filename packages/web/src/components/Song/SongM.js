@@ -84,13 +84,12 @@ const SongM = ({ song, playTrack }) => {
 
 SongM.defaultProps = {
   song: {},
-  playTrack: null
+  playTrack: null,
 };
 
 SongM.propTypes = {
   song: PropTypes.object,
-  playTrack: PropTypes.func
-  
+  playTrack: PropTypes.func,
 };
 
 export default SongM;

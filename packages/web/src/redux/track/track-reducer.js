@@ -1,7 +1,11 @@
 import * as TrackTypes from "./track-types";
 
 export const TrackInitialState = {
+<<<<<<< HEAD
   trackPlaying : null,
+=======
+  trackPlaying: null,
+>>>>>>> main
   trackEditing: null,
 };
 
@@ -12,6 +16,12 @@ const TrackReducer = (state = TrackInitialState, action) => {
       return {
         ...state,
         trackPlaying: payload,
+      };
+    }
+    case TrackTypes.EDIT_TRACK: {
+      return {
+        ...state,
+        trackEditing: payload,
       };
     }
 

@@ -10,8 +10,8 @@ const LogoHome = () => {
   return (
     <>
       <div className="flex-no-shrink  m-6">
-        <div className="w-1/3 mt-20">
-          <img src="/images/logo.png" className="light" alt="logo" />
+        <div className="mt-20">
+          <img src="/images/logo1.png" className="light w-5/6" alt="logo" />
           <div className="flex  mt-10">
             <div className="flex-auto w-1/3 ">
               <Button styles="noRing">

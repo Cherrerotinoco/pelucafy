@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
 const SongL = ({ song }) => {
+<<<<<<< HEAD
+=======
+  console.log(song);
+>>>>>>> main
   const { title, thumbnail, genre, albums, url } = song;
   const { Card, Title, Label } = Elements;
 
@@ -18,7 +22,11 @@ const SongL = ({ song }) => {
             <img
               src={thumbnail}
               alt={title}
+<<<<<<< HEAD
               className="max-w-fit object-cover large-img"
+=======
+              className="w-25 object-cover large-img"
+>>>>>>> main
             />
           </div>
           <div className="flex items-center">
@@ -45,7 +53,6 @@ const SongL = ({ song }) => {
               <FaHeart />
               <p className="">14</p>
             </div>
-
             <div className="flex-1 flex-col inline-flex items-center mx-1">
               <button
                 className="flex-no-shrink bg-red-400 hover:bg-white-500  px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-white-300 hover:border-white-500 text-red rounded-full transition ease-in duration-300"

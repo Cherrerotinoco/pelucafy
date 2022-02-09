@@ -58,7 +58,7 @@ function makeApi(request = makeRequest()) {
     function buildParam(param) {
       let url = "";
 
-      if (!param && typeof param !== 'object') return url
+      if (!param && typeof param !== "object") return url;
 
       Object.entries(param).forEach(([key, value]) => {
         url += value ? `${key}=${value}&` : "";
@@ -68,7 +68,7 @@ function makeApi(request = makeRequest()) {
     }
 
     const url = `/tracks?${buildParam(query)}${buildParam(rest)}`;
-    
+
     return request({
       url: url,
       requestMethod: "GET",

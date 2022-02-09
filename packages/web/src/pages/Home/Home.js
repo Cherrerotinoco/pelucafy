@@ -14,28 +14,27 @@ import useTracks from "../../hooks/useTracks";
 // ?  }, []);
 
 function Home() {
+  const { Title } = Elements;
 
-  const { Title } = Elements
-
-  
   const { trackList: popularsTracks } = useTracks({
-    order: '-likedBy',
+    order: "-likedBy",
   });
-  
+
+  /*
   const { trackList: suggestedTracks } = useTracks({
     order: '-createdAt',
   });
-  
-  
+  */
+
   return (
     <>
       <Title weight="2">Populars</Title>
-      {popularsTracks && popularsTracks.map((song) => (
-        <> 
+      {popularsTracks &&
+        popularsTracks.map((song) => (
           <Song song={song} key={song._id} size="XS" />
-        </>
-      ))}
+        ))}
 
+      {/*
       <Title weight="2">Suggested</Title>
       <div className="flex flex-wrap">
         {suggestedTracks && suggestedTracks.map((song) => (
@@ -44,6 +43,7 @@ function Home() {
           </>
         ))}
       </div>
+      */}
     </>
   );
 }

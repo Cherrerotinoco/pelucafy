@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from 'prop-types'
+import React, { useCallback, useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import api from "../../api";
@@ -12,26 +12,27 @@ import { setEditingTrack } from "../../redux/track/track-actions";
 
 //
 
-const AddSong = ({isEditing, trackEditing}) => {
+const AddSong = ({ isEditing, trackEditing }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
 
-  const { Button, Title, Label, Input, Card } = Elements;
+  const { Button, Title, Label, Input } = Elements;
 
   const [request, setRequest] = useState({
     isDataPending: false,
     isDataSuccess: false,
     isDataError: "",
   });
-  const { isDataPending, isDataSuccess, isDataError } = request;
 
-  const [song, setSong] = useState( trackEditing || {
-    userId: currentUser._id,
-    title: "",
-    genre: "",
-    url: "",
-    thumbnail: "",
-  });
+  const [song, setSong] = useState(
+    trackEditing || {
+      userId: currentUser._id,
+      title: "",
+      genre: "",
+      url: "",
+      thumbnail: "",
+    },
+  );
   const { title, genre } = song;
 
   const [errorMessage, setErrorMesage] = useState({});
@@ -49,7 +50,7 @@ const AddSong = ({isEditing, trackEditing}) => {
       });
       return;
     }
-    
+
     uploadSong(song);
 
     setSong({
@@ -72,10 +73,9 @@ const AddSong = ({isEditing, trackEditing}) => {
     setRequest({ ...request, isDataPending: true });
 
     try {
+      const method = isEditing ? api.updateSong : api.addNewSong;
 
-      const method = isEditing ? api.updateSong : api.addNewSong
-
-      const response = method(
+      const response = await method(
         {
           Authorization: `Bearer ${token}`,
         },
@@ -84,19 +84,16 @@ const AddSong = ({isEditing, trackEditing}) => {
 
       if (response.data.error) throw Error(response.errorMessage);
 
-      // Revisar
-      dispatch(setEditingTrack({}))
-      setRequest({
+      if (isEditing) return dispatch(setEditingTrack({}));
+
+      return setRequest({
         ...request,
         isDataPending: false,
         isDataSuccess: true,
         isDataError: "",
       });
-
-      return null;
     } catch (error) {
-      setRequest({ ...request, isDataError: error.message });
-      return null;
+      return setRequest({ ...request, isDataError: error.message });
     }
   };
 
@@ -134,39 +131,37 @@ const AddSong = ({isEditing, trackEditing}) => {
       <main className="Login">
         <section className="Login__wrapper">
           <Title weight="3" align="left">
-            {isEditing ? 'Edit song' : 'Upload Song'}
+            {isEditing ? "Edit song" : "Upload Song"}
           </Title>
           <form onSubmit={handleSubmit}>
-                {!isEditing && (
-                <div>
-                  <Label>Step 1: Upload your song</Label>
-                  <FileUploader callback={updateSongUrl} text="Song" />
-                  {song.url && <div>{song.url}</div>}
-                  {errorMessage.url && <div>{errorMessage.url}</div>}
-                </div>
-                )}
+            {!isEditing && (
+              <div>
+                <Label>Step 1: Upload your song</Label>
+                <FileUploader callback={updateSongUrl} text="Song" />
+                {song.url && <div>{song.url}</div>}
+                {errorMessage.url && <div>{errorMessage.url}</div>}
+              </div>
+            )}
 
+            <div>
+              {isEditing && (
+                <img
+                  src={song.thumbnail}
+                  alt={song.name}
+                  className="large-img"
+                />
+              )}
 
+              <Label>
+                {isEditing ? "Image" : "Step 2: Upload your song cover"}
+              </Label>
+              <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
 
-                <div>
-                  {isEditing && (
-                    <img src={song.thumbnail} alt={song.name} className="large-img" />     
-                  )}
+              {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+            </div>
 
-                  <Label>{isEditing ? 'Image' : 'Step 2: Upload your song cover'}</Label>
-                  <FileUploader
-                    callback={updateThumbnailUrl}
-                    text="Thumbnail"
-                  />
-                  
-                  {errorMessage.thumbnail && (
-                    <div>{errorMessage.thumbnail}</div>
-                  )}
-                </div>
-
-            {(song.url && song.thumbnail) && (
-              <>  
-
+            {song.url && song.thumbnail && (
+              <>
                 <Label htmlFor="title"> Title</Label>
                 <Input name="title" value={title} onChange={handleChange} />
 
@@ -182,7 +177,7 @@ const AddSong = ({isEditing, trackEditing}) => {
                   styles="noBackgroundHover"
                   disabled={request.isDataPending}
                 >
-                  {isEditing ? 'Save' : 'Upload'}
+                  {isEditing ? "Save" : "Upload"}
                 </Button>
               </>
             )}
@@ -193,16 +188,14 @@ const AddSong = ({isEditing, trackEditing}) => {
   );
 };
 
-
-
 AddSong.defaultProps = {
   isEditing: false,
-  trackEditing: null
-}
+  trackEditing: null,
+};
 
 AddSong.propTypes = {
   isEditing: PropTypes.bool,
-  trackEditing: PropTypes.object
-}
+  trackEditing: PropTypes.object,
+};
 
 export default AddSong;

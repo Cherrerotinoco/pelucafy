@@ -1,92 +1,78 @@
 @import "./utils.scss";
 
-
 body {
-  background-image: url("https://wallpaperaccess.com/full/19608.jpg"); 
+  background-image: url("https://wallpaperaccess.com/full/19608.jpg");
   background-color: #000000;
   background-size: cover;
   /* width */
-::-webkit-scrollbar {
-  scrollbar-width:thin;
-  width: 8px;
+  ::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 8px;
+  }
 
+  /* Track */
+  ::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(50, 135, 200, 0.46);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-  visibility: hidden;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.20); 
-  border-radius: 10px;
-   box-shadow:0px 0px 10px 1px rgba(50, 135, 200 , 0.46);
-;
-
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: white; 
-}
-
- }
 
 .scrollable {
   scrollbar-width: none;
   max-height: 90vh;
-
 }
 
-
 .userBoxContent {
-  max-height:55vh ;
-  min-height:55vh ;
-  .large-img{
+  max-height: 55vh;
+  min-height: 55vh;
+  .large-img {
     max-width: 40vh;
-    max-height:35vh ;
-    min-height:35vh ;  
+    max-height: 35vh;
+    min-height: 35vh;
   }
-
 }
 
 .react-audio-element {
-  .controls  {
-    margin:auto !important ;
+  .controls {
+    margin: auto !important ;
     height: 2rem;
 
-    .control-button{
+    .control-button {
       width: 1rem !important;
       height: 1rem !important;
       line-height: 1rem !important;
       margin: 1rem 0;
-     
     }
     .play-pause {
       width: 1rem;
-      height: 1rem ;
-      line-height: 1rem ;
+      height: 1rem;
+      line-height: 1rem;
       font-size: 1.5rem;
-
     }
-
-
-    
   }
 }
 
-.userNavBar{
-  max-height:10vh ;
-  min-height:10vh ; 
-}  
-
-.light
-  {
-    box-shadow:0px 0px 10px 1px rgba(50, 135, 200 , 0.46);
+.userNavBar {
+  max-height: 10vh;
+  min-height: 10vh;
 }
 
-.lightBackgroun{
+.light {
+  box-shadow: 0px 0px 10px 1px rgba(50, 135, 200, 0.46);
+}
+
+.lightBackgroun {
   background-color: rgba(205, 205, 205, 0.15);
 }
 

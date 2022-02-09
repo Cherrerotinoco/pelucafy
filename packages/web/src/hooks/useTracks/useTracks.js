@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
 
-
 const useTracks = ({ query, limit, order, skip }) => {
   const [trackList, setTrackList] = useState([]);
   const [error, setError] = useState(null);
@@ -14,9 +13,8 @@ const useTracks = ({ query, limit, order, skip }) => {
 
   const getTracks = async () => {
     try {
-
       const response = await api.getTracks(null, { query, limit, order, skip });
-      
+
       if (response.data.error) throw Error(response.errorMessage);
 
       setTrackList((prevTracks) => [...prevTracks, ...response.data]);

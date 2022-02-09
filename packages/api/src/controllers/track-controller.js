@@ -1,5 +1,5 @@
 const { TrackRepo } = require("../repositories");
-const { ObjectId } = require('mongodb');
+
 async function uploadSong(req, res) {
   //subirlo a mongo
   try {
@@ -61,7 +61,7 @@ async function deleteLike(req, res) {
     if (!_id || !userId) throw Error('Not found valid property')
 
     const response = await TrackRepo.findAndDelete({ _id: _id }, {"$pull": {likedBy: userId}});
-    
+
     if (response.error && response.data === null) throw Error(response.error)
 
     res.send(response.data);

@@ -52,6 +52,24 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function addLike(headers, body) {
+    return request({
+      url: '/tracks/likes',
+      requestMethod: 'POST',
+      headers: headers,
+      body: body,
+    });
+  }
+
+  function deleteLike(headers, body) {
+    return request({
+      url: '/tracks/likes',
+      requestMethod: 'DELETE',
+      headers: headers,
+      body: body,
+    });
+  }
+
   function getTracks(headers, params) {
     const { query, ...rest } = params;
 
@@ -85,6 +103,8 @@ function makeApi(request = makeRequest()) {
     addNewSong: addNewSong,
     updateSong: updateSong,
     getTracks: getTracks,
+    addLike: addLike,
+    deleteLike: deleteLike
   };
 }
 

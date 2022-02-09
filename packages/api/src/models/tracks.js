@@ -28,7 +28,7 @@ const TrackSchema = Schema(
     ],
     likedBy: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
       },
     ],
   },

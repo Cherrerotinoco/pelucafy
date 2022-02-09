@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import { trackSelector } from "../../redux/track/track-selectors";
 import Song from "../../components/Song";
 import useTracks from "../../hooks/useTracks";
 import Title from "../../components/elements/Title";
 
 const MySongs = () => {
   const { currentUser } = useSelector(authSelector);
-  // traer currentUser
+  const { trackEditing } = useSelector(trackSelector);
 
+  // traer currentUser
   const { trackList, error, page } = useTracks({
     query: { userId: currentUser._id },
   });

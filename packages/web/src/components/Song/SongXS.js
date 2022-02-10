@@ -56,7 +56,7 @@ const SongXS = ({ song, playTrack, editTrack, likeTrack, like }) => {
             </button>
 
             <button
-              className="bg-red-200 hover:bg-red-500 px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-300 hover:border-red-500 text-white rounded-full transition ease-in duration-300"
+              className="bg-red-300 hover:bg-red-500 px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-300 hover:border-red-500 text-white rounded-full transition ease-in duration-300"
               type="button"
               onClick={likeTrack}
             >

@@ -7,7 +7,7 @@ import {
   setEditingTrack,
 } from "../../redux/track/track-actions";
 
-import SongXS from "./SongXS";
+// import SongXS from "./SongXS";
 import SongS from "./SongS";
 import SongM from "./SongM";
 import SongL from "./SongL";
@@ -77,15 +77,18 @@ const Song = ({ song, size }) => {
 
   return (
     <div className="song-component">
-      {size === "XS" && (
-        <SongXS
+      {size === "XS" &&
+        {
+          /* 
+          <SongXS
           song={song}
           playTrack={playTrack}
           editTrack={editTrack}
           likeTrack={likeTrack}
           like={like}
-        />
-      )}
+        /> 
+        */
+        }}
       {size === "S" && <SongS song={song} playTrack={playTrack} />}
       {size === "M" && <SongM song={song} playTrack={playTrack} />}
       {size === "L" && <SongL song={song} playTrack={playTrack} />}

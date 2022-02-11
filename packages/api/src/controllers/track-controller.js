@@ -1,9 +1,26 @@
 const { TrackRepo } = require("../repositories");
+var cloudinary = require("cloudinary").v2;
 
 async function deleteSong(req, res) {
   const songId = { _id: req.params.id };
   try {
     const response = await TrackRepo.findAndDelete(songId);
+    console.log(response.data);
+
+    await cloudinary.v2.uploader.destroy(
+      response.data.track_public_id,
+      function (error, result) {
+        console.log(result, error);
+      },
+    );
+
+    await cloudinary.v2.uploader.destroy(
+      response.data.thumbnail_public_id,
+      function (error, result) {
+        console.log(result, error);
+      },
+    );
+
     res.send(response.data);
   } catch (error) {
     res.status(500).send(error.message);

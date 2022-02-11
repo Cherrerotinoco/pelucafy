@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -24,20 +25,22 @@ const AddSong = ({ isEditing, trackEditing }) => {
     isDataError: "",
   });
 
-  const [song, setSong] = useState(
-    trackEditing || {
-      userId: currentUser._id,
-      title: "",
-      genre: "",
-      url: "",
-      thumbnail: "",
-    },
-  );
+  const initialState = {
+    userId: currentUser._id,
+    title: "",
+    genre: "",
+    url: "",
+    thumbnail: "",
+    track_public_id: "",
+    thumbnail_public_id: "",
+  };
+
+  const [song, setSong] = useState(trackEditing || initialState);
   const { title, genre } = song;
 
   const [errorMessage, setErrorMesage] = useState({});
 
-  const deleteSong = async (id) => {
+  const deleteSong = async (id, trackPublicId, thumbnailPublicId) => {
     const token = await auth.getCurrentUserToken();
     if (!token) {
       return;
@@ -50,15 +53,12 @@ const AddSong = ({ isEditing, trackEditing }) => {
         id,
       );
 
+      // Cloudinary.uploader.destroy(song.track_public_id);
+      // Cloudinary.uploader.destroy(song.thumbnail_public_id);
+
       dispatch(setEditingTrack({}));
 
-      setSong({
-        userId: currentUser._id,
-        title: "",
-        genre: "",
-        url: "",
-        thumbnail: "",
-      });
+      setSong(initialState);
     } catch (error) {
       console.log(error.message);
     }
@@ -80,13 +80,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
     uploadSong(song);
 
-    setSong({
-      userId: currentUser._id,
-      title: "",
-      genre: "",
-      url: "",
-      thumbnail: "",
-    });
+    setSong(initialState);
   };
 
   const uploadSong = async (songData) => {
@@ -133,11 +127,13 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const updateSongUrl = (error, result) => {
     if (!error && result && result.event === "success") {
+      console.log(result.info);
       setSong({
         ...song,
         duration: Math.ceil(result.info.duration),
         url: result.info.secure_url,
         createdAt: result.info.created_at,
+        track_public_id: result.info.public_id,
       });
     }
   };
@@ -147,6 +143,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
       setSong({
         ...song,
         thumbnail: result.info.secure_url,
+        thumbnail_public_id: result.info.public_id,
       });
     }
   };

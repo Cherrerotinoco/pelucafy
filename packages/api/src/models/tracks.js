@@ -11,6 +11,8 @@ const TrackSchema = Schema(
     },
     popularity: String,
     thumbnail: String,
+    thumbnail_public_id: String,
+    track_public_id: String,
     createdAt: String,
     realeased: String,
     duration: Number,

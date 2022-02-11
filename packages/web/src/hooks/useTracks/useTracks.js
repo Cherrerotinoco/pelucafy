@@ -17,7 +17,6 @@ const useTracks = ({ query, limit, order, skip }) => {
   useEffect(() => {
     if (Object.entries(trackEditing).length == 0) {
       getTracks();
-      console.log("soy el useEffect");
     }
   }, [trackEditing]);
 

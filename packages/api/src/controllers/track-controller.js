@@ -1,5 +1,15 @@
 const { TrackRepo } = require("../repositories");
 
+async function deleteSong(req, res) {
+  const songId = { _id: req.params.id };
+  try {
+    const response = await TrackRepo.findAndDelete(songId);
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 async function uploadSong(req, res) {
   //subirlo a mongo
   try {
@@ -93,6 +103,7 @@ module.exports = {
   uploadSong: uploadSong,
   getSongs: getSongs,
   updateSong: updateSong,
+  deleteSong: deleteSong,
   addLike: addLike,
   deleteLike: deleteLike,
 };

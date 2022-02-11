@@ -37,6 +37,33 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const [errorMessage, setErrorMesage] = useState({});
 
+  const deleteSong = async (id) => {
+    const token = await auth.getCurrentUserToken();
+    if (!token) {
+      return;
+    }
+    try {
+      const deleted = await api.deleteSong(
+        {
+          Authorization: `Bearer ${token}`,
+        },
+        id,
+      );
+
+      dispatch(setEditingTrack({}));
+
+      setSong({
+        userId: currentUser._id,
+        title: "",
+        genre: "",
+        url: "",
+        thumbnail: "",
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -179,6 +206,11 @@ const AddSong = ({ isEditing, trackEditing }) => {
                 >
                   {isEditing ? "Save" : "Upload"}
                 </Button>
+                {isEditing && (
+                  <Button onClick={() => deleteSong(trackEditing._id)}>
+                    Delete
+                  </Button>
+                )}
               </>
             )}
           </form>

@@ -20,6 +20,9 @@ class TrackRepository {
       db.Track.find(query).sort(order).skip(toSkip).limit(limit),
     );
   }
+  findAndDelete(query) {
+    return normalizeDBQuery(db.Track.findOneAndDelete(query));
+  }
 }
 
 module.exports = new TrackRepository();

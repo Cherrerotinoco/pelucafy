@@ -40,21 +40,18 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const [errorMessage, setErrorMesage] = useState({});
 
-  const deleteSong = async (id, trackPublicId, thumbnailPublicId) => {
+  const deleteSong = async (id) => {
     const token = await auth.getCurrentUserToken();
     if (!token) {
       return;
     }
     try {
-      const deleted = await api.deleteSong(
+      await api.deleteSong(
         {
           Authorization: `Bearer ${token}`,
         },
         id,
       );
-
-      // Cloudinary.uploader.destroy(song.track_public_id);
-      // Cloudinary.uploader.destroy(song.thumbnail_public_id);
 
       dispatch(setEditingTrack({}));
 
@@ -158,31 +155,40 @@ const AddSong = ({ isEditing, trackEditing }) => {
             {isEditing ? "Edit song" : "Upload Song"}
           </Title>
           <form onSubmit={handleSubmit}>
-            {!isEditing && (
-              <div>
-                <Label>Step 1: Upload your song</Label>
-                <FileUploader callback={updateSongUrl} text="Song" />
-                {song.url && <div>{song.url}</div>}
-                {errorMessage.url && <div>{errorMessage.url}</div>}
-              </div>
+            {!song.url && !song.thumbnail && (
+              <>
+                {!isEditing && (
+                  <div>
+                    <Label>Step 1: Upload your song</Label>
+                    <FileUploader callback={updateSongUrl} text="Song" />
+                    {song.url && <div>{song.url}</div>}
+                    {errorMessage.url && <div>{errorMessage.url}</div>}
+                  </div>
+                )}
+
+                <div>
+                  {isEditing && (
+                    <img
+                      src={song.thumbnail}
+                      alt={song.name}
+                      className="large-img"
+                    />
+                  )}
+
+                  <Label>
+                    {isEditing ? "Image" : "Step 2: Upload your song cover"}
+                  </Label>
+                  <FileUploader
+                    callback={updateThumbnailUrl}
+                    text="Thumbnail"
+                  />
+
+                  {errorMessage.thumbnail && (
+                    <div>{errorMessage.thumbnail}</div>
+                  )}
+                </div>
+              </>
             )}
-
-            <div>
-              {isEditing && (
-                <img
-                  src={song.thumbnail}
-                  alt={song.name}
-                  className="large-img"
-                />
-              )}
-
-              <Label>
-                {isEditing ? "Image" : "Step 2: Upload your song cover"}
-              </Label>
-              <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
-
-              {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
-            </div>
 
             {song.url && song.thumbnail && (
               <>

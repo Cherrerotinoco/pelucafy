@@ -22,7 +22,6 @@ const Like = ({ likedBy, songId }) => {
     if (likedBy && currentUser._id in likedBy) setLike(true);
   }, [likedBy, currentUser]);
 
-  console.log();
   const likeTrack = async (id) => {
     const token = await auth.getCurrentUserToken();
 

@@ -5,6 +5,7 @@ import { Elements } from "../elements";
 
 import Like from "./Like";
 import Edit from "./Edit";
+import Play from "./Play";
 
 const SongXS = ({ song, playTrack, editTrack, likeTrack }) => {
   const { title, thumbnail, genre, albums, url, likedBy, _id } = song;
@@ -47,13 +48,7 @@ const SongXS = ({ song, playTrack, editTrack, likeTrack }) => {
 
             <Like likedBy={likedBy} songId={_id} />
 
-            <button
-              className="bg-green-400 hover:bg-green-500 px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300"
-              type="button"
-              onClick={playTrack}
-            >
-              <FaPlay />
-            </button>
+            <Play song={song} />
           </div>
 
           {/*  */}

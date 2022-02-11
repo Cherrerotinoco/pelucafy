@@ -1,5 +1,15 @@
 const { TrackRepo } = require("../repositories");
 
+async function deleteSong(req, res) {
+  const songId = { _id: req.params.id };
+  try {
+    const response = await TrackRepo.findAndDelete(songId);
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 async function uploadSong(req, res) {
   //subirlo a mongo
   try {
@@ -42,11 +52,14 @@ async function addLike(req, res) {
   //update en mongo
   try {
     const { _id, userId } = req.body;
-    if (!_id || !userId) throw Error('Not found valid property')
+    if (!_id || !userId) throw Error("Not found valid property");
 
-    const response = await TrackRepo.findAndUpdate({ _id: _id }, {"$push": {likedBy: userId}});
+    const response = await TrackRepo.findAndUpdate(
+      { _id: _id },
+      { $push: { likedBy: userId } },
+    );
 
-    if (response.error && response.data === null) throw Error(response.error)
+    if (response.error && response.data === null) throw Error(response.error);
 
     res.send(response.data);
   } catch (error) {
@@ -58,11 +71,14 @@ async function deleteLike(req, res) {
   //update en mongo
   try {
     const { _id, userId } = req.body;
-    if (!_id || !userId) throw Error('Not found valid property')
+    if (!_id || !userId) throw Error("Not found valid property");
 
-    const response = await TrackRepo.findAndDelete({ _id: _id }, {"$pull": {likedBy: userId}});
+    const response = await TrackRepo.findAndDelete(
+      { _id: _id },
+      { $pull: { likedBy: userId } },
+    );
 
-    if (response.error && response.data === null) throw Error(response.error)
+    if (response.error && response.data === null) throw Error(response.error);
 
     res.send(response.data);
   } catch (error) {
@@ -86,6 +102,7 @@ module.exports = {
   uploadSong: uploadSong,
   getSongs: getSongs,
   updateSong: updateSong,
+  deleteSong: deleteSong,
   addLike: addLike,
-  deleteLike: deleteLike
+  deleteLike: deleteLike,
 };

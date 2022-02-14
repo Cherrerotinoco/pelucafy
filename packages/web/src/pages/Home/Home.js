@@ -28,13 +28,12 @@ function Home() {
 
   return (
     <>
-
       <Playlist />
 
       <Title weight="2">Populars</Title>
       {popularsTracks &&
         popularsTracks.map((song) => (
-          <Song song={song} key={song._id} size="XS" />
+          <Song song={song} key={song._id} size="S" />
         ))}
 
       {/*

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Cloudinary } from "@cloudinary/url-gen";
+
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -7,13 +7,13 @@ import api from "../../api";
 import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 
-import validateAddSong from "./validateAddSong";
+import validateAddPlaylist from "./validateAddPlaylist";
 import { Elements } from "../../components/elements";
 import { setEditingTrack } from "../../redux/track/track-actions";
 
 //
 
-const AddSong = ({ isEditing, trackEditing }) => {
+const AddPlaylist = ({ isEditing, playlistEditing }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
 
@@ -27,26 +27,29 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const initialState = {
     userId: currentUser._id,
-    title: "",
-    genre: "",
-    url: "",
-    thumbnail: "",
-    track_public_id: "",
-    thumbnail_public_id: "",
+    name: "",
+    collaborative: false,
+    description: "",
+    coverThumbnail: "",
+    coverThumbnail_public_id: "",
+    publicAccessible: true,
+    numberSongs: 0,
+    followedBy: "",
+    trackIds: "",
   };
 
-  const [song, setSong] = useState(trackEditing || initialState);
-  const { title, genre } = song;
+  const [playlist, setPlaylist] = useState(playlistEditing || initialState);
+  const { name, description } = playlist;
 
   const [errorMessage, setErrorMesage] = useState({});
 
-  const deleteSong = async (id) => {
+  const deletePlaylist = async (id) => {
     const token = await auth.getCurrentUserToken();
     if (!token) {
       return;
     }
     try {
-      await api.deleteSong(
+      await api.deletePlaylist(
         {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +58,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
       dispatch(setEditingTrack({}));
 
-      setSong(initialState);
+      setPlaylist(initialState);
     } catch (error) {
       console.log(error.message);
     }
@@ -64,7 +67,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = validateAddSong(song);
+    const errors = validateAddPlaylist(playlist);
     setErrorMesage(errors);
 
     if (Object.keys(errors).length > 0) {
@@ -75,12 +78,12 @@ const AddSong = ({ isEditing, trackEditing }) => {
       return;
     }
 
-    uploadSong(song);
+    uploadPlaylist(playlist);
 
-    setSong(initialState);
+    setPlaylist(initialState);
   };
 
-  const uploadSong = async (songData) => {
+  const uploadPlaylist = async (playlistData) => {
     // Get token
 
     const token = await auth.getCurrentUserToken();
@@ -91,13 +94,13 @@ const AddSong = ({ isEditing, trackEditing }) => {
     setRequest({ ...request, isDataPending: true });
 
     try {
-      const method = isEditing ? api.updateSong : api.addNewSong;
+      const method = isEditing ? api.updatePlaylist : api.addNewPlaylist;
 
       const response = await method(
         {
           Authorization: `Bearer ${token}`,
         },
-        songData,
+        playlistData,
       );
 
       if (response.data.error) throw Error(response.errorMessage);
@@ -117,30 +120,17 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const handleChange = useCallback(
     (e) => {
-      setSong({ ...song, [e.target.name]: e.target.value });
+      setPlaylist({ ...playlist, [e.target.name]: e.target.value });
     },
-    [song],
+    [playlist],
   );
-
-  const updateSongUrl = (error, result) => {
-    if (!error && result && result.event === "success") {
-      console.log(result.info);
-      setSong({
-        ...song,
-        duration: Math.ceil(result.info.duration),
-        url: result.info.secure_url,
-        createdAt: result.info.created_at,
-        track_public_id: result.info.public_id,
-      });
-    }
-  };
 
   const updateThumbnailUrl = (error, result) => {
     if (!error && result && result.event === "success") {
-      setSong({
-        ...song,
-        thumbnail: result.info.secure_url,
-        thumbnail_public_id: result.info.public_id,
+      setPlaylist({
+        ...playlist,
+        coverThumbnail: result.info.secure_url,
+        coverThumbnail_public_id: result.info.public_id,
       });
     }
   };
@@ -149,62 +139,63 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   return (
     <>
-      <section className="addSong">
+      <section className="addPlaylist">
         <Title weight="3" align="left">
-          {isEditing ? "Edit song" : "Upload Song"}
+          {isEditing ? "Edit Playlist" : "Create Playlist"}
         </Title>
         <form onSubmit={handleSubmit}>
           <>
-            {!isEditing && (
-              <div>
-                <Label>Step 1: Upload your song</Label>
-                <FileUploader callback={updateSongUrl} text="Song" />
-                {song.url && <div>{song.url}</div>}
-                {errorMessage.url && <div>{errorMessage.url}</div>}
-              </div>
-            )}
-
             <div>
               {isEditing && (
                 <img
-                  src={song.thumbnail}
-                  alt={song.name}
+                  src={playlist.coverThumbnail}
+                  alt={playlist.name}
                   className="large-img"
                 />
               )}
 
               <Label>
-                {isEditing ? "Image" : "Step 2: Upload your song cover"}
+                {isEditing ? "Image" : "Step 1: Upload your Playlist cover"}
               </Label>
-              <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
+              <FileUploader
+                callback={updateThumbnailUrl}
+                text="Thumbnail Cover"
+              />
 
-              {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+              {errorMessage.coverThumbnail && (
+                <div>{errorMessage.coverThumbnail}</div>
+              )}
             </div>
           </>
 
           <>
-            <Label htmlFor="title"> Title</Label>
-            <Input name="title" value={title} onChange={handleChange} />
+            <Label htmlFor="name"> Title</Label>
+            <Input name="name" value={name} onChange={handleChange} />
 
-            {errorMessage.title && <div>{errorMessage.title}</div>}
+            {errorMessage.name && <div>{errorMessage.name}</div>}
 
-            <Label htmlFor="genre"> Genre</Label>
-            <Input name="genre" value={genre} onChange={handleChange} />
+            <Label htmlFor="description"> Description</Label>
+            <Input
+              name="description"
+              value={description}
+              onChange={handleChange}
+            />
 
-            {errorMessage.genre && <div>{errorMessage.genre}</div>}
-
-            <Button
-              submit
-              styles="noBackgroundHover"
-              disabled={request.isDataPending}
-            >
-              {isEditing ? "Save" : "Upload"}
-            </Button>
-            {isEditing && (
-              <Button onClick={() => deleteSong(trackEditing._id)}>
-                Delete
+            {errorMessage.description && <div>{errorMessage.description}</div>}
+            <div>
+              <Button
+                submit
+                styles="noBackgroundHover"
+                disabled={request.isDataPending}
+              >
+                {isEditing ? "Update" : "Create"}
               </Button>
-            )}
+              {isEditing && (
+                <Button onClick={() => deletePlaylist(playlistEditing._id)}>
+                  Delete
+                </Button>
+              )}
+            </div>
           </>
         </form>
       </section>
@@ -212,14 +203,14 @@ const AddSong = ({ isEditing, trackEditing }) => {
   );
 };
 
-AddSong.defaultProps = {
+AddPlaylist.defaultProps = {
   isEditing: false,
-  trackEditing: null,
+  playlistEditing: null,
 };
 
-AddSong.propTypes = {
+AddPlaylist.propTypes = {
   isEditing: PropTypes.bool,
-  trackEditing: PropTypes.object,
+  playlistEditing: PropTypes.object,
 };
 
-export default AddSong;
+export default AddPlaylist;

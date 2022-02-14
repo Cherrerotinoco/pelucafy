@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import { trackSelector } from "../../redux/track/track-selectors";
+
 import Song from "../../components/Song";
 import useTracks from "../../hooks/useTracks";
 import Title from "../../components/elements/Title";
 
 const MySongs = () => {
   const { currentUser } = useSelector(authSelector);
-  const { trackEditing } = useSelector(trackSelector);
 
-  // traer currentUser
   const { trackList, error, page } = useTracks({
     query: { userId: currentUser._id },
   });
-
-  // state
-  // tracklist
 
   return (
     <>
@@ -26,7 +21,7 @@ const MySongs = () => {
         <div className="min-w-full">
           {trackList &&
             trackList.map((song) => (
-              <Song key={song._id} song={song} size="XS" />
+              <Song key={song._id} song={song} size="S" />
             ))}
         </div>
       </section>

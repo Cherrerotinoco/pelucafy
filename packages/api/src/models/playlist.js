@@ -9,13 +9,17 @@ const PlaylistSchema = Schema({
   coverThumbnail: String,
   publicAccessible: Boolean,
   numberSongs: Number,
-  followers: Number,
+  followedBy: [
+    {
+      type: String,
+    },
+  ],
   trackIds: [
     {
       type: String,
-      unique: true
-    }
-  ]
+      unique: true,
+    },
+  ],
 });
 
 const Playlist = mongoose.model("Playlist", PlaylistSchema);

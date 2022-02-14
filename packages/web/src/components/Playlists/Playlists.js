@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import usePlaylists from '../../hooks/usePlaylists/usePlaylists'
+import React, { useEffect } from "react";
+import usePlaylist from "../../hooks/usePlaylist/usePlaylist";
 
 /**
  * Actions:
@@ -7,21 +7,18 @@ import usePlaylists from '../../hooks/usePlaylists/usePlaylists'
  * - Get playlists by current userId
  * - Edit certain playlist
  * - Render the tracks for each playlist
- * @returns All the playlists of the current user  
+ * @returns All the playlists of the current user
  */
 
 function Playlists() {
-
-  const [data, error] = usePlaylists()
+  const [data, error] = usePlaylist();
 
   return (
     <div>
-      <button type='button'>Add playlist</button>
-      <div>
-        {data && data.map(elm => <p key={elm._id}>elm</p>)}
-      </div>
+      <button type="button">Add playlist</button>
+      <div>{data && data.map((elm) => <p key={elm._id}>elm</p>)}</div>
     </div>
-  )
+  );
 }
 
-export default Playlists
+export default Playlists;

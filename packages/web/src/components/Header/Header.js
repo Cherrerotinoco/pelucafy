@@ -59,7 +59,7 @@ function Header() {
             </div>
             <div className="w-full flex justify-around">
               <Button styles="light">
-                <NavLink to={ROUTES.HOME}>
+                <NavLink to={ROUTES.SEARCH}>
                   <FaSearch />
                 </NavLink>
               </Button>

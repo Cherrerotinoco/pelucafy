@@ -9,10 +9,6 @@ const useTracks = ({ query, limit, order, skip }) => {
   const [page, setPage] = useState(0);
 
   const { trackEditing } = useSelector(trackSelector);
-  // On load, fetch data
-  // useEffect(() => {
-  //   getTracks();
-  // }, []);
 
   useEffect(() => {
     if (Object.entries(trackEditing).length == 0) {

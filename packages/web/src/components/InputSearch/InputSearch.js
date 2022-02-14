@@ -1,13 +1,7 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const Search = () => {
-  const [search, setSearch] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSearch("");
-  };
-
+const InputSearch = ({ search, setSearch }) => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -19,7 +13,11 @@ const Search = () => {
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <input
             className="w-max"
             type="text"
@@ -29,10 +27,22 @@ const Search = () => {
             id="search"
             onChange={handleChange}
           />
+          <button className="text-white" type="button" onClick={cleanSearch}>
+            X
+          </button>
         </form>
       </div>
     </>
   );
 };
 
-export default Search;
+export default InputSearch;
+
+InputSearch.defaultProps = {
+  search: null,
+  setSearch: null,
+};
+InputSearch.propTypes = {
+  search: PropTypes.string,
+  setSearch: PropTypes.func,
+};

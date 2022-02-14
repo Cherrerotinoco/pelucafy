@@ -7,3 +7,4 @@ export const MYSONGS = "/my-songs";
 export const ADDSONG = "/add-song";
 export const NOWPLAYING = "/now-playin";
 export const STATS = "/stats";
+export const SEARCH = "/search";

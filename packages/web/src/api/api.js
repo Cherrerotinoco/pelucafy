@@ -103,12 +103,11 @@ function makeApi(request = makeRequest()) {
     });
   }
 
-  function searchTracks(headers, body) {
+  function searchTracks(headers, keyword) {
     return request({
-      url: "/search",
+      url: `/search?keyword=${keyword}`,
       requestMethod: "GET",
       headers: headers,
-      body: body,
     });
   }
 

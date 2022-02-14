@@ -1,13 +1,19 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { setEditingTrack } from "../../redux/track/track-actions";
+import { authSelector } from "../../redux/auth/auth-selectors";
 
 const Edit = ({ song }) => {
+  const { currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
   const editTrack = () => {
     dispatch(setEditingTrack(song));
   };
+
+  if (song.userId !== currentUser._id) {
+    return null;
+  }
 
   return (
     <>

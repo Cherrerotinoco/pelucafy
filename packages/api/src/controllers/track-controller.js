@@ -1,5 +1,5 @@
 const { TrackRepo } = require("../repositories");
-var cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: process.env.REACT_APP_CLOUDINARI_API_CLOUD_NAME_DEV,

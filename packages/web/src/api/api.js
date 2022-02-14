@@ -78,6 +78,15 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function getPlaylists(headers) {
+    return request({
+      url: "/playlist",
+      requestMethod: "GET",
+      headers: headers,
+      body: null,
+    });
+  }
+
   function getTracks(headers, params) {
     const { query, ...rest } = params;
 
@@ -114,6 +123,7 @@ function makeApi(request = makeRequest()) {
     getTracks: getTracks,
     addLike: addLike,
     deleteLike: deleteLike,
+    getPlaylists: getPlaylists
   };
 }
 

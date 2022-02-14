@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.scss";
 import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
-
+import Playlist from "../../components/Playlists";
 import useTracks from "../../hooks/useTracks";
 
 // ! PARA COPIAR Y PEGAR;
@@ -28,6 +28,9 @@ function Home() {
 
   return (
     <>
+
+      <Playlist />
+
       <Title weight="2">Populars</Title>
       {popularsTracks &&
         popularsTracks.map((song) => (

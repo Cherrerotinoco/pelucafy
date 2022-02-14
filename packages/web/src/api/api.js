@@ -103,6 +103,15 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function searchTracks(headers, body) {
+    return request({
+      url: "/search",
+      requestMethod: "GET",
+      headers: headers,
+      body: body,
+    });
+  }
+
   return {
     signUp: signUp,
     signOut: signOut,
@@ -114,6 +123,7 @@ function makeApi(request = makeRequest()) {
     getTracks: getTracks,
     addLike: addLike,
     deleteLike: deleteLike,
+    searchTracks: searchTracks,
   };
 }
 

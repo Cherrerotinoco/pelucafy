@@ -4,6 +4,7 @@ import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
 
 import useTracks from "../../hooks/useTracks";
+import Search from "../../components/Search/Search";
 
 // ! PARA COPIAR Y PEGAR;
 // ! import { Elements } from "../../components/elements";
@@ -28,6 +29,7 @@ function Home() {
 
   return (
     <>
+      <Search />
       <Title weight="2">Populars</Title>
       {popularsTracks &&
         popularsTracks.map((song) => (

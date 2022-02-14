@@ -19,7 +19,7 @@ const InputSearch = ({ search, setSearch }) => {
           }}
         >
           <input
-            className="w-max"
+            className="shadow appearance-none border rounded max-w-md w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             type="text"
             placeholder="Search your song"
             name="search"
@@ -27,9 +27,6 @@ const InputSearch = ({ search, setSearch }) => {
             id="search"
             onChange={handleChange}
           />
-          <button className="text-white" type="button" onClick={cleanSearch}>
-            X
-          </button>
         </form>
       </div>
     </>

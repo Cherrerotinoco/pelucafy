@@ -22,7 +22,7 @@ const Like = ({ likedBy, songId }) => {
     if (likedBy && likedBy.includes(currentUser._id)) setLike(true);
   }, [likedBy, currentUser]);
 
-  const likeTrack = async (id) => {
+  const likeTrack = async () => {
     const token = await auth.getCurrentUserToken();
 
     if (!token) {
@@ -33,7 +33,9 @@ const Like = ({ likedBy, songId }) => {
 
     const method = like ? api.deleteLike : api.addLike;
 
-    // ! opcion 1: pasarle a este componente el "song" completo
+    const liked = likedBy.filter((element) => {
+      return element !== currentUser._id;
+    });
 
     try {
       const response = await method(
@@ -41,8 +43,10 @@ const Like = ({ likedBy, songId }) => {
           Authorization: `Bearer ${token}`,
         },
         {
-          _id: id,
+          _id: songId,
           userId: currentUser._id,
+          likedBy: liked,
+          like: !like,
         },
       );
 

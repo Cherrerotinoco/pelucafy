@@ -10,11 +10,20 @@ class TrackRepository {
     return normalizeDBQuery(db.Track.findOne(query, "-__v"));
   }
   findAndUpdate(query, update) {
-    return normalizeDBQuery(db.Track.findOneAndUpdate(query, update));
+    return normalizeDBQuery(
+      db.Track.findOneAndUpdate(query, update, { new: true }),
+    );
   }
   findAndDelete(query, update) {
     return normalizeDBQuery(db.Track.findOneAndUpdate(query, update));
   }
+
+  findAndReplace(query, update) {
+    return normalizeDBQuery(
+      db.Track.findOneAndReplace(query, update, { new: true }),
+    );
+  }
+
   findAll({ query, limit, order, toSkip }) {
     return normalizeDBQuery(
       db.Track.find(query).sort(order).skip(toSkip).limit(limit),

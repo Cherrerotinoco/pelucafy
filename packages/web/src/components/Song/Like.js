@@ -19,7 +19,7 @@ const Like = ({ likedBy, songId }) => {
 
   // If current user ID its include in song.likedBy => setState(true)
   useEffect(() => {
-    if (likedBy && currentUser._id in likedBy) setLike(true);
+    if (likedBy && likedBy.includes(currentUser._id)) setLike(true);
   }, [likedBy, currentUser]);
 
   const likeTrack = async (id) => {
@@ -32,6 +32,8 @@ const Like = ({ likedBy, songId }) => {
     setRequest({ ...request, isDataPending: true });
 
     const method = like ? api.deleteLike : api.addLike;
+
+    // ! opcion 1: pasarle a este componente el "song" completo
 
     try {
       const response = await method(

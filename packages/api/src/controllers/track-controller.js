@@ -97,9 +97,10 @@ async function deleteLike(req, res) {
   //update en mongo
   try {
     const { _id, userId } = req.body;
+    console.log(_id, userId);
     if (!_id || !userId) throw Error("Not found valid property");
 
-    const response = await TrackRepo.findAndDelete(
+    const response = await TrackRepo.findAndUpdate(
       { _id: _id },
       { $pull: { likedBy: userId } },
     );

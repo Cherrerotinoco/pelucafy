@@ -72,7 +72,7 @@ function makeApi(request = makeRequest()) {
   function deleteLike(headers, body) {
     return request({
       url: "/tracks/likes",
-      requestMethod: "DELETE",
+      requestMethod: "POST",
       headers: headers,
       body: body,
     });

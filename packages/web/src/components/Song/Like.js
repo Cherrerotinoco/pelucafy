@@ -19,10 +19,10 @@ const Like = ({ likedBy, songId }) => {
 
   // If current user ID its include in song.likedBy => setState(true)
   useEffect(() => {
-    if (likedBy && currentUser._id in likedBy) setLike(true);
+    if (likedBy && likedBy.includes(currentUser._id)) setLike(true);
   }, [likedBy, currentUser]);
 
-  const likeTrack = async (id) => {
+  const likeTrack = async () => {
     const token = await auth.getCurrentUserToken();
 
     if (!token) {
@@ -33,14 +33,20 @@ const Like = ({ likedBy, songId }) => {
 
     const method = like ? api.deleteLike : api.addLike;
 
+    const liked = likedBy.filter((element) => {
+      return element !== currentUser._id;
+    });
+
     try {
       const response = await method(
         {
           Authorization: `Bearer ${token}`,
         },
         {
-          _id: id,
+          _id: songId,
           userId: currentUser._id,
+          likedBy: liked,
+          like: !like,
         },
       );
 

@@ -11,18 +11,21 @@ const FileUploader = ({ callback, text, ...props }) => {
     uploadPreset: process.env.REACT_APP_CLOUDINARI_API_PRESET_DEFAULT,
   };
 
-  const cloudinaryWidget = window.cloudinary.createUploadWidget(
-    {
-      cloudName: cloudinaryConfig.cloudName,
-      uploadPreset: cloudinaryConfig.uploadPreset,
-      sources: ["local"],
-    },
-    callback,
-  );
+  const openWidget = () => {
+    const cloudinaryWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: cloudinaryConfig.cloudName,
+        uploadPreset: cloudinaryConfig.uploadPreset,
+        sources: ["local"],
+      },
+      callback,
+    );
+    cloudinaryWidget.open();
+  };
 
   return (
     <>
-      <Button styles="light" onClick={() => cloudinaryWidget.open()}>
+      <Button styles="light" onClick={() => openWidget()}>
         {text}
       </Button>
     </>

@@ -3,7 +3,7 @@ import * as PlaylistTypes from "./playlist-types";
 export const PlaylistInitialState = {
   playlistPlaying: {},
   playlistEditing: {},
-  trackToAdd: {},
+  trackToAdd: "",
 };
 
 const PlaylistReducer = (state = PlaylistInitialState, action) => {

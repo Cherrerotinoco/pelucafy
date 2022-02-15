@@ -151,20 +151,24 @@ const AddSong = ({ isEditing, trackEditing }) => {
     <>
       <section className="addSong">
         <Title weight="3" align="left">
-          {isEditing ? "Edit song" : "Upload Song"}
+          {isEditing ? "Edit song" : null}
         </Title>
         <form onSubmit={handleSubmit}>
           <>
             {!isEditing && (
-              <div>
+              <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
                 <Label>Step 1: Upload your song</Label>
-                <FileUploader callback={updateSongUrl} text="Song" />
-                {song.url && <div>{song.url}</div>}
+                {song.url ? (
+                  <Button styles="light">Uploaded!!</Button>
+                ) : (
+                  <FileUploader callback={updateSongUrl} text="Song" />
+                )}
+
                 {errorMessage.url && <div>{errorMessage.url}</div>}
               </div>
             )}
 
-            <div>
+            <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
               {isEditing && (
                 <img
                   src={song.thumbnail}
@@ -196,8 +200,8 @@ const AddSong = ({ isEditing, trackEditing }) => {
               {song.url ? (
                 <>
                   <Button
+                    styles="light"
                     submit
-                    styles="noBackgroundHover"
                     disabled={request.isDataPending}
                   >
                     {isEditing ? "Save" : "Upload"}

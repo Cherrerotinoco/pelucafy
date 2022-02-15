@@ -14,7 +14,8 @@ import Login from "../../pages/Login";
 import ResetPassword from "../../pages/ResetPassword";
 import Profile from "../../pages/Profile";
 import NowPlaying from "../../pages/NowPlaying/NowPlaying";
-import UserStats from "../../pages/UserStats";
+import AddSong from "../../pages/AddSong";
+import AddPlaylist from "../../pages/AddPlaylist";
 
 function UserBox() {
   const { isAuthenticated } = useSelector(authSelector);
@@ -24,6 +25,8 @@ function UserBox() {
     [ROUTES.PROFILE]: false,
     [ROUTES.RESET_PASSWORD]: false,
     [ROUTES.STATS]: false,
+    [ROUTES.ADDSONG]: false,
+    [ROUTES.ADDPLAYLIST]: false,
   });
 
   const handlerRenderedComponet = useCallback(
@@ -47,7 +50,8 @@ function UserBox() {
               {renderedComponent[ROUTES.PROFILE] && <Profile />}
               {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
               {renderedComponent[ROUTES.NOWPLAYING] && <NowPlaying />}
-              {renderedComponent[ROUTES.STATS] && <UserStats />}
+              {renderedComponent[ROUTES.ADDSONG] && <AddSong />}
+              {renderedComponent[ROUTES.ADDPLAYLIST] && <AddPlaylist />}
             </div>
             <hr className="mt-4 mb-1" />
             <Player />

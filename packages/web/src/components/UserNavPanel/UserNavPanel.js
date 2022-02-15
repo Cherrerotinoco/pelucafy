@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux";
 
 import { GoSettings } from "react-icons/go";
 
-import { ImPlay2, ImExit, ImStatsBars } from "react-icons/im"; // GiSoundWaves
+import { ImPlay2, ImExit } from "react-icons/im"; // GiSoundWaves
 import { useLocation } from "react-router-dom";
+import { FaFolderPlus, FaPlus } from "react-icons/fa";
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import ProfileImage from "../ProfileImage/ProfileImage";
@@ -42,6 +43,30 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
               styles="noRing"
               onClick={() => {
                 handlerRenderedComponet({
+                  [ROUTES.ADDSONG]: true,
+                });
+                setTitle("Add Song");
+                setDropDown(false);
+              }}
+            >
+              <FaPlus />
+            </Button>
+            <Button
+              styles="noRing"
+              onClick={() => {
+                handlerRenderedComponet({
+                  [ROUTES.ADDPLAYLIST]: true,
+                });
+                setTitle("Add Playlist");
+                setDropDown(false);
+              }}
+            >
+              <FaFolderPlus />
+            </Button>
+            <Button
+              styles="noRing"
+              onClick={() => {
+                handlerRenderedComponet({
                   [ROUTES.NOWPLAYING]: true,
                 });
                 setTitle("Now Playing");
@@ -62,18 +87,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             >
               <GoSettings />
             </Button>
-            {/* <Button
-              styles="noRing"
-              onClick={() => {
-                handlerRenderedComponet({
-                  [ROUTES.STATS]: true,
-                });
-                setTitle("Stats");
-                setDropDown(false);
-              }}
-            >
-              <ImStatsBars />
-            </Button> */}
+
             <Button styles="noRing" onClick={handleSignOut}>
               <ImExit />
             </Button>

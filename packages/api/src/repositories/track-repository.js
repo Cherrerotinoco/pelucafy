@@ -14,8 +14,8 @@ class TrackRepository {
       db.Track.findOneAndUpdate(query, update, { new: true }),
     );
   }
-  findAndDelete(query, update) {
-    return normalizeDBQuery(db.Track.findOneAndUpdate(query, update));
+  findAndDelete(query) {
+    return normalizeDBQuery(db.Track.findOneAndDelete(query));
   }
 
   findAndReplace(query, update) {

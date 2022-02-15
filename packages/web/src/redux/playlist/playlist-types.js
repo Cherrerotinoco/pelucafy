@@ -1,3 +1,5 @@
 export const PLAY_PLAYLIST = "PLAY_PLAYLIST";
 
 export const EDIT_PLAYLIST = "EDIT_PLAYLIST";
+
+export const ADD_TO_PLAYLIST = "ADD_TO_PLAYLIST";

@@ -11,6 +11,7 @@ const Search = () => {
   useEffect(() => {
     if (search.length > 0) {
       searchTracks(search);
+      console.log();
     } else {
       setTracksFound([]);
     }
@@ -19,7 +20,6 @@ const Search = () => {
   const searchTracks = async () => {
     try {
       const response = await api.searchTracks(null, search);
-      console.log(response);
       setTracksFound(response.data);
     } catch (error) {
       console.log(error);
@@ -29,9 +29,7 @@ const Search = () => {
     <>
       <InputSearch search={search} setSearch={setSearch} />
       {tracksFound &&
-        tracksFound.map((song) => (
-          <Song song={song} key={song._id} size="XS" />
-        ))}
+        tracksFound.map((song) => <Song song={song} key={song._id} size="S" />)}
     </>
   );
 };

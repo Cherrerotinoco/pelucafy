@@ -28,6 +28,7 @@ async function deletePlaylist(req, res) {
 }
 
 async function uploadPlaylist(req, res) {
+  console.log(req.body);
   //subirlo a mongo
   try {
     const response = await PlaylistRepo.create(req.body);

@@ -3,6 +3,7 @@ import * as PlaylistTypes from "./playlist-types";
 export const PlaylistInitialState = {
   playlistPlaying: {},
   playlistEditing: {},
+  trackToAdd: {},
 };
 
 const PlaylistReducer = (state = PlaylistInitialState, action) => {
@@ -18,6 +19,12 @@ const PlaylistReducer = (state = PlaylistInitialState, action) => {
       return {
         ...state,
         playlistEditing: payload,
+      };
+    }
+    case PlaylistTypes.ADD_TO_PLAYLIST: {
+      return {
+        ...state,
+        trackToAdd: payload,
       };
     }
 

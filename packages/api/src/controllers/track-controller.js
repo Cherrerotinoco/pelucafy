@@ -10,6 +10,8 @@ cloudinary.config({
 
 async function deleteSong(req, res) {
   const songId = { _id: req.params.id };
+  console.log(songId);
+
   try {
     const response = await TrackRepo.findAndDelete(songId);
 

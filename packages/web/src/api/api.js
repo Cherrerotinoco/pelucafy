@@ -155,9 +155,7 @@ function makeApi(request = makeRequest()) {
   function searchTracks(headers, keyword) {
     return request({
       url: `/search?keyword=${keyword}`,
-
       requestMethod: "GET",
-
       headers: headers,
     });
   }

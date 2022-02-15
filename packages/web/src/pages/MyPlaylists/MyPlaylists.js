@@ -12,7 +12,6 @@ const MyPlaylists = () => {
   const { playlist, error } = usePlaylist({
     query: { userId: currentUser._id },
   });
-
   // state
   // playlistlist
 

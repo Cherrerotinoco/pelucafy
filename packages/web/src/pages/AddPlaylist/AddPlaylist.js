@@ -9,7 +9,7 @@ import * as auth from "../../services/auth";
 
 import validateAddPlaylist from "./validateAddPlaylist";
 import { Elements } from "../../components/elements";
-import { setEditingTrack } from "../../redux/track/track-actions";
+import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
 
 //
 
@@ -56,7 +56,7 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
         id,
       );
 
-      dispatch(setEditingTrack({}));
+      dispatch(setEditingPlaylist({}));
 
       setPlaylist(initialState);
     } catch (error) {
@@ -105,7 +105,7 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
       if (response.data.error) throw Error(response.errorMessage);
 
-      if (isEditing) return dispatch(setEditingTrack({}));
+      if (isEditing) return dispatch(setEditingPlaylist({}));
 
       return setRequest({
         ...request,

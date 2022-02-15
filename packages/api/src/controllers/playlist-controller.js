@@ -13,6 +13,7 @@ async function uploadPlaylist(req, res) {
   //subirlo a mongo
   try {
     const response = await PlaylistRepo.create(req.body);
+    console.log(response);
     res.send(response.data);
   } catch (error) {
     res.status(500).send(error.message);

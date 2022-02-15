@@ -1,11 +1,14 @@
 import React from "react";
 import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import { Elements } from "../elements";
 import Follow from "./Folow";
 import EditPlaylist from "./EditPlaylist";
+import { authSelector } from "../../redux/auth/auth-selectors";
 
 const PlaylistCard = ({ playlist }) => {
+  const { currentUser } = useSelector(authSelector);
   const { _id, name, coverThumbnail, description, followedBy, trackIds } =
     playlist;
   const { Card, Title, Label } = Elements;
@@ -50,9 +53,12 @@ const PlaylistCard = ({ playlist }) => {
                 <FaHeart />
                 <p className="">14</p>
               </div>
-              <Follow followedBy={followedBy} playlistId={_id} />
-
-              <EditPlaylist playlist={playlist} />
+              {playlist.userId !== currentUser._id ? (
+                <Follow followedBy={followedBy} playlistId={_id} />
+              ) : null}
+              {playlist.userId === currentUser._id ? (
+                <EditPlaylist playlist={playlist} />
+              ) : null}
             </div>
           </div>
         </div>

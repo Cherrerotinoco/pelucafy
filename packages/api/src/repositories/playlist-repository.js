@@ -3,8 +3,6 @@ const normalizeDBQuery = require("../utils/normalizeDBQuery");
 
 class PlaylistRepository {
   create(data) {
-    console.log("PlaylistRepository");
-    console.log(data);
     return normalizeDBQuery(db.Playlist.create(data));
   }
 

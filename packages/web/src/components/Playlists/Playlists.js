@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import usePlaylists from '../../hooks/usePlaylists/usePlaylists'
+import PlaylistCard from '../PlaylistCard/PlaylistCard' 
 
 /**
  * Actions:
@@ -18,7 +19,9 @@ function Playlists() {
     <div>
       <button type='button'>Add playlist</button>
       <div>
-        {data && data.map(elm => <p key={elm._id}>elm</p>)}
+        {data && data.map(elm => (
+          <PlaylistCard key={elm._id} {...elm} />
+        ))}
       </div>
     </div>
   )

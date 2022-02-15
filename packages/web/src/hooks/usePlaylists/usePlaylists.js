@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
+import * as auth from "../../services/auth";
 import api from "../../api";
 
 const usePlaylists = () => {
@@ -10,14 +11,23 @@ const usePlaylists = () => {
   const { currentUser } = useSelector(authSelector);
  
   useEffect(() => {
-    if (Object.entries(currentUser).length === 0) {
+    if (Object.entries(currentUser).length !== 0) {
       getPlaylists();
     }
   }, [currentUser]);
 
   const getPlaylists = async () => {
     try {
-      const response = await api.getPlaylists();
+
+      const token = await auth.getCurrentUserToken();
+      if (!token) setError('Token not valid')
+
+      const response = await api.getPlaylists(
+        {
+          Authorization: `Bearer ${token}`,
+        },
+
+      );
 
       if (response.data.error) throw Error(response.errorMessage);
 

@@ -1,24 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import {
-  CgPlayTrackPrevO,
-  CgPlayTrackNextO,
-  CgPlayButtonO,
-  CgPlayPauseO,
-} from "react-icons/cg";
+import React from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import { TiArrowRepeatOutline, TiArrowShuffle } from "react-icons/ti";
 import { useSelector } from "react-redux";
 import { trackSelector } from "../../redux/track/track-selectors";
 
 const Player = () => {
-  // ? const audioElement = new Audio(audio source);
-  // ? audioElement.play();
-  // ? audioElement.pause();
-
-  // ? audioElement.currentTime;
-  // ? audioElement.ended;
-  // ? audioElement.duration;
 
   const { trackPlaying } = useSelector(trackSelector);
 

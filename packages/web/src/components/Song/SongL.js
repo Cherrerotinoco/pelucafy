@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { Elements } from "../elements";
 
 const SongL = ({ song }) => {
-  const { title, thumbnail, genre, albums, url } = song;
-  const { Card, Title, Label } = Elements;
+  const { title, thumbnail, genre, albums } = song;
+  const { Title } = Elements;
 
   return (
     <>

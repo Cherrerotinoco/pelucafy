@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
+import { FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Elements } from "../elements";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -12,8 +12,8 @@ import Play from "./Play";
 
 const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
   const { currentUser } = useSelector(authSelector);
-  const { title, thumbnail, genre, albums, url, likedBy, _id } = song;
-  const { Card, Title, Label } = Elements;
+  const { title, thumbnail, genre, albums, likedBy, _id } = song;
+  const { Card } = Elements;
 
   return (
     <>

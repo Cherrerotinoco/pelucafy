@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const InputSearch = ({ search, setSearch }) => {
@@ -6,9 +6,9 @@ const InputSearch = ({ search, setSearch }) => {
     setSearch(e.target.value);
   };
 
-  const cleanSearch = () => {
-    setSearch("");
-  };
+  // const cleanSearch = () => {
+  //  setSearch("");
+  // };
 
   return (
     <>

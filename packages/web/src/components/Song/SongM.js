@@ -1,9 +1,9 @@
 import React from "react";
-import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import PropTypes from "prop-types";
 
 const SongM = ({ song, playTrack }) => {
-  const { title, thumbnail, genre, albums, url } = song;
+  const { title, thumbnail } = song;
 
   return (
     <>

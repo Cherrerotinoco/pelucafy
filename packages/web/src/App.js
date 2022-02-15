@@ -21,7 +21,7 @@ import Modal from "./components/Modal";
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated, saveCredentials } = useSelector(authSelector);
+  const { isAuthenticated } = useSelector(authSelector);
 
   const history = useHistory();
   const location = useLocation();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { playlistSelector } from "../../redux/playlist/playlist-selectors";
 import api from "../../api";

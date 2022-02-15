@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import usePlaylist from "../../hooks/usePlaylist/usePlaylist";
+import React from "react";
+// import usePlaylist from "../../hooks/usePlaylist/usePlaylist";
 
 /**
  * Actions:

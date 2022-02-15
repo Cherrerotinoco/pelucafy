@@ -5,7 +5,6 @@ async function getSongs(req, res) {
 
   try {
     const response = await SearchRepository.findAll(keyword);
-
     res.send(response.data);
   } catch (error) {
     console.log(error);

@@ -9,6 +9,7 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import Like from "./Like";
 import Edit from "./Edit";
 import Play from "./Play";
+import AddToPlaylist from "./AddToPlaylist";
 
 const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
   const { currentUser } = useSelector(authSelector);
@@ -49,8 +50,9 @@ const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
           </div>
           <div className="w-1/5 block text-base text-white font-bold leading-none">
             {song.userId === currentUser._id ? <Edit song={song} /> : null}
-
             <Like likedBy={likedBy} songId={_id} />
+
+            <AddToPlaylist songId={_id} />
 
             <Play song={song} />
           </div>

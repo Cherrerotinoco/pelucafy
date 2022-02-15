@@ -17,3 +17,12 @@ export const edit = (playlist) => ({
 export const setEditingPlaylist = (playlist) => {
   return edit(playlist);
 };
+
+export const addToPlaylist = (track) => ({
+  type: PlaylistTypes.ADD_TO_PLAYLIST,
+  payload: track,
+});
+
+export const setTrackToAdd = (track) => {
+  return addToPlaylist(track);
+};

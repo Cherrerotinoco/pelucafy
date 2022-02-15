@@ -8,25 +8,6 @@ cloudinary.config({
   secure: true,
 });
 
-async function deletePlaylist(req, res) {
-  const playlistId = { _id: req.params.id };
-  try {
-    const response = await PlaylistRepo.findAndDelete(playlistId);
-
-    await cloudinary.uploader.destroy(
-      response.data.thumbnail_public_id,
-      function (error, result) {
-        console.log(result, error);
-      },
-    );
-
-    res.send(response.data);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error.message);
-  }
-}
-
 async function uploadPlaylist(req, res) {
   //subirlo a mongo
   try {
@@ -59,6 +40,18 @@ async function getPlaylists(req, res) {
       order: order || "createdAt",
     });
 
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
+async function updatePlaylist(req, res) {
+  const { _id, ...rest } = req.body;
+
+  //update en mongo
+  try {
+    const response = await PlaylistRepo.findAndUpdate({ _id: _id }, rest);
     res.send(response.data);
   } catch (error) {
     res.status(500).send(error.message);
@@ -119,14 +112,22 @@ async function deleteFollow(_id, userId) {
   }
 }
 
-async function updatePlaylist(req, res) {
-  const { _id, ...rest } = req.body;
-
-  //update en mongo
+async function deletePlaylist(req, res) {
+  console.log(req.params.id);
+  const playlistId = { _id: req.params.id };
   try {
-    const response = await PlaylistRepo.findAndUpdate({ _id: _id }, rest);
+    const response = await PlaylistRepo.findAndDelete(playlistId);
+
+    await cloudinary.uploader.destroy(
+      response.data.thumbnail_public_id,
+      function (error, result) {
+        console.log(result, error);
+      },
+    );
+
     res.send(response.data);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error.message);
   }
 }

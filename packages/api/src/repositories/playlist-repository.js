@@ -2,8 +2,10 @@ const db = require("../models");
 const normalizeDBQuery = require("../utils/normalizeDBQuery");
 
 class PlaylistRepository {
-  create(options) {
-    return normalizeDBQuery(db.Playlist.create(options));
+  create(data) {
+    console.log("PlaylistRepository");
+    console.log(data);
+    return normalizeDBQuery(db.Playlist.create(data));
   }
 
   findOne(query) {
@@ -15,7 +17,7 @@ class PlaylistRepository {
     );
   }
   findAndDelete(query, update) {
-    return normalizeDBQuery(db.Playlist.findOneAndUpdate(query, update));
+    return normalizeDBQuery(db.Playlist.findOneAndDelete(query, update));
   }
 
   findAndReplace(query, update) {

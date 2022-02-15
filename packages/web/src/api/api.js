@@ -109,15 +109,6 @@ function makeApi(request = makeRequest()) {
 
   // ! Playlist
 
-  // function getPlaylists(headers) {
-  //   return request({
-  //     url: "/playlist",
-  //     requestMethod: "GET",
-  //     headers: headers,
-  //     body: null,
-  //   });
-  // }
-
   function addNewPlaylist(headers, body) {
     return request({
       url: "/playlist",

@@ -34,8 +34,8 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
     coverThumbnail_public_id: "",
     publicAccessible: true,
     numberSongs: 0,
-    followedBy: "",
-    trackIds: "",
+    followedBy: [],
+    trackIds: [],
   };
 
   const [playlist, setPlaylist] = useState(playlistEditing || initialState);

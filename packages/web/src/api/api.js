@@ -151,6 +151,14 @@ function makeApi(request = makeRequest()) {
     });
   }
 
+  function searchPlaylist(headers, keyword) {
+    return request({
+      url: `/search?keyword=${keyword}`,
+      requestMethod: "GET",
+      headers: headers,
+    });
+  }
+
   function updatePlaylist(headers, body) {
     return request({
       url: "/playlist",
@@ -194,6 +202,7 @@ function makeApi(request = makeRequest()) {
     //! common
     saveImage: saveImage,
     searchTracks: searchTracks,
+    searchPlaylist: searchPlaylist,
     //! songs
     addNewSong: addNewSong,
     getTracks: getTracks,

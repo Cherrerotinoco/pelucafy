@@ -30,12 +30,12 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
     name: "",
     collaborative: false,
     description: "",
-    coverThumbnail: "",
+    coverThumbnail: "/images/logo.png",
     coverThumbnail_public_id: "",
     publicAccessible: true,
     numberSongs: 0,
-    followedBy: [],
-    trackIds: [],
+    followedBy: [""],
+    trackIds: [""],
   };
 
   const [playlist, setPlaylist] = useState(playlistEditing || initialState);
@@ -95,7 +95,7 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
     try {
       const method = isEditing ? api.updatePlaylist : api.addNewPlaylist;
-
+      console.log(method);
       const response = await method(
         {
           Authorization: `Bearer ${token}`,

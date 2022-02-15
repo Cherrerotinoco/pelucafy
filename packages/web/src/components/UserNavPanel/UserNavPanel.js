@@ -62,7 +62,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
             >
               <GoSettings />
             </Button>
-            <Button
+            {/* <Button
               styles="noRing"
               onClick={() => {
                 handlerRenderedComponet({
@@ -73,7 +73,7 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
               }}
             >
               <ImStatsBars />
-            </Button>
+            </Button> */}
             <Button styles="noRing" onClick={handleSignOut}>
               <ImExit />
             </Button>

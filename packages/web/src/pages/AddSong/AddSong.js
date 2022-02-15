@@ -30,7 +30,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
     title: "",
     genre: "",
     url: "",
-    thumbnail: "",
+    thumbnail: "/images/logo.png",
     track_public_id: "",
     thumbnail_public_id: "",
   };
@@ -192,19 +192,25 @@ const AddSong = ({ isEditing, trackEditing }) => {
             <Input name="genre" value={genre} onChange={handleChange} />
 
             {errorMessage.genre && <div>{errorMessage.genre}</div>}
+            <div>
+              {song.url ? (
+                <>
+                  <Button
+                    submit
+                    styles="noBackgroundHover"
+                    disabled={request.isDataPending}
+                  >
+                    {isEditing ? "Save" : "Upload"}
+                  </Button>
+                </>
+              ) : null}
 
-            <Button
-              submit
-              styles="noBackgroundHover"
-              disabled={request.isDataPending}
-            >
-              {isEditing ? "Save" : "Upload"}
-            </Button>
-            {isEditing && (
-              <Button onClick={() => deleteSong(trackEditing._id)}>
-                Delete
-              </Button>
-            )}
+              {isEditing && (
+                <Button onClick={() => deleteSong(trackEditing._id)}>
+                  Delete
+                </Button>
+              )}
+            </div>
           </>
         </form>
       </section>

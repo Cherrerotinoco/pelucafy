@@ -53,7 +53,9 @@ const PlaylistCard = ({ playlist }) => {
                 <FaHeart />
                 <p className="">14</p>
               </div>
-              <Follow followedBy={followedBy} playlistId={_id} />
+              {playlist.userId !== currentUser._id ? (
+                <Follow followedBy={followedBy} playlistId={_id} />
+              ) : null}
               {playlist.userId === currentUser._id ? (
                 <EditPlaylist playlist={playlist} />
               ) : null}

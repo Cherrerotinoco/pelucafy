@@ -7,6 +7,7 @@ const PlaylistSchema = Schema({
   collaborative: Boolean,
   description: String,
   coverThumbnail: String,
+  coverThumbnail_public_id: String,
   publicAccessible: Boolean,
   numberSongs: Number,
   followedBy: [
@@ -17,7 +18,6 @@ const PlaylistSchema = Schema({
   trackIds: [
     {
       type: String,
-      unique: true,
     },
   ],
 });

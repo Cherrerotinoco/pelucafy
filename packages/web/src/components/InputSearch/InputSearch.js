@@ -19,9 +19,9 @@ const InputSearch = ({ search, setSearch }) => {
           }}
         >
           <input
-            className="shadow appearance-none border rounded max-w-md w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+            className="m-5 shadow appearance-none border rounded max-w-md w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
             type="text"
-            placeholder="Search your song"
+            placeholder="Search something"
             name="search"
             value={search}
             id="search"

@@ -7,6 +7,12 @@ class SearchRepository {
       db.Track.find({ title: { $regex: query, $options: "i" } }),
     );
   }
+
+  findAllPlaylist(query) {
+    return normalizeDBQuery(
+      db.Playlist.find({ name: { $regex: query, $options: "i" } }),
+    );
+  }
 }
 
 module.exports = new SearchRepository();

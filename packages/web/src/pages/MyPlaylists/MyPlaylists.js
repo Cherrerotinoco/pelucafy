@@ -20,7 +20,7 @@ const MyPlaylists = () => {
       <section className="MyPlaylist w-full">
         <Title weight="3">My playlist</Title>
         {error && <p>{error}</p>}
-        <div className="min-w-full">
+        <div className="w-full block items-center justify-arround flex-grow lg:flex lg:items-center lg:w-auto ">
           {playlist &&
             playlist.map((list) => (
               <PlaylistCard key={list._id} playlist={list} />

@@ -128,7 +128,6 @@ function makeApi(request = makeRequest()) {
   }
 
   function getPlaylists(headers, params) {
-    console.log(params);
     const { query, ...rest } = params;
 
     function buildParam(param) {

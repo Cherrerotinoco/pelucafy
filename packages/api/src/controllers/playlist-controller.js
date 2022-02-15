@@ -68,10 +68,10 @@ async function getPlaylists(req, res) {
 async function followUnfollow(req, res) {
   console.log(req.body);
   try {
-    const { _id, userId, like } = req.body;
+    const { _id, userId, follow } = req.body;
     if (!_id || !userId) throw Error("Not found valid property");
 
-    const response = like
+    const response = follow
       ? await addFollow(_id, userId)
       : await deleteFollow(_id, userId);
 
@@ -90,7 +90,7 @@ async function addFollow(_id, userId) {
 
     const response = await PlaylistRepo.findAndUpdate(
       { _id: _id },
-      { $push: { likedBy: userId } },
+      { $push: { followedBy: userId } },
     );
 
     if (response.error && response.data === null) throw Error(response.error);
@@ -108,7 +108,7 @@ async function deleteFollow(_id, userId) {
 
     const response = await PlaylistRepo.findAndUpdate(
       { _id: _id },
-      { $pull: { likedBy: { $in: userId } } },
+      { $pull: { followedBy: { $in: userId } } },
     );
 
     if (response.error && response.data === null) throw Error(response.error);

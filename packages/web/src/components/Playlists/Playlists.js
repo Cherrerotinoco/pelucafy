@@ -11,12 +11,12 @@ import usePlaylist from "../../hooks/usePlaylist/usePlaylist";
  */
 
 function Playlists() {
-  const [data, error] = usePlaylist();
+  // const [playlist, error] = usePlaylist();
 
   return (
     <div>
       <button type="button">Add playlist</button>
-      <div>{data && data.map((elm) => <p key={elm._id}>elm</p>)}</div>
+      {/* <div>{playlist && playlist.map((elm) => <p key={elm._id}>elm</p>)}</div> */}
     </div>
   );
 }

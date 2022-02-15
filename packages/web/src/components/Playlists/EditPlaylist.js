@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { setEditingTrack } from "../../redux/track/track-actions";
+import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
-const Edit = ({ song }) => {
+const EditPlaylist = ({ playlist }) => {
   const { currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
-  const editTrack = () => {
-    dispatch(setEditingTrack(song));
+  const editPlaylist = () => {
+    dispatch(setEditingPlaylist(playlist));
   };
 
-  if (song.userId !== currentUser._id) {
+  if (playlist.userId !== currentUser._id) {
     return null;
   }
 
@@ -20,7 +20,7 @@ const Edit = ({ song }) => {
       <button
         className=" bg-yellow-400 hover:bg-yellow-500 px-2 ml-1 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-yellow-300 hover:border-yellow-500 text-white rounded-full transition ease-in duration-300"
         type="button"
-        onClick={editTrack}
+        onClick={editPlaylist}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,12 +35,12 @@ const Edit = ({ song }) => {
   );
 };
 
-Edit.defaultProps = {
-  song: {},
+EditPlaylist.defaultProps = {
+  playlist: {},
 };
 
-Edit.propTypes = {
-  song: PropTypes.object,
+EditPlaylist.propTypes = {
+  playlist: PropTypes.object,
 };
 
-export default Edit;
+export default EditPlaylist;

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   FaMusic,
   FaHome,
@@ -80,14 +80,14 @@ function Header() {
             </div>
             <div className="w-full flex justify-around">
               <Button styles="light">
-                <NavLink to={ROUTES.ADDSONG}>
+                <NavLink to={ROUTES.MYPLAYLIST}>
                   <FaFolderOpen />
                 </NavLink>
               </Button>
             </div>
             <div className="w-full flex justify-around">
               <Button styles="light">
-                <NavLink to={ROUTES.ADDSONG}>
+                <NavLink to={ROUTES.ADDPLAYLIST}>
                   <FaFolderPlus />
                 </NavLink>
               </Button>

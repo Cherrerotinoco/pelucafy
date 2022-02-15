@@ -8,3 +8,5 @@ export const ADDSONG = "/add-song";
 export const NOWPLAYING = "/now-playin";
 export const STATS = "/stats";
 export const SEARCH = "/search";
+export const MYPLAYLIST = "/my-playlist";
+export const ADDPLAYLIST = "/add-playlist";

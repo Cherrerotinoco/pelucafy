@@ -9,6 +9,7 @@ const { errorMiddleware } = require("./middlewares");
 const { userRouter } = require("./routes");
 const { trackRouter } = require("./routes/track-routes");
 const { searchRouter } = require("./routes/search-routes");
+const { playlistRouter } = require("./routes/playlist-routes");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(
 app.use(userRouter);
 app.use(trackRouter);
 app.use(searchRouter);
+app.use(playlistRouter);
 
 app.use(errorMiddleware);
 

@@ -10,9 +10,14 @@ import Like from "./Like";
 import Edit from "./Edit";
 import Play from "./Play";
 
-const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
+/**
+ * Render songS card component used in Search,My Songs and Home pages
+ * @param {*} params  {song={song to print data}}
+ * @returns JSX tailwind styled component
+ */
+const SongS = ({ song }) => {
   const { currentUser } = useSelector(authSelector);
-  const { title, thumbnail, genre, albums, likedBy, _id } = song;
+  const { title, thumbnail, genre, likedBy, _id } = song;
   const { Card } = Elements;
 
   return (
@@ -22,22 +27,14 @@ const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
           <div className=" w-20 mx-5">
             <img src={thumbnail} alt={title} className="object-cover " />
           </div>
-          <div className="w-1/6 text-lg text-white font-bold leading-none ">
+          <div className="w-2/6 text-lg text-center text-white font-bold leading-none ">
             {title}
           </div>
 
-          <div className="w-1/6 text-base text-white font-bold leading-none ">
-            {albums.length !== 0 && (
-              <>
-                <span className="mr-3 border-r text-white  max-h-0" />
-                <span>{albums}</span>
-              </>
-            )}
-          </div>
-          <div className="w-1/6 flex-none text-base text-white font-bold leading-none ">
+          <div className="w-1/6 flex-none text-center  text-base text-white font-bold leading-none ">
             <span className="mr-3 ">{genre}</span>
           </div>
-          <div className="w-1/6 flex-none text-base text-white font-bold leading-none ">
+          <div className="w-1/6 flex-none  text-center  text-base text-white font-bold leading-none ">
             <div className="flex-1 flex-col inline-flex items-center mx-1 ">
               <FaMusic />
               <p className="">2.5k</p>
@@ -47,7 +44,7 @@ const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
               <p className="">14</p>
             </div>
           </div>
-          <div className="w-1/5 block text-base text-white font-bold leading-none">
+          <div className="w-1/5 block text-right text-base text-white font-bold leading-none">
             {song.userId === currentUser._id ? <Edit song={song} /> : null}
 
             <Like likedBy={likedBy} songId={_id} />
@@ -64,16 +61,10 @@ const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
 
 SongS.defaultProps = {
   song: {},
-  editTrack: null,
-  playTrack: null,
-  likeTrack: null,
 };
 
 SongS.propTypes = {
   song: PropTypes.object,
-  editTrack: PropTypes.func,
-  playTrack: PropTypes.func,
-  likeTrack: PropTypes.func,
 };
 
 export default SongS;

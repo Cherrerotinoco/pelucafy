@@ -15,12 +15,16 @@ import {
 import { authSelector } from "../../redux/auth/auth-selectors";
 import { Elements } from "../../components/elements";
 
+/**
+ *  SignUp Page rendered in the user control panel,  send data to the API & handle response
+ * @returns  JSX Page with tailwind styled components
+ */
 function SignUp() {
   const dispatch = useDispatch();
   const { isSigningUp, signUpError, isAuthenticated } =
     useSelector(authSelector);
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, ErrorMsg } = Elements;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,16 +42,9 @@ function SignUp() {
     [dispatch, saveCredentials],
   );
 
-  // function handleLoginWithGoogle(e) {
-  //   e.preventDefault();
-  //   dispatch(signUpWithGoogleRequest(saveCredentials));
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
-
     dispatch(signUpWithEmailRequest(email, password, saveCredentials));
-
     setEmail("");
     setPassword("");
   }
@@ -112,9 +109,7 @@ w-full  rounded-lg px-8 pt-6 pb-8 mb-4"
             <Label htmlFor="saveCredentials"> Remember login?</Label>
           </form>
 
-          {signUpError && (
-            <section className="mt-4">{signUpError.payload}</section>
-          )}
+          {signUpError && <ErrorMsg>{signUpError.payload}</ErrorMsg>}
 
           <section className="mt-4">
             <hr className="mt-1 mb-4" />

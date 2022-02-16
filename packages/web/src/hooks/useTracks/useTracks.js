@@ -3,6 +3,11 @@ import { useSelector } from "react-redux";
 import { trackSelector } from "../../redux/track/track-selectors";
 import api from "../../api";
 
+/**
+ * Custom Hook thath takes songs from the db by query params
+ * @param {} param { query={collection property to find in DB}, limit={number of results}, order={orderBy}, skip={results to skip} }
+ * @returns {    trackList: {tracks|Objectlist}, error: {error message|Sting}, page:{number of pages|String},}
+ */
 const useTracks = ({ query, limit, order, skip }) => {
   const [trackList, setTrackList] = useState([]);
   const [error, setError] = useState(null);

@@ -2,9 +2,14 @@ import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
-import passwordValidation from "../../utils/validation/passwordValidation";
+import validation from "../../utils/validation/passwordValidation";
 import { Elements } from "../../components/elements";
-//
+
+/**
+ * Form for send password to change password
+ * @param {} param {handleDataSubmit={parent prop that manage submit}, buttonText={parent prop that set button text}}
+ * @returns Form with styled components in Tailwind
+ */
 function FormPassword({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
     useSelector(authSelector);
@@ -21,7 +26,7 @@ function FormPassword({ handleDataSubmit, buttonText }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const validateInput = passwordValidation(password);
+    const validateInput = validation(password);
     if (Object.keys(validateInput).length !== 0) {
       setErrorMsg(validateInput);
     } else {

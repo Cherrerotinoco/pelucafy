@@ -13,7 +13,12 @@ import {
 } from "../../redux/auth/auth-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import Title from "../../components/elements/Title";
+import ErrorMsg from "../../components/elements/ErrorMsg";
 
+/**
+ * Reset Password Page rendered in the user control panel, send data to the API & handle response
+ * @returns JSX Page with tailwind styled components
+ */
 function ResetPassword() {
   const dispatch = useDispatch();
   const { passwordResetError, isAuthenticated } = useSelector(authSelector);
@@ -73,9 +78,7 @@ function ResetPassword() {
           )}
         </section>
         <hr className="mt-1 mb-4" />
-        {passwordResetError && (
-          <section className="mt-4">{passwordResetError}</section>
-        )}
+        {passwordResetError && <ErrorMsg>{passwordResetError}</ErrorMsg>}
       </section>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Cloudinary } from "@cloudinary/url-gen";
+
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -7,18 +7,21 @@ import api from "../../api";
 import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 
-import validateAddSong from "./validateAddSong";
+import validateAddSong from "../../utils/validation/validateAddSong";
 import { Elements } from "../../components/elements";
 import { setEditingTrack } from "../../redux/track/track-actions";
 import Card from "../../components/elements/Card";
 
-//
-
+/**
+ * Page to add/edit song in the page or in the modal
+ * @param {} param {isEditing {true to set modal visible}, trackEditing={data song to edit}}
+ * @returns JSX page styled with Tailwind
+ */
 const AddSong = ({ isEditing, trackEditing }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Title, Label, Input, ErrorMsg } = Elements;
 
   const [request, setRequest] = useState({
     isDataPending: false,
@@ -58,7 +61,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
       setSong(initialState);
     } catch (error) {
-      console.log(error.message);
+      setErrorMesage(error.message);
     }
   };
 
@@ -125,7 +128,6 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   const updateSongUrl = (error, result) => {
     if (!error && result && result.event === "success") {
-      console.log(result.info);
       setSong({
         ...song,
         duration: Math.ceil(result.info.duration),
@@ -168,7 +170,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
                     <FileUploader callback={updateSongUrl} text="Song" />
                   )}
 
-                  {errorMessage.url && <div>{errorMessage.url}</div>}
+                  {errorMessage.url && <ErrorMsg>{errorMessage.url}</ErrorMsg>}
                 </div>
               )}
 
@@ -182,11 +184,13 @@ const AddSong = ({ isEditing, trackEditing }) => {
                 )}
 
                 <Title weight="1" align="left">
-                  {isEditing ? "Image" : "Step 2: Upload your song cover"}
+                  {isEditing ? "" : "Step 2: Upload your song cover"}
                 </Title>
                 <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
 
-                {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
+                {errorMessage.thumbnail && (
+                  <ErrorMsg>{errorMessage.thumbnail}</ErrorMsg>
+                )}
               </div>
             </>
 
@@ -209,7 +213,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
                 onChange={handleChange}
               />
 
-              {errorMessage.genre && <div>{errorMessage.genre}</div>}
+              {errorMessage.genre && <ErrorMsg>{errorMessage.genre}</ErrorMsg>}
               <div>
                 {song.url ? (
                   <>

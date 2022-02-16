@@ -1,10 +1,20 @@
 import React from "react";
 import { FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import { Elements } from "../elements";
-
+import { authSelector } from "../../redux/auth/auth-selectors";
+import Like from "./Like";
+import Edit from "./Edit";
+/**
+ * Render songL card component used in NowPlaying component
+ * @param {*} params  {song={song to print data}}
+ * @returns JSX tailwind styled component
+ */
 const SongL = ({ song }) => {
-  const { title, thumbnail, genre, albums } = song;
+  const { currentUser } = useSelector(authSelector);
+
+  const { title, thumbnail, genre, albums, likedBy, _id } = song;
   const { Title } = Elements;
 
   return (
@@ -46,12 +56,10 @@ const SongL = ({ song }) => {
               <p className="">14</p>
             </div>
             <div className="flex-1 flex-col inline-flex items-center mx-1">
-              <button
-                className="flex-no-shrink bg-red-400 hover:bg-white-500  px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-white-300 hover:border-white-500 text-red rounded-full transition ease-in duration-300"
-                type="button"
-              >
-                <FaHeart />
-              </button>
+              {song.userId === currentUser._id ? <Edit song={song} /> : null}
+            </div>
+            <div className="flex-1 flex-col inline-flex items-center mx-1">
+              <Like likedBy={likedBy} songId={_id} />
             </div>
           </div>
         </div>
@@ -63,23 +71,22 @@ const SongL = ({ song }) => {
 SongL.defaultProps = {
   song: {
     _id: {
-      $oid: `61fd4bffc9decf991a9e7b`,
+      $oid: "",
     },
     albums: [],
     likedBy: [],
-    userId: "TZAcGcsMp3SIxvzLnGNHMgUAtIn2",
-    title: `Song`,
-    genre: "Pop",
-    url: "https://res.cloudinary.com/dfd26tpqi/video/upload/v1643887696/songprueba_lmhm4y.mp3",
-    thumbnail:
-      "https://res.cloudinary.com/dfd26tpqi/image/upload/v1643887701/thumbnailprueba_nmfgnf.png", // ! IURL-MAGE
+    userId: "",
+    title: `Cloudinary`,
+    genre: "The most popular music App",
+    url: "",
+    thumbnail: "/images/logo.png",
     duration: {
-      $numberInt: `155`,
+      $numberInt: "",
     },
     createdAt: "2022-02-03T11:28:16Z",
     updatedAt: {
       $date: {
-        $numberLong: "1643887696000",
+        $numberLong: "0000000000",
       },
     },
     __v: {

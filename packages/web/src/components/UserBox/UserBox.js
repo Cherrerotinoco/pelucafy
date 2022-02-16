@@ -14,9 +14,11 @@ import Login from "../../pages/Login";
 import ResetPassword from "../../pages/ResetPassword";
 import Profile from "../../pages/Profile";
 import NowPlaying from "../../pages/NowPlaying/NowPlaying";
-import AddSong from "../../pages/AddSong";
-import AddPlaylist from "../../pages/AddPlaylist";
 
+/**
+ * Switch the content of the user panel
+ * @returns JSX component rendered
+ */
 function UserBox() {
   const { isAuthenticated } = useSelector(authSelector);
 
@@ -24,7 +26,6 @@ function UserBox() {
     [ROUTES.NOWPLAYING]: true,
     [ROUTES.PROFILE]: false,
     [ROUTES.RESET_PASSWORD]: false,
-    [ROUTES.STATS]: false,
     [ROUTES.ADDSONG]: false,
     [ROUTES.ADDPLAYLIST]: false,
   });

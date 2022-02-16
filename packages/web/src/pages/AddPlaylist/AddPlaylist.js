@@ -7,19 +7,20 @@ import api from "../../api";
 import FileUploader from "../../components/FileUploader";
 import * as auth from "../../services/auth";
 
-import validateAddPlaylist from "./validateAddPlaylist";
+import validateAddPlaylist from "../../utils/validation/validateAddPlaylist";
 import { Elements } from "../../components/elements";
 import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
 import Card from "../../components/elements/Card";
 
-//
-
+/**
+ * Page to add/edit playlist in the page or in the modal
+ * @param {} param {isEditing {true to set modal visible}, playlistEditing={data playlist to edit}}
+ * @returns JSX page styled with Tailwind
+ */
 const AddPlaylist = ({ isEditing, playlistEditing }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();
-
-  const { Button, Title, Label, Input } = Elements;
-
+  const { Button, Title, Label, Input, ErrorMsg } = Elements;
   const [request, setRequest] = useState({
     isDataPending: false,
     isDataSuccess: false,
@@ -41,7 +42,6 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
   const [playlist, setPlaylist] = useState(playlistEditing || initialState);
   const { name, description } = playlist;
-
   const [errorMessage, setErrorMesage] = useState({});
 
   const deletePlaylist = async (id) => {
@@ -61,7 +61,7 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
       setPlaylist(initialState);
     } catch (error) {
-      console.log(error.message);
+      setErrorMesage(error.message);
     }
   };
 
@@ -96,7 +96,6 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
     try {
       const method = isEditing ? api.updatePlaylist : api.addNewPlaylist;
-      console.log(method);
       const response = await method(
         {
           Authorization: `Bearer ${token}`,
@@ -148,21 +147,21 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
           <form onSubmit={handleSubmit}>
             <>
               <div>
-                {isEditing && (
-                  <img
-                    src={playlist.coverThumbnail}
-                    alt={playlist.name}
-                    className="large-img"
-                  />
-                )}
                 <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
+                  {isEditing && (
+                    <img
+                      src={playlist.coverThumbnail}
+                      alt={playlist.name}
+                      className="large-img"
+                    />
+                  )}
                   <Title weight="1" align="left">
-                    {isEditing ? "Image" : "Step 1: Upload your Playlist cover"}
+                    {isEditing ? "" : "Step 1: Upload your Playlist cover"}
                   </Title>
                   <FileUploader callback={updateThumbnailUrl} text="Cover" />
 
                   {errorMessage.coverThumbnail && (
-                    <div>{errorMessage.coverThumbnail}</div>
+                    <ErrorMsg>{errorMessage.coverThumbnail}</ErrorMsg>
                   )}
                 </div>
               </div>
@@ -187,7 +186,7 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
               />
 
               {errorMessage.description && (
-                <div>{errorMessage.description}</div>
+                <ErrorMsg>{errorMessage.description}</ErrorMsg>
               )}
               <div>
                 <Button submit styles="light" disabled={request.isDataPending}>

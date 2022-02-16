@@ -4,6 +4,11 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { setCurrentTrack } from "../../redux/track/track-actions";
 
+/**
+ * Sends the track to now playing using redux
+ * @param {} param {song={song to play data}}
+ * @returns  JSX button styled with Tailwind
+ */
 const Play = ({ song }) => {
   const dispatch = useDispatch();
   const playTrack = () => {

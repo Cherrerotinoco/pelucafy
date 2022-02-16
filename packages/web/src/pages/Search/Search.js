@@ -1,15 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import InputSearch from "../../components/InputSearch";
 import api from "../../api";
 
 import Song from "../../components/Song";
 import Title from "../../components/elements/Title";
 import PlaylistCard from "../../components/Playlists/PlaylistCard";
+import ErrorMsg from "../../components/elements/ErrorMsg";
 
+/**
+ * Search Page rendered in the main content page, search playlist and songs by name
+ * @returns JSX page with list of tailwind styled components
+ */
 const Search = () => {
   const [search, setSearch] = useState("");
   const [tracksFound, setTracksFound] = useState([]);
   const [playlistFound, setPlaylistFound] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const searchAll = useCallback(async () => {
+    try {
+      const response = await api.searchTracks(null, search);
+      setTracksFound(response.data.tracks);
+      setPlaylistFound(response.data.playlist);
+    } catch (error) {
+      setErrorMessage(error);
+    }
+  }, [search]);
 
   useEffect(() => {
     if (search.length > 0) {
@@ -18,17 +34,7 @@ const Search = () => {
       setTracksFound([]);
       setPlaylistFound([]);
     }
-  }, [search]);
-
-  const searchAll = async () => {
-    try {
-      const response = await api.searchTracks(null, search);
-      setTracksFound(response.data.tracks);
-      setPlaylistFound(response.data.playlist);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  }, [search, searchAll]);
 
   return (
     <>
@@ -53,6 +59,7 @@ const Search = () => {
           ))}
         </>
       )}
+      {errorMessage ? <ErrorMsg>{errorMessage}</ErrorMsg> : null}
     </>
   );
 };

@@ -1,8 +1,13 @@
 import React from "react";
-import { FaPlay } from "react-icons/fa";
 import PropTypes from "prop-types";
+import Play from "./Play";
 
-const SongM = ({ song, playTrack }) => {
+/**
+ * Render songM card component used in EditPLaylist page
+ * @param {*} params  {song={song to print data}}
+ * @returns JSX tailwind styled component
+ */
+const SongM = ({ song }) => {
   const { title, thumbnail } = song;
 
   return (
@@ -18,13 +23,7 @@ const SongM = ({ song, playTrack }) => {
             {title}
           </div>
 
-          <button
-            className="absolute -right-2 bottom-2   -ml-3 flex-no-shrink bg-green-400 hover:bg-green-500 px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300"
-            type="button"
-            onClick={playTrack}
-          >
-            <FaPlay />
-          </button>
+          <Play song={song} />
         </div>
       </div>
     </>
@@ -33,12 +32,10 @@ const SongM = ({ song, playTrack }) => {
 
 SongM.defaultProps = {
   song: {},
-  playTrack: null,
 };
 
 SongM.propTypes = {
   song: PropTypes.object,
-  playTrack: PropTypes.func,
 };
 
 export default SongM;

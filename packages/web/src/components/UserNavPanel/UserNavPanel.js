@@ -6,15 +6,19 @@ import { useDispatch } from "react-redux";
 
 import { GoSettings } from "react-icons/go";
 
-import { ImPlay2, ImExit } from "react-icons/im"; // GiSoundWaves
+import { ImPlay2, ImExit } from "react-icons/im";
 import { useLocation } from "react-router-dom";
-import { FaFolderPlus, FaPlus } from "react-icons/fa";
 import * as ROUTES from "../../routes";
 import { signOut } from "../../redux/auth/auth-actions";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
 
+/**
+ * User Navigation panel for the User control panel, sets the component rendered
+ * @param {*} param {handlerRenderedComponet = {set the UserBox component render}}
+ * @returns JSX navPanel styled with Tailwind
+ */
 const UserNavPanel = ({ handlerRenderedComponet }) => {
   const dispatch = useDispatch();
   const location = useLocation();

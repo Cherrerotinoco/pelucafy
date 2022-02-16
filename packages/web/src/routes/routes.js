@@ -12,5 +12,3 @@ export const HOME = "/";
 export const SEARCH = "/search";
 export const MYSONGS = "/my-songs";
 export const MYPLAYLIST = "/my-playlist";
-// ! NONE
-export const STATS = "/stats";

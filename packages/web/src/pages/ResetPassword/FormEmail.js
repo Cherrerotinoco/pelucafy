@@ -6,6 +6,11 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import emailValidation from "../../utils/validation/emailValidation";
 import { Elements } from "../../components/elements";
 
+/**
+ * Form for send email to refresh password
+ * @param {} param {handleDataSubmit={parent prop that manage submit}, buttonText={parent prop that set button text}}
+ * @returns Form with styled components in Tailwind
+ */
 function FormEmail({ handleDataSubmit, buttonText }) {
   const { isSendingPasswordReset, passwordResetSent } =
     useSelector(authSelector);

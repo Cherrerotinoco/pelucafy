@@ -1,8 +1,12 @@
-#editing-modal {
-  background-color: black;
+.editing-modal {
+  background-color: rgba(0, 0, 0, 0.65);
   position: fixed;
   top: 50%;
-  width: auto;
+  width: 65vh;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.editing-modal img {
+  width: 35vh;
 }

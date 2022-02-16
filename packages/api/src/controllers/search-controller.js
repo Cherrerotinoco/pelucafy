@@ -1,6 +1,11 @@
 const { SearchRepository } = require("../repositories");
 
-async function getSongs(req, res) {
+/**
+ * Search in the playlist and tracks DB
+ * @param {*} req {query}
+ * @param {*} res {response,data}
+ */
+async function searchAll(req, res) {
   const { keyword } = req.query;
 
   try {
@@ -10,13 +15,13 @@ async function getSongs(req, res) {
       tracks: tracks.data,
       playlist: playlist.data,
     };
-    console.log(response);
+
     res.send(response);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error.message);
   }
 }
 
 module.exports = {
-  getSongs: getSongs,
+  searchAll: searchAll,
 };

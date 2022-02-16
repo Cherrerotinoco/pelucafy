@@ -8,9 +8,13 @@ cloudinary.config({
   secure: true,
 });
 
+/**
+ * Uploads playlist data to DB
+ * @param {*} req {data}
+ * @param {*} res {resonse, error}
+ */
 async function uploadPlaylist(req, res) {
   console.log(req.body);
-  //subirlo a mongo
   try {
     const response = await PlaylistRepo.create(req.body);
     console.log(response);
@@ -20,19 +24,24 @@ async function uploadPlaylist(req, res) {
   }
 }
 
+/**
+ * construct mongoose query with the params and gets playlists from the DB
+ * @param {*} req {query}
+ * @param {*} res {response, error}
+ */
 async function getPlaylists(req, res) {
-  // Static key names
+  //? Static key names
   const arrayKeys = ["limit", "order", "skip"];
   const params = req.query;
 
-  // Build an object to set in find() mongoose method
+  //?  Build an object to set in find() mongoose method
   let query = {};
   Object.entries(params).forEach(([key, value]) => {
     if (arrayKeys.includes(key)) return;
     query[key] = value;
   });
 
-  // Send query to DB
+  //? Send query to DB
   try {
     const { limit, order, skip } = req.query;
     const response = await PlaylistRepo.findAll({
@@ -48,10 +57,14 @@ async function getPlaylists(req, res) {
   }
 }
 
+/**
+ * update a playlist from DB
+ * @param {*} req { _id,upload data }
+ * @param {*} res {response, error}
+ */
 async function updatePlaylist(req, res) {
   const { _id, ...rest } = req.body;
 
-  //update en mongo
   try {
     const response = await PlaylistRepo.findAndUpdate({ _id: _id }, rest);
     res.send(response.data);
@@ -60,6 +73,11 @@ async function updatePlaylist(req, res) {
   }
 }
 
+/**
+ * calls the function that insert or delete the userId in the playlist followedBy Array
+ * @param {*} req { _id, userId, like=bool }
+ * @param {*} res {response, error}
+ */
 async function followUnfollow(req, res) {
   console.log(req.body);
   try {
@@ -78,8 +96,13 @@ async function followUnfollow(req, res) {
   }
 }
 
+/**
+ *  Insert the userId in the playlist followed by Array
+ * @param {*} _id {songId}
+ * @param {*} userId
+ * @returns {response, error}
+ */
 async function addFollow(_id, userId) {
-  //update en mongo
   try {
     if (!_id || !userId) throw Error("Not found valid property");
 
@@ -96,8 +119,13 @@ async function addFollow(_id, userId) {
   }
 }
 
+/**
+ * Delete the userId in the followed by Array
+ * @param {*} _id {songId}
+ * @param {*} userId
+ * @returns {response, error}
+ */
 async function deleteFollow(_id, userId) {
-  //update en mongo
   try {
     if (!_id || !userId) throw Error("Not found valid property");
 
@@ -114,6 +142,11 @@ async function deleteFollow(_id, userId) {
   }
 }
 
+/**
+ *  Delete playlist from db and cloudinary files
+ * @param {*} req {_id: req.params.id}
+ * @param {*} res {response.data}
+ */
 async function deletePlaylist(req, res) {
   console.log(req.params.id);
   const playlistId = { _id: req.params.id };

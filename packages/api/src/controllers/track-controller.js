@@ -8,37 +8,13 @@ cloudinary.config({
   secure: true,
 });
 
-async function deleteSong(req, res) {
-  const songId = { _id: req.params.id };
-  console.log(songId);
-
-  try {
-    const response = await TrackRepo.findAndDelete(songId);
-
-    await cloudinary.uploader.destroy(
-      response.data.track_public_id,
-      { resource_type: "video" },
-      function (error, result) {
-        console.log(result, error);
-      },
-    );
-
-    await cloudinary.uploader.destroy(
-      response.data.thumbnail_public_id,
-      function (error, result) {
-        console.log(result, error);
-      },
-    );
-
-    res.send(response.data);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error.message);
-  }
-}
-
+/**
+ * Uploads track data to DB
+ * @param {*} req {data}
+ * @param {*} res {resonse, error}
+ */
 async function uploadSong(req, res) {
-  //subirlo a mongo
+  //? upload to mongo
   try {
     const response = await TrackRepo.create(req.body);
     res.send(response.data);
@@ -47,19 +23,24 @@ async function uploadSong(req, res) {
   }
 }
 
+/**
+ * construct mongoose query with the params and gets songs from the DB
+ * @param {*} req {query}
+ * @param {*} res {response, error}
+ */
 async function getSongs(req, res) {
-  // Static key names
+  //? Static key names
   const arrayKeys = ["limit", "order", "skip"];
   const params = req.query;
 
-  // Build an object to set in find() mongoose method
+  //? Build an object to set in find() mongoose method
   let query = {};
   Object.entries(params).forEach(([key, value]) => {
     if (arrayKeys.includes(key)) return;
     query[key] = value;
   });
 
-  // Send query to DB
+  //? Send query to DB
   try {
     const { limit, order, skip } = req.query;
     const response = await TrackRepo.findAll({
@@ -75,6 +56,27 @@ async function getSongs(req, res) {
   }
 }
 
+/**
+ * update Song from DB
+ * @param {*} req { _id,upload data }
+ * @param {*} res {response, error}
+ */
+async function updateSong(req, res) {
+  const { _id, ...rest } = req.body;
+
+  try {
+    const response = await TrackRepo.findAndUpdate({ _id: _id }, rest);
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
+/**
+ * calls the function that insert or delete the userId in the songs likedBy Array
+ * @param {*} req { _id, userId, like=bool }
+ * @param {*} res {response, error}
+ */
 async function likeDislike(req, res) {
   console.log(req.body);
   try {
@@ -93,8 +95,13 @@ async function likeDislike(req, res) {
   }
 }
 
+/**
+ *  Insert the userId in the songs likedBy Array
+ * @param {*} _id {songId}
+ * @param {*} userId
+ * @returns {response, error}
+ */
 async function addLike(_id, userId) {
-  //update en mongo
   try {
     if (!_id || !userId) throw Error("Not found valid property");
 
@@ -111,8 +118,13 @@ async function addLike(_id, userId) {
   }
 }
 
+/**
+ * Delete the userId in the songs likedBy Array
+ * @param {*} _id {songId}
+ * @param {*} userId
+ * @returns {response, error}
+ */
 async function deleteLike(_id, userId) {
-  //update en mongo
   try {
     if (!_id || !userId) throw Error("Not found valid property");
 
@@ -129,12 +141,34 @@ async function deleteLike(_id, userId) {
   }
 }
 
-async function updateSong(req, res) {
-  const { _id, ...rest } = req.body;
+/**
+ *  Delete song from db and cloudinary files
+ * @param {*} req {_id: req.params.id}
+ * @param {*} res {response.data}
+ */
+async function deleteSong(req, res) {
+  const songId = { _id: req.params.id };
 
-  //update en mongo
   try {
-    const response = await TrackRepo.findAndUpdate({ _id: _id }, rest);
+    // ? delete track from DB
+    const response = await TrackRepo.findAndDelete(songId);
+
+    // ? delete track file from cloudinary
+    await cloudinary.uploader.destroy(
+      response.data.track_public_id,
+      { resource_type: "video" },
+      function (error, result) {
+        res.send(result, error);
+      },
+    );
+    // ? delete thumbnail file from cloudinary
+    await cloudinary.uploader.destroy(
+      response.data.thumbnail_public_id,
+      function (error, result) {
+        res.send(result, error);
+      },
+    );
+
     res.send(response.data);
   } catch (error) {
     res.status(500).send(error.message);

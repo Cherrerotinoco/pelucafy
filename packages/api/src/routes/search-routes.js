@@ -5,7 +5,7 @@ const { searchController } = require("../controllers");
 
 const searchRouter = Router();
 
-searchRouter.get("/search", searchController.getSongs);
+searchRouter.get("/search", searchController.searchAll);
 
 module.exports = {
   searchRouter: searchRouter,

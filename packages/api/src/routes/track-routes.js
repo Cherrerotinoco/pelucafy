@@ -9,15 +9,9 @@ trackRouter.post("/tracks", authMiddleware, trackController.uploadSong);
 trackRouter.get("/tracks", trackController.getSongs);
 trackRouter.put("/tracks", authMiddleware, trackController.updateSong);
 
-//meter middleware auth en delete
 trackRouter.delete("/tracks/:id", trackController.deleteSong);
 
 trackRouter.post("/tracks/likes", trackController.likeDislike);
-
-/*
-trackRouter.put("/albums", trackController.updateLikes);
-trackRouter.put("/playlist", trackController.updateLikes);
-*/
 
 module.exports = {
   trackRouter: trackRouter,

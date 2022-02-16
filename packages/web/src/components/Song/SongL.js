@@ -14,7 +14,7 @@ import Edit from "./Edit";
 const SongL = ({ song }) => {
   const { currentUser } = useSelector(authSelector);
 
-  const { title, thumbnail, genre, albums, likedBy, _id } = song;
+  const { title, thumbnail, genre, likedBy, _id } = song;
   const { Title } = Elements;
 
   return (
@@ -36,12 +36,6 @@ const SongL = ({ song }) => {
               <div className="flex flex-col">
                 <div className="flex-auto text-white my-1">
                   <Title weight="2">{genre}</Title>
-                  {albums && albums.length !== 0 && (
-                    <>
-                      <span className="mr-3 border-r text-white  max-h-0" />
-                      <Title weight="2">{albums}</Title>
-                    </>
-                  )}
                 </div>
               </div>
             </div>
@@ -73,7 +67,6 @@ SongL.defaultProps = {
     _id: {
       $oid: "",
     },
-    albums: [],
     likedBy: [],
     userId: "",
     title: `Cloudinary`,

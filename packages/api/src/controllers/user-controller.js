@@ -1,9 +1,17 @@
 const { UserRepo } = require("../repositories");
 
+/**
+ *  Validate and create user data in DB
+ * @param {user} req
+ * @param {*} res  { error,data}
+ * @param {*} next
+ * @returns  { newUser.data,  error,}
+ */
 async function signUp(req, res, next) {
   const { uid, email } = req.user;
 
   try {
+    //? validate unique email
     const response = await UserRepo.findOne({ email: email });
 
     if (response.error) {
@@ -20,6 +28,7 @@ async function signUp(req, res, next) {
       });
     }
 
+    //? create user in the user DB
     const newUser = await UserRepo.create({
       _id: uid,
       email: email,
@@ -34,6 +43,11 @@ async function signUp(req, res, next) {
   }
 }
 
+/**
+ * SingOut and delete user tokens
+ * @param {signOut()} req {signOut()}
+ * @param {*} res {{data, error}}
+ */
 async function signOut(req, res) {
   req.signOut();
 
@@ -43,6 +57,11 @@ async function signOut(req, res) {
   });
 }
 
+/**
+ *  Update user data from DB
+ * @param {*} req  {user.uid}
+ * @param {*} res  {data,error}
+ */
 async function update(req, res) {
   try {
     await UserRepo.findAndUpdate({ _id: req.user.uid }, req.body);

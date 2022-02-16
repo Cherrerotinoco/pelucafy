@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "../elements/Button";
 
-const FileUploader = ({ callback, text, ...props }) => {
+/**
+ * This component open the cloudinary widget on click
+ * {https://cloudinary.com/documentation/upload_widget}
+ * @param {*} params {callback={fuction that will execute afte upload file}, text={upload button label}}
+ * @returns JSX labeled button
+ */
+const FileUploader = ({ callback, text }) => {
   const cloudinaryConfig = {
     apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY,
     apiSecret: process.env.REACT_APP_CLOUDINARY_API_SECRET,

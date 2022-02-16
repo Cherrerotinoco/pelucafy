@@ -1,40 +1,25 @@
 import React from "react";
-import ReactAudioPlayer from 'react-audio-player';
-import { TiArrowRepeatOutline, TiArrowShuffle } from "react-icons/ti";
+import ReactAudioPlayer from "react-audio-player";
 import { useSelector } from "react-redux";
 import { trackSelector } from "../../redux/track/track-selectors";
 
+/**
+ * This component render ReactAudioPlayer for play and control music
+ *  {https://www.npmjs.com/package/react-audio-player}
+ * @returns JSX audio player
+ */
 const Player = () => {
-
   const { trackPlaying } = useSelector(trackSelector);
 
   return (
-    <div className=" p-2 m-2  outline-white">
+    <div className=" p-2 m-2">
       <div className="flex audio-controls justify-between text-white w-fit mx-4 ">
-        <div className="w-1/6 text-xl">
-          <button
-            type="button"
-            className="shuffle"
-            aria-label="Shuffle"          >
-            <TiArrowShuffle />
-          </button>
-        </div>
         <div className="w-auto">
           <ReactAudioPlayer
             autoPlay
             controls
             src={trackPlaying && trackPlaying.url}
           />
-
-        </div>
-        <div className="w-1/6 text-xl">
-          <button
-            type="button"
-            className="next"
-            aria-label="Repeat"
-          >
-            <TiArrowRepeatOutline />
-          </button>
         </div>
       </div>
     </div>

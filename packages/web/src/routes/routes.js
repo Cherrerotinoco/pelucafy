@@ -1,12 +1,16 @@
-export const HOME = "/";
+// ! AUTH
 export const SIGN_UP = "/sign-up";
 export const LOGIN = "/login";
+// ! USER BOX
 export const RESET_PASSWORD = "/reset-password";
 export const PROFILE = "/profile";
-export const MYSONGS = "/my-songs";
-export const ADDSONG = "/add-song";
 export const NOWPLAYING = "/now-playin";
-export const STATS = "/stats";
-export const SEARCH = "/search";
-export const MYPLAYLIST = "/my-playlist";
+export const ADDSONG = "/add-song";
 export const ADDPLAYLIST = "/add-playlist";
+// ! HEADER
+export const HOME = "/";
+export const SEARCH = "/search";
+export const MYSONGS = "/my-songs";
+export const MYPLAYLIST = "/my-playlist";
+// ! NONE
+export const STATS = "/stats";

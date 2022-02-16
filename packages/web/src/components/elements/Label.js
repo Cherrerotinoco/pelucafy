@@ -1,7 +1,11 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
+/**
+ * This component set styles for labels
+ * @param {*} params {htmlFor={form name}, children{any}}
+ * @returns JSC tailwind styled label component
+ */
 const Label = ({ htmlFor, children }) => {
   return (
     <>

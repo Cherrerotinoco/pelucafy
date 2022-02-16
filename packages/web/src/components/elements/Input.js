@@ -1,7 +1,11 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
+/**
+ * Input with preset style
+ * @param {*} params {type={text, password, email, checkbox...}, name={input name}, value{preset value}, isrequired{true for required}, ...props={any}}
+ * @returns JSX tailwind styled input
+ */
 const Input = ({ type, name, value, isrequired, ...props }) => {
   return (
     <>

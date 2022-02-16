@@ -1,7 +1,8 @@
 #editing-modal {
-  background-color: grey;
+  background-color: black;
   position: fixed;
   top: 50%;
+  width: auto;
   left: 50%;
   transform: translate(-50%, -50%);
 }

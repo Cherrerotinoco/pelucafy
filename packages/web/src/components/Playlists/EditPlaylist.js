@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
+/**
+ * Button to edit playlist that renders if the logued user is the owner of the playlist
+ * @param {*} param {playlist={ to edit playlist data}}
+ * @returns JSX Tailwind styled button with svg image
+ */
 const EditPlaylist = ({ playlist }) => {
   const { currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();

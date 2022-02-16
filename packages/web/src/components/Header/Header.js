@@ -18,6 +18,10 @@ import LogoHome from "../LogoHome/LogoHome";
 import Title from "../elements/Title";
 import Button from "../elements/Button";
 
+/**
+ * Header component that render the navPanel and logo
+ * @returns JSX navPanel styled with Tailwind
+ */
 function Header() {
   const { isAuthenticated } = useSelector(authSelector);
 
@@ -45,7 +49,7 @@ function Header() {
           <NavLink to={ROUTES.HOME}>
             <img
               src="/images/logo.png"
-              className="flex light justify-around w-20"
+              className="flex light justify-around min-w-20 w-20"
               alt="logo"
             />
           </NavLink>

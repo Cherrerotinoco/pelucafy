@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * This component render the search input
+ * @param {*} params { {search, setSearch} = parent props}
+ * @returns JSX Tailwind styled component
+ */
 const InputSearch = ({ search, setSearch }) => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-
-  // const cleanSearch = () => {
-  //  setSearch("");
-  // };
 
   return (
     <>

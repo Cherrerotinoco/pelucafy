@@ -6,6 +6,11 @@ import {
 } from "react-icons/fa";
 import Button from "../elements/Button";
 
+/**
+ * Login main content
+ * @returns JSX with logo and social media
+ */
+
 const LogoHome = () => {
   return (
     <>
@@ -30,10 +35,6 @@ const LogoHome = () => {
             </div>
           </div>
         </div>
-
-        {/* <NavLink to={ROUTES.HOME}>
-          <img src="/images/logo.png" className="w-1/3" />
-        </NavLink> */}
       </div>
     </>
   );

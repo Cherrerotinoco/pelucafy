@@ -9,6 +9,10 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import { trackSelector } from "../../redux/track/track-selectors";
 import { setEditingTrack } from "../../redux/track/track-actions";
 
+/**
+ * Modal for edit songs
+ * @returns JSX Modal styled with CSS
+ */
 function ModalTrack() {
   const [hidden, setHidden] = useState(true);
 

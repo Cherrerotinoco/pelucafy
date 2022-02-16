@@ -2,6 +2,11 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
+/**
+ * This component sets translucid background
+ * @param {*} params {padding={number of rems for padding, children={any}}}
+ * @returns JSX tailwind styled background
+ */
 const Card = ({ padding, children }) => {
   const style = `flex flex-col mx-1 p-${padding} lightBackgroun w-auto`;
   return (

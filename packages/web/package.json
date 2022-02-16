@@ -70,7 +70,6 @@
     "dotenv": "^8.2.0",
     "firebase": "^8.3.1",
     "focus-visible": "^5.2.0",
-    "formik": "^2.2.9",
     "msw": "^0.26.2",
     "node-sass": "^6.0.1",
     "normalizr": "^3.6.1",
@@ -93,15 +92,14 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "@tailwindcss/postcss7-compat": "^2.1.2",
     "tslib": "^2.3.1",
     "tsparticles": "^1.39.3",
-    "web-vitals": "^0.2.4",
-    "yup": "^0.32.11"
+    "web-vitals": "^0.2.4"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "3.0.0",
     "@svgr/webpack": "^5.5.0",
-    "@tailwindcss/postcss7-compat": "^2.1.2",
     "autoprefixer": "^9",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",

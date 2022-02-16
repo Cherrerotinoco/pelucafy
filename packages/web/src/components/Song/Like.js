@@ -6,6 +6,11 @@ import api from "../../api";
 import * as auth from "../../services/auth";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
+/**
+ * Button to like/ dislike a song
+ * @param {*} param {likedBy={[userId]} , songId={song._id}}
+ * @returns JSX button styled with Tailwind
+ */
 const Like = ({ likedBy, songId }) => {
   const { currentUser } = useSelector(authSelector);
 

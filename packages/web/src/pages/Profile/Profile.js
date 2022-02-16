@@ -16,13 +16,17 @@ import { syncSignIn } from "../../redux/auth/auth-actions";
 import validateProfile from "./validateProfile";
 import { Elements } from "../../components/elements";
 
+/**
+ *  Profile Page rendered in the user control panel,  send data to the API & handle response
+ * @returns  JSX Page with tailwind styled components
+ */
 function Profile() {
   const dispatch = useDispatch();
 
   const { isSigningUp, isAuthenticated, currentUser } =
     useSelector(authSelector);
 
-  const { Button, Title, Label, Input } = Elements;
+  const { Button, Label, Input, ErrorMsg } = Elements;
 
   const [data, setData] = useState(currentUser);
   const { firstName, lastName, email } = data;
@@ -110,10 +114,6 @@ function Profile() {
     return <Redirect to={ROUTES.HOME} />;
   }
 
-  if (!isDataPending && isDataSuccess && !isDataError) {
-    // return <Redirect to={ROUTES.PROFILE} />;
-  }
-
   return (
     <>
       <section className="Profile p-4">
@@ -124,17 +124,21 @@ w-full  rounded-lg "
         >
           <Label htmlFor="firstName"> Firs Name</Label>
           <Input name="firstName" value={firstName} onChange={handleChange} />
-          {errorMessage.firstName && <div>{errorMessage.firstName}</div>}
+          {errorMessage.firstName && (
+            <ErrorMsg>{errorMessage.firstName}</ErrorMsg>
+          )}
 
           <Label htmlFor="lastName"> Last Name</Label>
           <Input name="lastName" value={lastName} onChange={handleChange} />
 
-          {errorMessage.lastName && <div>{errorMessage.lastName}</div>}
+          {errorMessage.lastName && (
+            <ErrorMsg>{errorMessage.lastName}</ErrorMsg>
+          )}
 
           <Label htmlFor="email"> Email</Label>
           <Input name="email" value={email} onChange={handleChange} />
 
-          {errorMessage.email && <div>{errorMessage.email}</div>}
+          {errorMessage.email && <ErrorMsg>{errorMessage.email}</ErrorMsg>}
           <div className="mt-5">
             <Button submit styles="light" disabled={isSigningUp}>
               Save

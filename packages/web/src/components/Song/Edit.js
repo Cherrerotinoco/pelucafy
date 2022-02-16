@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import { setEditingTrack } from "../../redux/track/track-actions";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
+/**
+ * Button to edit songs that renders if the logued user is the owner of the playlist
+ * @param {*} param {songt={ to edit song data}}
+ * @returns JSX Tailwind styled button with svg image
+ */
 const Edit = ({ song }) => {
   const { currentUser } = useSelector(authSelector);
   const dispatch = useDispatch();

@@ -5,8 +5,11 @@ import SongS from "./SongS";
 import SongM from "./SongM";
 import SongL from "./SongL";
 
-// ! Pasar Like & Edit a componentes
-
+/**
+ * Render song components by size
+ * @param {*} params {song={song to print data}, size={S,M,L}}
+ * @returns JSX component
+ */
 const Song = ({ song, size }) => {
   return (
     <div className="song-component">

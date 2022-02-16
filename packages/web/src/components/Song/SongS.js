@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { FaPlay, FaHeart, FaMusic } from "react-icons/fa";
+import { FaHeart, FaMusic } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Elements } from "../elements";
 import { authSelector } from "../../redux/auth/auth-selectors";
@@ -10,10 +10,15 @@ import Like from "./Like";
 import Edit from "./Edit";
 import Play from "./Play";
 
-const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
+/**
+ * Render songS card component used in Search,My Songs and Home pages
+ * @param {*} params  {song={song to print data}}
+ * @returns JSX tailwind styled component
+ */
+const SongS = ({ song }) => {
   const { currentUser } = useSelector(authSelector);
-  const { title, thumbnail, genre, albums, url, likedBy, _id } = song;
-  const { Card, Title, Label } = Elements;
+  const { title, thumbnail, genre, albums, likedBy, _id } = song;
+  const { Card } = Elements;
 
   return (
     <>
@@ -64,16 +69,10 @@ const SongS = ({ song, playTrack, editTrack, likeTrack }) => {
 
 SongS.defaultProps = {
   song: {},
-  editTrack: null,
-  playTrack: null,
-  likeTrack: null,
 };
 
 SongS.propTypes = {
   song: PropTypes.object,
-  editTrack: PropTypes.func,
-  playTrack: PropTypes.func,
-  likeTrack: PropTypes.func,
 };
 
 export default SongS;

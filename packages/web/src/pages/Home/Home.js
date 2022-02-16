@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.scss";
 import Song from "../../components/Song";
 import { Elements } from "../../components/elements";
-import Playlist from "../../components/Playlists";
 import useTracks from "../../hooks/useTracks";
 import usePlaylist from "../../hooks/usePlaylist/usePlaylist";
 import PlaylistCard from "../../components/Playlists/PlaylistCard";
@@ -15,6 +14,10 @@ import PlaylistCard from "../../components/Playlists/PlaylistCard";
 // ?    setEmail(e.target.value);
 // ?  }, []);
 
+/**
+ * Home page with suggested list and popular songs
+ * @returns JSX Page with tailwind styled components
+ */
 function Home() {
   const { Title } = Elements;
 
@@ -40,17 +43,6 @@ function Home() {
         popularsTracks.map((song) => (
           <Song song={song} key={song._id} size="S" />
         ))}
-
-      {/*
-      <Title weight="2">Suggested</Title>
-      <div className="flex flex-wrap">
-        {suggestedTracks && suggestedTracks.map((song) => (
-          <>
-            <Song song={song} key={song._id} size="M" />
-          </>
-        ))}
-      </div>
-      */}
     </>
   );
 }

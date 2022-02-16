@@ -4,6 +4,11 @@ import { useSelector } from "react-redux";
 import { authSelector } from "../../redux/auth/auth-selectors";
 import { getCurrentUserPhoto } from "../../services/auth";
 
+/**
+ * Profile image taked from google profile or from netlify if  the user uploads it
+ * @param {*} param {thumbnail={}, ...props={any}}
+ * @returns Img component styled with Tailwind
+ */
 function ProfileImage({ thumbnail, ...props }) {
   const { currentUser } = useSelector(authSelector);
   const { imageUrl, thumbnailUrl } = currentUser;

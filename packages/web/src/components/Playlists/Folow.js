@@ -6,6 +6,11 @@ import api from "../../api";
 import * as auth from "../../services/auth";
 import { authSelector } from "../../redux/auth/auth-selectors";
 
+/**
+ * Button to follow/ unfollow a playlist
+ * @param {*} param {followedBy={[userId]} , playlistId={playlist._id}}
+ * @returns JSX button styled with Tailwind
+ */
 const Follow = ({ followedBy, playlistId }) => {
   const { currentUser } = useSelector(authSelector);
 
@@ -17,7 +22,7 @@ const Follow = ({ followedBy, playlistId }) => {
     isDataError: "",
   });
 
-  // If current user ID its include in song.followedBy => setState(true)
+  // ? If current user ID its include in playlist.followedBy => setState(true)
   useEffect(() => {
     if (followedBy && followedBy.includes(currentUser._id)) setFollow(true);
   }, [followedBy, currentUser]);

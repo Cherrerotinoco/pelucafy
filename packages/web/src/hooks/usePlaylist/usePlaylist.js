@@ -3,6 +3,11 @@ import { useSelector } from "react-redux";
 import { playlistSelector } from "../../redux/playlist/playlist-selectors";
 import api from "../../api";
 
+/**
+ * Custom Hook thath takes playlists from the db by query params
+ * @param {} param { query={collection property to find in DB}, limit={number of results}, order={orderBy}, skip={results to skip} }
+ * @returns {    trackList: {tracks|Objectlist}, error: {error message|Sting}, page:{number of pages|String},}
+ */
 const usePlaylist = ({ query, limit, order, skip }) => {
   const [playlist, setPlaylist] = useState([]);
   const [error, setError] = useState(null);

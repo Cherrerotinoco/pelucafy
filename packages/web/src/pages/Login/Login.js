@@ -65,7 +65,7 @@ function Login() {
   }
 
   return (
-    <div className="mt-10">
+    <div className="mr-10 mt-10 w-full">
       <Card>
         <Title weight="3" align="center">
           Login

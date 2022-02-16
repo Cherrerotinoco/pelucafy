@@ -184,7 +184,7 @@ const AddSong = ({ isEditing, trackEditing }) => {
                 )}
 
                 <Title weight="1" align="left">
-                  {isEditing ? "Image" : "Step 2: Upload your song cover"}
+                  {isEditing ? "" : "Step 2: Upload your song cover"}
                 </Title>
                 <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
 

@@ -147,16 +147,16 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
           <form onSubmit={handleSubmit}>
             <>
               <div>
-                {isEditing && (
-                  <img
-                    src={playlist.coverThumbnail}
-                    alt={playlist.name}
-                    className="large-img"
-                  />
-                )}
                 <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
+                  {isEditing && (
+                    <img
+                      src={playlist.coverThumbnail}
+                      alt={playlist.name}
+                      className="large-img"
+                    />
+                  )}
                   <Title weight="1" align="left">
-                    {isEditing ? "Image" : "Step 1: Upload your Playlist cover"}
+                    {isEditing ? "" : "Step 1: Upload your Playlist cover"}
                   </Title>
                   <FileUploader callback={updateThumbnailUrl} text="Cover" />
 

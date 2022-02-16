@@ -43,9 +43,14 @@ function ModalTrack() {
   };
 
   return (
-    <div id="editing-modal" className="light" hidden={hidden}>
+    <div id="editing-modal" className="light editing-modal" hidden={hidden}>
       <Card>
-        <button type="button" onClick={closeModal}>
+        <button
+          type="button"
+          className=" w-10 text-white fixed
+           bg-red-300 hover:bg-red-500 rounded place-self-end px-2 ml-2 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-white hover:border-white transition ease-in duration-300"
+          onClick={closeModal}
+        >
           X
         </button>
         <AddSong isEditing trackEditing={track} />

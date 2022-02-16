@@ -2,6 +2,11 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
+/**
+ * This component set type text of error msg
+ * @param {*} params {children={any}}
+ * @returns JSX tailwind styled text
+ */
 const ErrorMsg = ({ children }) => {
   return (
     <>

@@ -50,8 +50,6 @@ function UserBox() {
               {renderedComponent[ROUTES.PROFILE] && <Profile />}
               {renderedComponent[ROUTES.RESET_PASSWORD] && <ResetPassword />}
               {renderedComponent[ROUTES.NOWPLAYING] && <NowPlaying />}
-              {renderedComponent[ROUTES.ADDSONG] && <AddSong />}
-              {renderedComponent[ROUTES.ADDPLAYLIST] && <AddPlaylist />}
             </div>
             <hr className="mt-4 mb-1" />
             <Player />

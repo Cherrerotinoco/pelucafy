@@ -10,6 +10,7 @@ import * as auth from "../../services/auth";
 import validateAddPlaylist from "./validateAddPlaylist";
 import { Elements } from "../../components/elements";
 import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
+import Card from "../../components/elements/Card";
 
 //
 
@@ -139,65 +140,71 @@ const AddPlaylist = ({ isEditing, playlistEditing }) => {
 
   return (
     <>
-      <section className="addPlaylist">
-        <Title weight="3" align="left">
-          {isEditing ? "Edit Playlist" : "Create Playlist"}
-        </Title>
-        <form onSubmit={handleSubmit}>
-          <>
-            <div>
-              {isEditing && (
-                <img
-                  src={playlist.coverThumbnail}
-                  alt={playlist.name}
-                  className="large-img"
-                />
-              )}
+      <section className="addPlaylist fit m-auto">
+        <Card>
+          <Title weight="3" align="left">
+            {isEditing ? "Edit Playlist" : "Create Playlist"}
+          </Title>
+          <form onSubmit={handleSubmit}>
+            <>
+              <div>
+                {isEditing && (
+                  <img
+                    src={playlist.coverThumbnail}
+                    alt={playlist.name}
+                    className="large-img"
+                  />
+                )}
+                <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
+                  <Title weight="1" align="left">
+                    {isEditing ? "Image" : "Step 1: Upload your Playlist cover"}
+                  </Title>
+                  <FileUploader callback={updateThumbnailUrl} text="Cover" />
 
-              <Label>
-                {isEditing ? "Image" : "Step 1: Upload your Playlist cover"}
-              </Label>
-              <FileUploader
-                callback={updateThumbnailUrl}
-                text="Thumbnail Cover"
+                  {errorMessage.coverThumbnail && (
+                    <div>{errorMessage.coverThumbnail}</div>
+                  )}
+                </div>
+              </div>
+            </>
+            <>
+              <Label htmlFor="name"> Title</Label>
+              <Input
+                name="name"
+                value={name}
+                placeholder="Step 2: Give your playlist a name"
+                onChange={handleChange}
               />
 
-              {errorMessage.coverThumbnail && (
-                <div>{errorMessage.coverThumbnail}</div>
+              {errorMessage.name && <div>{errorMessage.name}</div>}
+
+              <Label htmlFor="description"> Description</Label>
+              <Input
+                name="description"
+                placeholder="Step 3: Give your playlist a description"
+                value={description}
+                onChange={handleChange}
+              />
+
+              {errorMessage.description && (
+                <div>{errorMessage.description}</div>
               )}
-            </div>
-          </>
-
-          <>
-            <Label htmlFor="name"> Title</Label>
-            <Input name="name" value={name} onChange={handleChange} />
-
-            {errorMessage.name && <div>{errorMessage.name}</div>}
-
-            <Label htmlFor="description"> Description</Label>
-            <Input
-              name="description"
-              value={description}
-              onChange={handleChange}
-            />
-
-            {errorMessage.description && <div>{errorMessage.description}</div>}
-            <div>
-              <Button
-                submit
-                styles="noBackgroundHover"
-                disabled={request.isDataPending}
-              >
-                {isEditing ? "Update" : "Create"}
-              </Button>
-              {isEditing && (
-                <Button onClick={() => deletePlaylist(playlistEditing._id)}>
-                  Delete
+              <div>
+                <Button submit styles="light" disabled={request.isDataPending}>
+                  {isEditing ? "Update" : "Create"}
                 </Button>
-              )}
-            </div>
-          </>
-        </form>
+                {isEditing && (
+                  <Button
+                    styles="light"
+                    onClick={() => deletePlaylist(playlistEditing._id)}
+                  >
+                    Delete
+                  </Button>
+                )}
+              </div>
+            </>
+          </form>
+        </Card>
       </section>
     </>
   );

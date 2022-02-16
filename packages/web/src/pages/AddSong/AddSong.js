@@ -10,6 +10,7 @@ import * as auth from "../../services/auth";
 import validateAddSong from "./validateAddSong";
 import { Elements } from "../../components/elements";
 import { setEditingTrack } from "../../redux/track/track-actions";
+import Card from "../../components/elements/Card";
 
 //
 
@@ -149,74 +150,91 @@ const AddSong = ({ isEditing, trackEditing }) => {
 
   return (
     <>
-      <section className="addSong">
-        <Title weight="3" align="left">
-          {isEditing ? "Edit song" : null}
-        </Title>
-        <form onSubmit={handleSubmit}>
-          <>
-            {!isEditing && (
+      <section className="addSong fit m-auto">
+        <Card>
+          <Title weight="3" align="left">
+            {isEditing ? "Edit song" : "Add song"}
+          </Title>
+          <form onSubmit={handleSubmit}>
+            <>
+              {!isEditing && (
+                <div className="items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
+                  <Title weight="1" align="left">
+                    Step 1: Upload your song
+                  </Title>
+                  {song.url ? (
+                    <Button styles="light">Uploaded!!</Button>
+                  ) : (
+                    <FileUploader callback={updateSongUrl} text="Song" />
+                  )}
+
+                  {errorMessage.url && <div>{errorMessage.url}</div>}
+                </div>
+              )}
+
               <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
-                <Label>Step 1: Upload your song</Label>
-                {song.url ? (
-                  <Button styles="light">Uploaded!!</Button>
-                ) : (
-                  <FileUploader callback={updateSongUrl} text="Song" />
+                {isEditing && (
+                  <img
+                    src={song.thumbnail}
+                    alt={song.name}
+                    className="large-img"
+                  />
                 )}
 
-                {errorMessage.url && <div>{errorMessage.url}</div>}
+                <Title weight="1" align="left">
+                  {isEditing ? "Image" : "Step 2: Upload your song cover"}
+                </Title>
+                <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
+
+                {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
               </div>
-            )}
+            </>
 
-            <div className="w-full block items-center justify-between flex-grow lg:flex lg:items-center lg:w-auto ">
-              {isEditing && (
-                <img
-                  src={song.thumbnail}
-                  alt={song.name}
-                  className="large-img"
-                />
-              )}
+            <>
+              <Label htmlFor="title"> Title</Label>
+              <Input
+                name="title"
+                placeholder="Step 3: Give your song a title"
+                value={title}
+                onChange={handleChange}
+              />
 
-              <Label>
-                {isEditing ? "Image" : "Step 2: Upload your song cover"}
-              </Label>
-              <FileUploader callback={updateThumbnailUrl} text="Thumbnail" />
+              {errorMessage.title && <div>{errorMessage.title}</div>}
 
-              {errorMessage.thumbnail && <div>{errorMessage.thumbnail}</div>}
-            </div>
-          </>
+              <Label htmlFor="genre"> Genre</Label>
+              <Input
+                name="genre"
+                value={genre}
+                placeholder="Step 4: Give your song a genre"
+                onChange={handleChange}
+              />
 
-          <>
-            <Label htmlFor="title"> Title</Label>
-            <Input name="title" value={title} onChange={handleChange} />
+              {errorMessage.genre && <div>{errorMessage.genre}</div>}
+              <div>
+                {song.url ? (
+                  <>
+                    <Button
+                      styles="light"
+                      submit
+                      disabled={request.isDataPending}
+                    >
+                      {isEditing ? "Save" : "Upload"}
+                    </Button>
+                  </>
+                ) : null}
 
-            {errorMessage.title && <div>{errorMessage.title}</div>}
-
-            <Label htmlFor="genre"> Genre</Label>
-            <Input name="genre" value={genre} onChange={handleChange} />
-
-            {errorMessage.genre && <div>{errorMessage.genre}</div>}
-            <div>
-              {song.url ? (
-                <>
+                {isEditing && (
                   <Button
                     styles="light"
-                    submit
-                    disabled={request.isDataPending}
+                    onClick={() => deleteSong(trackEditing._id)}
                   >
-                    {isEditing ? "Save" : "Upload"}
+                    Delete
                   </Button>
-                </>
-              ) : null}
-
-              {isEditing && (
-                <Button onClick={() => deleteSong(trackEditing._id)}>
-                  Delete
-                </Button>
-              )}
-            </div>
-          </>
-        </form>
+                )}
+              </div>
+            </>
+          </form>
+        </Card>
       </section>
     </>
   );

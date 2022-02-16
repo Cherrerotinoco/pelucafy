@@ -10,6 +10,10 @@ import Search from "../../pages/Search";
 import AddPlaylist from "../../pages/AddPlaylist";
 import MyPlaylists from "../../pages/MyPlaylists";
 
+/**
+ * Switch the content of the maing page
+ * @returns JSX page rendered
+ */
 function ContentBox() {
   return (
     <>

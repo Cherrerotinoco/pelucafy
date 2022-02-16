@@ -43,30 +43,6 @@ const UserNavPanel = ({ handlerRenderedComponet }) => {
               styles="noRing"
               onClick={() => {
                 handlerRenderedComponet({
-                  [ROUTES.ADDSONG]: true,
-                });
-                setTitle("Add Song");
-                setDropDown(false);
-              }}
-            >
-              <FaPlus />
-            </Button>
-            <Button
-              styles="noRing"
-              onClick={() => {
-                handlerRenderedComponet({
-                  [ROUTES.ADDPLAYLIST]: true,
-                });
-                setTitle("Add Playlist");
-                setDropDown(false);
-              }}
-            >
-              <FaFolderPlus />
-            </Button>
-            <Button
-              styles="noRing"
-              onClick={() => {
-                handlerRenderedComponet({
                   [ROUTES.NOWPLAYING]: true,
                 });
                 setTitle("Now Playing");

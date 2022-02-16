@@ -9,6 +9,10 @@ import { authSelector } from "../../redux/auth/auth-selectors";
 import { playlistSelector } from "../../redux/playlist/playlist-selectors";
 import { setEditingPlaylist } from "../../redux/playlist/playlist-actions";
 
+/**
+ * Modal for edit playlist
+ * @returns JSX Modal styled with CSS
+ */
 function ModalPlaylist() {
   const [hidden, setHidden] = useState(true);
 

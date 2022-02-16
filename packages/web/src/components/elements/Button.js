@@ -2,6 +2,11 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
+/**
+ *  This component returns a button with preselect styles and functionalitys
+ * @param {*} params {submit={true if submit}, styles= {light, noRing, noBackgroundHover}, disabled= {true to disable}, children= {other params}}
+ * @returns  JSX tailwind styled button
+ */
 const Button = ({ children, submit, disabled, styles, ...props }) => {
   const style = {
     noBackgroundHover:
